@@ -1,0 +1,3796 @@
+/* ==========================================================
+   DEVISFLOW → COREFLOW UI KIT
+   Compatibility Layer V1
+   ========================================================== */
+
+
+/* ==========================================================
+   BUTTONS
+   ========================================================== */
+
+.business-button {
+  display: inline-flex;
+  min-height: 40px;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: var(--space-2);
+  padding: 0 var(--space-4);
+
+  border: 1px solid var(--core-border);
+  border-radius: var(--core-radius-sm);
+
+  background: var(--core-surface);
+  color: var(--core-text);
+
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-semibold);
+
+  cursor: pointer;
+
+  transition:
+    background var(--core-transition),
+    border-color var(--core-transition),
+    color var(--core-transition),
+    box-shadow var(--core-transition),
+    transform var(--core-transition);
+}
+
+.business-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.business-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.business-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+
+/* Primary */
+
+.business-button-primary {
+  border-color: var(--core-blue-600);
+  background: var(--core-blue-600);
+  color: #ffffff;
+
+  box-shadow:
+    0 1px 2px rgba(37, 99, 235, 0.18);
+}
+
+.business-button-primary:hover:not(:disabled) {
+  border-color: var(--core-blue-700);
+  background: var(--core-blue-700);
+}
+
+
+/* Secondary */
+
+.business-button-secondary {
+  border-color: var(--core-border);
+  background: var(--core-surface);
+  color: var(--core-text);
+}
+
+.business-button-secondary:hover:not(:disabled) {
+  border-color: var(--core-blue-100);
+  background: var(--core-blue-50);
+  color: var(--core-blue-700);
+}
+
+
+/* Success */
+
+.business-button-success {
+  border-color: var(--core-success);
+  background: var(--core-success);
+  color: #ffffff;
+}
+
+
+/* Warning */
+
+.business-button-warning {
+  border-color: var(--core-warning);
+  background: var(--core-warning);
+  color: #ffffff;
+}
+
+
+/* Danger */
+
+.business-button-danger {
+  border-color: var(--core-danger);
+  background: var(--core-danger);
+  color: #ffffff;
+}
+
+
+/* Cyan */
+
+.business-button-cyan {
+  border-color: var(--core-cyan-600);
+  background: var(--core-cyan-600);
+  color: #ffffff;
+}
+
+
+/* Sizes */
+
+.business-button-sm {
+  min-height: 32px;
+  padding: 0 var(--space-3);
+
+  font-size: var(--font-size-label);
+}
+
+.business-button-lg {
+  min-height: 46px;
+  padding: 0 var(--space-5);
+}
+
+
+/* ==========================================================
+   BUSINESS CARDS
+   ========================================================== */
+
+.business-card {
+  min-width: 0;
+
+  border: 1px solid var(--core-border);
+  border-radius: var(--core-radius-lg);
+
+  background: var(--core-surface);
+
+  box-shadow: var(--core-shadow-sm);
+
+  transition:
+    transform var(--core-transition),
+    border-color var(--core-transition),
+    box-shadow var(--core-transition);
+}
+
+.business-card:hover {
+  border-color: #d7ddea;
+  box-shadow: var(--core-shadow-md);
+}
+
+
+/* Semantic cards */
+
+.business-card.business-neutral {
+  background:
+    linear-gradient(
+      135deg,
+      var(--core-neutral-soft),
+      var(--core-surface)
+    );
+}
+
+.business-card.business-info {
+  background:
+    linear-gradient(
+      135deg,
+      var(--core-blue-50),
+      var(--core-surface)
+    );
+}
+
+.business-card.business-cyan {
+  background:
+    linear-gradient(
+      135deg,
+      var(--core-cyan-50),
+      var(--core-surface)
+    );
+}
+
+.business-card.business-success {
+  background:
+    linear-gradient(
+      135deg,
+      var(--core-success-soft),
+      var(--core-surface)
+    );
+}
+
+.business-card.business-warning {
+  background:
+    linear-gradient(
+      135deg,
+      var(--core-warning-soft),
+      var(--core-surface)
+    );
+}
+
+.business-card.business-danger {
+  background:
+    linear-gradient(
+      135deg,
+      var(--core-danger-soft),
+      var(--core-surface)
+    );
+}
+
+
+/* ==========================================================
+   KPI CARDS
+   ========================================================== */
+
+.quote-kpi-card,
+.invoice-kpi-card {
+  padding: var(--space-5);
+}
+
+.quote-kpi-card > span,
+.invoice-kpi-card > span {
+  color: var(--core-text-soft);
+
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-medium);
+}
+
+.quote-kpi-card > strong,
+.invoice-kpi-card > strong {
+  color: var(--core-text);
+
+  font-size: var(--font-size-card-value);
+  font-weight: var(--font-weight-bold);
+
+  line-height: var(--line-height-tight);
+  letter-spacing: -0.035em;
+}
+
+.quote-kpi-card > small,
+.invoice-kpi-card > small {
+  color: var(--core-text-muted);
+
+  font-size: var(--font-size-caption);
+}
+
+
+/* ==========================================================
+   TABLES
+   ========================================================== */
+
+.data-table,
+.recurring-table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  background: var(--core-surface);
+
+  color: var(--core-text);
+}
+
+.data-table th,
+.data-table td,
+.recurring-table th,
+.recurring-table td {
+  padding:
+    var(--space-3)
+    var(--space-4);
+
+  border-bottom:
+    1px solid var(--core-border-soft);
+
+  text-align: left;
+  vertical-align: middle;
+}
+
+.data-table th,
+.recurring-table th {
+  background: var(--core-surface-soft);
+
+  color: var(--core-text-soft);
+
+  font-size: var(--font-size-table-header);
+  font-weight: var(--font-weight-semibold);
+
+  letter-spacing: 0.01em;
+}
+
+.data-table td,
+.recurring-table td {
+  color: var(--core-text);
+
+  font-size: var(--font-size-table);
+}
+
+.data-table tbody tr,
+.recurring-table tbody tr {
+  transition:
+    background var(--core-transition),
+    box-shadow var(--core-transition);
+}
+
+.data-table tbody tr:hover,
+.recurring-table tbody tr:hover {
+  background: var(--core-blue-50);
+}
+
+
+/* ==========================================================
+   STATUS BADGES
+   ========================================================== */
+
+.status-badge {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  padding: 5px 9px;
+
+  border-radius: var(--core-radius-pill);
+
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-semibold);
+
+  line-height: 1;
+}
+
+
+/* Neutral / draft */
+
+.status-draft,
+.status-badge-inactive {
+  background: var(--core-neutral-soft);
+  color: var(--core-neutral);
+}
+
+
+/* Success */
+
+.status-issued,
+.status-paid,
+.status-active,
+.status-completed,
+.status-accepted {
+  background: var(--core-success-soft);
+  color: var(--core-success);
+}
+
+
+/* Warning */
+
+.status-pending,
+.status-sent,
+.status-partial,
+.status-overdue-warning {
+  background: var(--core-warning-soft);
+  color: var(--core-warning);
+}
+
+
+/* Danger */
+
+.status-cancelled,
+.status-overdue,
+.status-failed,
+.status-rejected {
+  background: var(--core-danger-soft);
+  color: var(--core-danger);
+}
+
+
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+
+@media (max-width: 680px) {
+  .business-button {
+    max-width: 100%;
+  }
+
+  .data-table,
+  .recurring-table {
+    min-width: 760px;
+  }
+}
+
+
+/* ==========================================================
+   DEVISFLOW → COREFLOW UI KIT
+   TABLE TYPOGRAPHY / DENSITY V1
+   ========================================================== */
+
+.data-table th,
+.recurring-table th {
+  padding:
+    var(--space-3)
+    var(--space-4);
+
+  color: var(--core-text-soft);
+
+  font-size: 13px;
+  font-weight: var(--font-weight-semibold);
+
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+
+.data-table td,
+.recurring-table td {
+  padding:
+    12px
+    var(--space-4);
+
+  color: var(--core-text);
+
+  font-size: 13px;
+  font-weight: var(--font-weight-regular);
+
+  line-height: 1.45;
+}
+
+.data-table td strong,
+.recurring-table td strong {
+  font-size: inherit;
+  font-weight: var(--font-weight-semibold);
+}
+
+.data-table td,
+.data-table td span,
+.data-table td div,
+.recurring-table td,
+.recurring-table td span,
+.recurring-table td div {
+  letter-spacing: 0;
+}
+
+.data-table td:first-child strong,
+.recurring-table td:first-child strong {
+  font-weight: var(--font-weight-semibold);
+}
+
+
+/* ==========================================================
+   DOCUMENT LINK BADGES
+   ========================================================== */
+
+.business-linked-document,
+.purchase-order-created-badge,
+.invoice-created-badge {
+  min-height: 32px;
+
+  padding:
+    0
+    var(--space-3);
+
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-semibold);
+
+  white-space: nowrap;
+}
+
+
+/* ==========================================================
+   DEVISFLOW → COREFLOW UI KIT
+   BUSINESS NAVIGATION V1
+   ========================================================== */
+
+.df-business-nav {
+  border-bottom: 1px solid var(--core-border-soft);
+  background: var(--core-surface);
+}
+
+.df-business-nav-inner {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  overflow-x: auto;
+
+  scrollbar-width: thin;
+}
+
+.df-nav-link {
+  display: inline-flex;
+
+  min-height: 44px;
+
+  align-items: center;
+  justify-content: center;
+
+  padding:
+    0
+    var(--space-3);
+
+  border-bottom: 2px solid transparent;
+
+  color: var(--core-text-soft);
+
+  font-size: 15px;
+  font-weight: var(--font-weight-semibold);
+
+  line-height: 1;
+
+  white-space: nowrap;
+
+  transition:
+    color var(--core-transition),
+    background var(--core-transition),
+    border-color var(--core-transition);
+}
+
+.df-nav-link:hover {
+  color: var(--core-text);
+
+  background: var(--core-surface-soft);
+}
+
+.df-nav-link-active {
+  border-bottom-color: var(--core-blue-600);
+
+  color: var(--core-blue-700);
+
+  background: var(--core-blue-50);
+}
+
+@media (max-width: 900px) {
+  .df-nav-link {
+    min-height: 42px;
+
+    padding:
+      0
+      var(--space-3);
+
+    font-size: 14px;
+  }
+}
+
+
+/* ==========================================================
+   DEVISFLOW → COREFLOW UI KIT
+   PREMIUM TABLE UX V1
+   ========================================================== */
+
+/*
+ * Cette classe est volontairement opt-in.
+ * On migre les pages progressivement sans casser les tables
+ * métier existantes.
+ */
+.df-premium-table {
+  width: 100%;
+
+  border-collapse: separate;
+  border-spacing: 0 8px;
+
+  background: transparent;
+}
+
+
+/* Header */
+.df-premium-table thead th {
+  height: 44px;
+
+  padding:
+    0
+    var(--space-4);
+
+  vertical-align: middle;
+
+  border-bottom: 0;
+
+  background: var(--core-surface-soft);
+
+  color: var(--core-text-soft);
+
+  font-size: 12px;
+  font-weight: var(--font-weight-semibold);
+
+  line-height: 1.2;
+
+  text-transform: uppercase;
+}
+
+
+/* Première / dernière cellule du header */
+.df-premium-table thead th:first-child {
+  border-radius:
+    var(--core-radius-md)
+    0
+    0
+    var(--core-radius-md);
+}
+
+.df-premium-table thead th:last-child {
+  border-radius:
+    0
+    var(--core-radius-md)
+    var(--core-radius-md)
+    0;
+}
+
+
+/* Ligne métier */
+.df-premium-table tbody tr {
+  height: 68px;
+
+  transition:
+    transform var(--core-transition),
+    filter var(--core-transition);
+}
+
+
+/* Cellules */
+.df-premium-table tbody td {
+  height: 68px;
+
+  padding:
+    12px
+    var(--space-4);
+
+  vertical-align: middle;
+
+  border-top:
+    1px solid
+    var(--core-border-soft);
+
+  border-bottom:
+    1px solid
+    var(--core-border-soft);
+
+  background: var(--core-surface);
+
+  box-shadow:
+    0 3px 10px
+    rgba(15, 23, 42, 0.045);
+
+  color: var(--core-text);
+
+  font-size: 13px;
+  font-weight: var(--font-weight-regular);
+
+  line-height: 1.4;
+
+  transition:
+    background var(--core-transition),
+    border-color var(--core-transition),
+    box-shadow var(--core-transition);
+}
+
+
+/* Bordure gauche */
+.df-premium-table tbody td:first-child {
+  border-left:
+    1px solid
+    var(--core-border-soft);
+
+  border-radius:
+    var(--core-radius-md)
+    0
+    0
+    var(--core-radius-md);
+}
+
+
+/* Bordure droite */
+.df-premium-table tbody td:last-child {
+  border-right:
+    1px solid
+    var(--core-border-soft);
+
+  border-radius:
+    0
+    var(--core-radius-md)
+    var(--core-radius-md)
+    0;
+}
+
+
+/* Effet premium discret au survol */
+.df-premium-table tbody tr:hover {
+  transform: translateY(-1px);
+}
+
+.df-premium-table tbody tr:hover td {
+  border-color: var(--core-border);
+
+  background: var(--core-surface);
+
+  box-shadow:
+    0 7px 18px
+    rgba(15, 23, 42, 0.075);
+}
+
+
+/* Focus clavier / interactions internes */
+.df-premium-table tbody tr:focus-within td {
+  border-color: var(--core-blue-200);
+
+  box-shadow:
+    0 7px 18px
+    rgba(21, 94, 239, 0.08);
+}
+
+
+/* Références / données importantes */
+.df-premium-table tbody td strong {
+  font-size: inherit;
+  font-weight: var(--font-weight-semibold);
+}
+
+
+/* Dernière colonne = ACTIONS */
+.df-premium-table th:last-child,
+.df-premium-table td:last-child {
+  min-width: 132px;
+
+  text-align: right;
+}
+
+
+/* Conteneur Actions commun */
+.df-table-actions {
+  display: flex;
+
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: var(--space-2);
+
+  min-height: 36px;
+
+  white-space: nowrap;
+}
+
+
+/* Texte compact réutilisable */
+.df-cell-truncate {
+  display: block;
+
+  max-width: 180px;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* ==========================================================
+   ROW ACTION MENU — PREMIUM V1
+   ========================================================== */
+
+.row-actions-menu {
+  position: relative;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.row-actions-menu-trigger {
+  display: inline-flex;
+
+  width: 36px;
+  height: 36px;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border:
+    1px solid
+    var(--core-border);
+
+  border-radius: var(--core-radius-md);
+
+  background: var(--core-surface);
+
+  color: var(--core-text-soft);
+
+  font-size: 15px;
+  font-weight: var(--font-weight-bold);
+
+  cursor: pointer;
+
+  transition:
+    background var(--core-transition),
+    border-color var(--core-transition),
+    color var(--core-transition),
+    box-shadow var(--core-transition);
+}
+
+.row-actions-menu-trigger:hover {
+  border-color: var(--core-blue-200);
+
+  background: var(--core-blue-50);
+
+  color: var(--core-blue-700);
+
+  box-shadow:
+    0 4px 12px
+    rgba(15, 23, 42, 0.08);
+}
+
+.row-actions-menu-popover {
+  position: absolute;
+
+  z-index: 50;
+
+  top: calc(100% + 8px);
+  right: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  min-width: 190px;
+
+  padding: 6px;
+
+  border:
+    1px solid
+    var(--core-border-soft);
+
+  border-radius: var(--core-radius-lg);
+
+  background: var(--core-surface);
+
+  box-shadow:
+    0 16px 32px
+    rgba(15, 23, 42, 0.14);
+}
+
+.row-actions-menu-popover .business-button {
+  width: 100%;
+  min-height: 36px;
+
+  justify-content: flex-start;
+
+  border: 0;
+
+  background: transparent;
+
+  box-shadow: none;
+
+  color: var(--core-text);
+
+  text-align: left;
+}
+
+.row-actions-menu-popover .business-button:hover {
+  background: var(--core-surface-soft);
+}
+
+
+/* ==========================================================
+   KPI FOUNDATION V1
+   ========================================================== */
+
+.df-premium-kpi-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: var(--space-4);
+
+  margin-bottom: var(--space-6);
+}
+
+.df-premium-kpi-card {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  min-height: 132px;
+
+  justify-content: center;
+
+  padding:
+    var(--space-5)
+    var(--space-5);
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    var(--core-border-soft);
+
+  border-radius: var(--core-radius-xl);
+
+  background: var(--core-surface);
+
+  box-shadow:
+    0 4px 14px
+    rgba(15, 23, 42, 0.045);
+
+  transition:
+    transform var(--core-transition),
+    box-shadow var(--core-transition),
+    border-color var(--core-transition);
+}
+
+.df-premium-kpi-card:hover {
+  transform: translateY(-2px);
+
+  border-color: var(--core-border);
+
+  box-shadow:
+    0 10px 26px
+    rgba(15, 23, 42, 0.075);
+}
+
+.df-premium-kpi-card > span {
+  color: var(--core-text-soft);
+
+  font-size: 13px;
+  font-weight: var(--font-weight-medium);
+}
+
+.df-premium-kpi-card > strong {
+  margin-top: var(--space-3);
+
+  color: var(--core-text);
+
+  font-size: 26px;
+  font-weight: var(--font-weight-bold);
+
+  line-height: 1.1;
+}
+
+.df-premium-kpi-card > small {
+  margin-top: var(--space-2);
+
+  color: var(--core-text-muted);
+
+  font-size: 12px;
+  font-weight: var(--font-weight-regular);
+}
+
+
+/* KPI semantic accents */
+.df-premium-kpi-card[data-tone="primary"] {
+  border-left:
+    4px solid
+    var(--core-blue-600);
+}
+
+.df-premium-kpi-card[data-tone="cyan"] {
+  border-left:
+    4px solid
+    var(--core-cyan-500);
+}
+
+.df-premium-kpi-card[data-tone="success"] {
+  border-left:
+    4px solid
+    var(--core-success);
+}
+
+.df-premium-kpi-card[data-tone="neutral"] {
+  border-left:
+    4px solid
+    var(--core-neutral);
+}
+
+
+/* Responsive KPI */
+@media (max-width: 1100px) {
+  .df-premium-kpi-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .df-premium-kpi-grid {
+    grid-template-columns:
+      1fr;
+  }
+
+  .df-premium-table {
+    min-width: 760px;
+  }
+}
+
+
+/* ==========================================================
+   DEVISFLOW → COREFLOW UI KIT
+   PREMIUM TABLE UX V1
+   ========================================================== */
+
+/*
+ * Cette classe est volontairement opt-in.
+ * On migre les pages progressivement sans casser les tables
+ * métier existantes.
+ */
+.df-premium-table {
+  width: 100%;
+
+  border-collapse: separate;
+  border-spacing: 0 8px;
+
+  background: transparent;
+}
+
+
+/* Header */
+.df-premium-table thead th {
+  height: 44px;
+
+  padding:
+    0
+    var(--space-4);
+
+  vertical-align: middle;
+
+  border-bottom: 0;
+
+  background: var(--core-surface-soft);
+
+  color: var(--core-text-soft);
+
+  font-size: 12px;
+  font-weight: var(--font-weight-semibold);
+
+  line-height: 1.2;
+
+  text-transform: uppercase;
+}
+
+
+/* Première / dernière cellule du header */
+.df-premium-table thead th:first-child {
+  border-radius:
+    var(--core-radius-md)
+    0
+    0
+    var(--core-radius-md);
+}
+
+.df-premium-table thead th:last-child {
+  border-radius:
+    0
+    var(--core-radius-md)
+    var(--core-radius-md)
+    0;
+}
+
+
+/* Ligne métier */
+.df-premium-table tbody tr {
+  height: 68px;
+
+  transition:
+    transform var(--core-transition),
+    filter var(--core-transition);
+}
+
+
+/* Cellules */
+.df-premium-table tbody td {
+  height: 68px;
+
+  padding:
+    12px
+    var(--space-4);
+
+  vertical-align: middle;
+
+  border-top:
+    1px solid
+    var(--core-border-soft);
+
+  border-bottom:
+    1px solid
+    var(--core-border-soft);
+
+  background: var(--core-surface);
+
+  box-shadow:
+    0 3px 10px
+    rgba(15, 23, 42, 0.045);
+
+  color: var(--core-text);
+
+  font-size: 13px;
+  font-weight: var(--font-weight-regular);
+
+  line-height: 1.4;
+
+  transition:
+    background var(--core-transition),
+    border-color var(--core-transition),
+    box-shadow var(--core-transition);
+}
+
+
+/* Bordure gauche */
+.df-premium-table tbody td:first-child {
+  border-left:
+    1px solid
+    var(--core-border-soft);
+
+  border-radius:
+    var(--core-radius-md)
+    0
+    0
+    var(--core-radius-md);
+}
+
+
+/* Bordure droite */
+.df-premium-table tbody td:last-child {
+  border-right:
+    1px solid
+    var(--core-border-soft);
+
+  border-radius:
+    0
+    var(--core-radius-md)
+    var(--core-radius-md)
+    0;
+}
+
+
+/* Effet premium discret au survol */
+.df-premium-table tbody tr:hover {
+  transform: translateY(-1px);
+}
+
+.df-premium-table tbody tr:hover td {
+  border-color: var(--core-border);
+
+  background: var(--core-surface);
+
+  box-shadow:
+    0 7px 18px
+    rgba(15, 23, 42, 0.075);
+}
+
+
+/* Focus clavier / interactions internes */
+.df-premium-table tbody tr:focus-within td {
+  border-color: var(--core-blue-200);
+
+  box-shadow:
+    0 7px 18px
+    rgba(21, 94, 239, 0.08);
+}
+
+
+/* Références / données importantes */
+.df-premium-table tbody td strong {
+  font-size: inherit;
+  font-weight: var(--font-weight-semibold);
+}
+
+
+/* Dernière colonne = ACTIONS */
+.df-premium-table th:last-child,
+.df-premium-table td:last-child {
+  min-width: 132px;
+
+  text-align: right;
+}
+
+
+/* Conteneur Actions commun */
+.df-table-actions {
+  display: flex;
+
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: var(--space-2);
+
+  min-height: 36px;
+
+  white-space: nowrap;
+}
+
+
+/* Texte compact réutilisable */
+.df-cell-truncate {
+  display: block;
+
+  max-width: 180px;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* ==========================================================
+   ROW ACTION MENU — PREMIUM V1
+   ========================================================== */
+
+.row-actions-menu {
+  position: relative;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.row-actions-menu-trigger {
+  display: inline-flex;
+
+  width: 36px;
+  height: 36px;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border:
+    1px solid
+    var(--core-border);
+
+  border-radius: var(--core-radius-md);
+
+  background: var(--core-surface);
+
+  color: var(--core-text-soft);
+
+  font-size: 15px;
+  font-weight: var(--font-weight-bold);
+
+  cursor: pointer;
+
+  transition:
+    background var(--core-transition),
+    border-color var(--core-transition),
+    color var(--core-transition),
+    box-shadow var(--core-transition);
+}
+
+.row-actions-menu-trigger:hover {
+  border-color: var(--core-blue-200);
+
+  background: var(--core-blue-50);
+
+  color: var(--core-blue-700);
+
+  box-shadow:
+    0 4px 12px
+    rgba(15, 23, 42, 0.08);
+}
+
+.row-actions-menu-popover {
+  position: absolute;
+
+  z-index: 50;
+
+  top: calc(100% + 8px);
+  right: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  min-width: 190px;
+
+  padding: 6px;
+
+  border:
+    1px solid
+    var(--core-border-soft);
+
+  border-radius: var(--core-radius-lg);
+
+  background: var(--core-surface);
+
+  box-shadow:
+    0 16px 32px
+    rgba(15, 23, 42, 0.14);
+}
+
+.row-actions-menu-popover .business-button {
+  width: 100%;
+  min-height: 36px;
+
+  justify-content: flex-start;
+
+  border: 0;
+
+  background: transparent;
+
+  box-shadow: none;
+
+  color: var(--core-text);
+
+  text-align: left;
+}
+
+.row-actions-menu-popover .business-button:hover {
+  background: var(--core-surface-soft);
+}
+
+
+/* ==========================================================
+   KPI FOUNDATION V1
+   ========================================================== */
+
+.df-premium-kpi-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: var(--space-4);
+
+  margin-bottom: var(--space-6);
+}
+
+.df-premium-kpi-card {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  min-height: 132px;
+
+  justify-content: center;
+
+  padding:
+    var(--space-5)
+    var(--space-5);
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    var(--core-border-soft);
+
+  border-radius: var(--core-radius-xl);
+
+  background: var(--core-surface);
+
+  box-shadow:
+    0 4px 14px
+    rgba(15, 23, 42, 0.045);
+
+  transition:
+    transform var(--core-transition),
+    box-shadow var(--core-transition),
+    border-color var(--core-transition);
+}
+
+.df-premium-kpi-card:hover {
+  transform: translateY(-2px);
+
+  border-color: var(--core-border);
+
+  box-shadow:
+    0 10px 26px
+    rgba(15, 23, 42, 0.075);
+}
+
+.df-premium-kpi-card > span {
+  color: var(--core-text-soft);
+
+  font-size: 13px;
+  font-weight: var(--font-weight-medium);
+}
+
+.df-premium-kpi-card > strong {
+  margin-top: var(--space-3);
+
+  color: var(--core-text);
+
+  font-size: 26px;
+  font-weight: var(--font-weight-bold);
+
+  line-height: 1.1;
+}
+
+.df-premium-kpi-card > small {
+  margin-top: var(--space-2);
+
+  color: var(--core-text-muted);
+
+  font-size: 12px;
+  font-weight: var(--font-weight-regular);
+}
+
+
+/* KPI semantic accents */
+.df-premium-kpi-card[data-tone="primary"] {
+  border-left:
+    4px solid
+    var(--core-blue-600);
+}
+
+.df-premium-kpi-card[data-tone="cyan"] {
+  border-left:
+    4px solid
+    var(--core-cyan-500);
+}
+
+.df-premium-kpi-card[data-tone="success"] {
+  border-left:
+    4px solid
+    var(--core-success);
+}
+
+.df-premium-kpi-card[data-tone="neutral"] {
+  border-left:
+    4px solid
+    var(--core-neutral);
+}
+
+
+/* Responsive KPI */
+@media (max-width: 1100px) {
+  .df-premium-kpi-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .df-premium-kpi-grid {
+    grid-template-columns:
+      1fr;
+  }
+
+  .df-premium-table {
+    min-width: 760px;
+  }
+}
+
+
+/* ==========================================================
+   DEVISFLOW → COREFLOW UI KIT
+   GLOBAL TYPOGRAPHY
+   ========================================================== */
+
+html,
+body,
+#root,
+button,
+input,
+select,
+textarea,
+table {
+  font-family:
+    Inter,
+    sans-serif;
+}
+
+
+/* ==========================================================
+   KPI PREMIUM — INNER CORNER SIGNATURE
+   ========================================================== */
+
+.df-premium-kpi-card::after {
+  content: "";
+
+  position: absolute;
+
+  top: 14px;
+  right: 14px;
+
+  width: 24px;
+  height: 24px;
+
+  border-top:
+    2px solid
+    var(--df-kpi-accent, var(--core-cyan-400));
+
+  border-right:
+    2px solid
+    var(--df-kpi-accent, var(--core-cyan-400));
+
+  border-radius:
+    0
+    var(--core-radius-sm)
+    0
+    0;
+
+  opacity: 0.55;
+
+  pointer-events: none;
+}
+
+.df-premium-kpi-card[data-tone="primary"] {
+  --df-kpi-accent: var(--core-blue-600);
+}
+
+.df-premium-kpi-card[data-tone="cyan"] {
+  --df-kpi-accent: var(--core-cyan-500);
+}
+
+.df-premium-kpi-card[data-tone="success"] {
+  --df-kpi-accent: var(--core-success);
+}
+
+.df-premium-kpi-card[data-tone="neutral"] {
+  --df-kpi-accent: var(--core-neutral);
+}
+
+.df-premium-kpi-card[data-tone="danger"] {
+  --df-kpi-accent: var(--core-danger);
+
+  border-left-color: var(--core-danger);
+}
+
+
+/* ==========================================================
+   DEVISFLOW KPI SIGNATURE V1
+   accent gauche + angle intérieur
+   ========================================================== */
+
+.df-premium-kpi-card::after {
+  content: "";
+
+  position: absolute;
+
+  top: 14px;
+  right: 14px;
+
+  width: 22px;
+  height: 22px;
+
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+
+  border-radius: 0 7px 0 0;
+
+  opacity: 0.38;
+
+  pointer-events: none;
+}
+
+
+/* Primary */
+.df-premium-kpi-card[data-tone="primary"] {
+  color: var(--core-blue-600);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(21, 94, 239, 0.035),
+      rgba(255, 255, 255, 0.98) 60%
+    );
+
+  border-left-color: var(--core-blue-600);
+}
+
+
+/* Success */
+.df-premium-kpi-card[data-tone="success"] {
+  color: var(--core-success);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(22, 163, 74, 0.035),
+      rgba(255, 255, 255, 0.98) 60%
+    );
+
+  border-left-color: var(--core-success);
+}
+
+
+/* Cyan */
+.df-premium-kpi-card[data-tone="cyan"] {
+  color: var(--core-cyan-500);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(6, 182, 212, 0.035),
+      rgba(255, 255, 255, 0.98) 60%
+    );
+
+  border-left-color: var(--core-cyan-500);
+}
+
+
+/* Neutral */
+.df-premium-kpi-card[data-tone="neutral"] {
+  color: var(--core-neutral);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(100, 116, 139, 0.025),
+      rgba(255, 255, 255, 0.98) 60%
+    );
+
+  border-left-color: var(--core-neutral);
+}
+
+
+/* Danger */
+.df-premium-kpi-card[data-tone="danger"] {
+  color: var(--core-danger);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(220, 38, 38, 0.03),
+      rgba(255, 255, 255, 0.98) 60%
+    );
+
+  border-left-color: var(--core-danger);
+}
+
+
+/* Le contenu texte garde sa couleur métier habituelle */
+.df-premium-kpi-card > span,
+.df-premium-kpi-card > strong,
+.df-premium-kpi-card > small {
+  color: inherit;
+}
+
+.df-premium-kpi-card > strong {
+  color: var(--core-text);
+}
+
+.df-premium-kpi-card > small {
+  color: var(--core-text-muted);
+}
+
+
+/* ==========================================================
+   PREMIUM TABLE — ROW ACCENT V1
+   ========================================================== */
+
+.df-premium-table tbody td:first-child {
+  position: relative;
+}
+
+.df-premium-table tbody td:first-child::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+  left: 0;
+
+  width: 4px;
+
+  border-radius:
+    var(--core-radius-md)
+    0
+    0
+    var(--core-radius-md);
+
+  background: var(--core-cyan-500);
+}
+
+
+/* ==========================================================
+   PREMIUM TABLE — UNIFIED ROW SHAPE V2
+   Même arrondi pour toutes les pages
+   ========================================================== */
+
+.df-premium-table tbody tr > td {
+  border-radius: 0 !important;
+}
+
+.df-premium-table tbody tr > td:first-child {
+  border-top-left-radius: var(--core-radius-lg) !important;
+  border-bottom-left-radius: var(--core-radius-lg) !important;
+}
+
+.df-premium-table tbody tr > td:last-child {
+  border-top-right-radius: var(--core-radius-lg) !important;
+  border-bottom-right-radius: var(--core-radius-lg) !important;
+}
+
+
+/* Accent gauche intégré proprement dans l'arrondi */
+.df-premium-table tbody td:first-child::before {
+  border-radius:
+    var(--core-radius-lg)
+    0
+    0
+    var(--core-radius-lg);
+}
+
+
+/* Neutralise les anciens styles business-row
+   lorsqu'on est dans une table premium */
+.df-premium-table .business-row > td:first-child,
+.df-premium-table .business-row:hover > td:first-child,
+.df-premium-table .business-row:focus-within > td:first-child {
+  border-top-left-radius: var(--core-radius-lg) !important;
+  border-bottom-left-radius: var(--core-radius-lg) !important;
+}
+
+.df-premium-table .business-row > td:last-child {
+  border-top-right-radius: var(--core-radius-lg) !important;
+  border-bottom-right-radius: var(--core-radius-lg) !important;
+}
+
+
+/* ==========================================================
+   PREMIUM TABLE — UNIFIED ROW ACCENT V3
+   Source de vérité finale
+   ========================================================== */
+
+/*
+ * Neutralise l'ancienne signature business-row
+ * à l'intérieur des nouvelles tables premium.
+ */
+.df-premium-table .business-row > td:first-child,
+.df-premium-table .business-row:hover > td:first-child,
+.df-premium-table .business-row:focus-within > td:first-child {
+  box-shadow:
+    0 3px 10px
+    rgba(15, 23, 42, 0.045)
+    !important;
+
+  padding-left: var(--space-4) !important;
+}
+
+
+/*
+ * On retire le pseudo-élément précédent.
+ * La vraie bordure suit mieux l'arrondi de la cellule.
+ */
+.df-premium-table tbody td:first-child::before {
+  content: none !important;
+}
+
+
+/*
+ * Signature commune de toutes les lignes.
+ */
+.df-premium-table tbody tr > td:first-child {
+  border-left:
+    4px solid
+    var(--core-cyan-500)
+    !important;
+
+  border-top-left-radius:
+    var(--core-radius-lg)
+    !important;
+
+  border-bottom-left-radius:
+    var(--core-radius-lg)
+    !important;
+}
+
+
+/*
+ * Même forme côté droit.
+ */
+.df-premium-table tbody tr > td:last-child {
+  border-top-right-radius:
+    var(--core-radius-lg)
+    !important;
+
+  border-bottom-right-radius:
+    var(--core-radius-lg)
+    !important;
+}
+
+
+/*
+ * Hover commun : aucun changement de géométrie.
+ */
+.df-premium-table tbody tr:hover > td:first-child,
+.df-premium-table tbody tr:focus-within > td:first-child {
+  border-left-color:
+    var(--core-cyan-600, #0891b2)
+    !important;
+
+  padding-left: var(--space-4) !important;
+}
+
+
+/* ==========================================================
+   DEVIS — COMPACT PREMIUM ROWS V1
+   ========================================================== */
+
+.df-premium-table.quote-table tbody tr {
+  height: 74px;
+}
+
+.df-premium-table.quote-table tbody td {
+  height: 74px;
+  max-height: 74px;
+  vertical-align: middle;
+}
+
+
+/* Statut + trace email plus compact */
+.df-premium-table.quote-table .document-status-cell {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  min-height: 0;
+}
+
+
+/* Actions centrées verticalement */
+.df-premium-table.quote-table .quote-actions,
+.df-premium-table.quote-table .business-row-actions {
+  align-items: center;
+  min-height: 0;
+}
+
+
+/* Evite que les boutons étirent la ligne */
+.df-premium-table.quote-table .business-button,
+.df-premium-table.quote-table .business-linked-document,
+.df-premium-table.quote-table .invoice-created-badge {
+  min-height: 34px;
+  height: 34px;
+}
+
+
+/* Texte client / demande compact */
+.df-premium-table.quote-table td:nth-child(2),
+.df-premium-table.quote-table td:nth-child(3) {
+  line-height: 1.25;
+}
+
+
+/* ==========================================================
+   DEVIS — FINAL DENSITY POLISH
+   ========================================================== */
+
+.df-premium-table.quote-table tbody td {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.df-premium-table.quote-table .document-status-cell {
+  gap: 4px;
+  line-height: 1.25;
+}
+
+.df-premium-table.quote-table .document-status-cell .status-badge {
+  align-self: flex-start;
+}
+
+.df-premium-table.quote-table .quote-actions {
+  gap: 6px;
+  flex-wrap: nowrap;
+}
+
+
+/* ==========================================================
+   ROW ACTIONS MENU — OVERLAY FIX V1
+   ========================================================== */
+
+.row-actions-menu {
+  position: relative;
+  z-index: 20;
+}
+
+.row-actions-menu-popover {
+  position: absolute;
+  z-index: 9999;
+}
+
+
+/*
+ * La ligne active doit passer devant les suivantes.
+ */
+.df-premium-table tbody tr:has(.row-actions-menu[aria-expanded="true"]),
+.df-premium-table tbody tr:focus-within {
+  position: relative;
+  z-index: 50;
+}
+
+
+/*
+ * Evite que les cellules rognent le menu.
+ */
+.df-premium-table tbody td {
+  overflow: visible;
+}
+
+
+/*
+ * Le conteneur de table garde le scroll horizontal
+ * sans rogner verticalement les menus.
+ */
+.table-scroll {
+  overflow-x: auto;
+  overflow-y: visible;
+}
+
+
+/* ==========================================================
+   ROW ACTIONS MENU — ALIGNMENT POLISH V2
+   ========================================================== */
+
+.row-actions-menu-popover {
+  min-width: 210px;
+  padding: 8px;
+}
+
+.row-actions-menu-popover .business-button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  width: 100%;
+  min-height: 38px;
+
+  padding: 9px 12px;
+
+  text-align: left;
+  white-space: nowrap;
+  border-radius: 8px;
+}
+
+.row-actions-menu-popover .business-button + .business-button {
+  margin-top: 2px;
+}
+
+
+/* ==========================================================
+   ROW ACTIONS MENU — FINAL ALIGNMENT V3
+   Neutralise l'ancien "fork" de index.css
+   ========================================================== */
+
+.row-actions-menu-popover {
+  align-items: stretch !important;
+  gap: 2px !important;
+}
+
+.row-actions-menu-popover .business-button {
+  display: flex !important;
+  width: 100% !important;
+  min-width: 0 !important;
+
+  align-items: center !important;
+  justify-content: flex-start !important;
+
+  margin: 0 !important;
+  padding: 9px 12px !important;
+
+  text-align: left !important;
+
+  transform: none !important;
+
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.row-actions-menu-popover .business-button:nth-child(1),
+.row-actions-menu-popover .business-button:nth-child(2),
+.row-actions-menu-popover .business-button:nth-child(3),
+.row-actions-menu-popover .business-button:nth-child(4),
+.row-actions-menu-popover .business-button:nth-child(5),
+.row-actions-menu-popover .business-button:nth-child(6) {
+  transform: none !important;
+}
+
+.row-actions-menu-popover .business-button:hover {
+  transform: none !important;
+}
+
+
+/* ==========================================================
+   PURCHASE ORDERS — EXECUTION LINKS V1
+   ========================================================== */
+
+.df-execution-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: nowrap;
+}
+
+
+/* ==========================================================
+   PURCHASE ORDERS — COLUMN WIDTH BALANCE V1
+   ========================================================== */
+
+.purchase-orders-table th:nth-child(4),
+.purchase-orders-table td:nth-child(4) {
+  width: 150px;
+  min-width: 150px;
+  max-width: 150px;
+}
+
+.purchase-orders-table th:nth-child(6),
+.purchase-orders-table td:nth-child(6) {
+  min-width: 210px;
+}
+
+.purchase-orders-table th:nth-child(7),
+.purchase-orders-table td:nth-child(7) {
+  min-width: 230px;
+}
+
+
+/* ==========================================================
+   ACTIONS — LEFT ALIGNMENT FOR PROFORMAS + PURCHASE ORDERS
+   ========================================================== */
+
+.proforma-table th:last-child,
+.proforma-table td:last-child,
+.purchase-orders-table th:last-child,
+.purchase-orders-table td:last-child {
+  text-align: left !important;
+}
+
+.proforma-table .df-table-actions,
+.purchase-orders-table .df-table-actions,
+.purchase-orders-table .business-row-actions {
+  justify-content: flex-start !important;
+  text-align: left !important;
+}
+
+
+/* ==========================================================
+   EXECUTION — ACTIONS LEFT ALIGNMENT
+   ========================================================== */
+
+.execution-table th:last-child,
+.execution-table td:last-child {
+  text-align: left !important;
+}
+
+.execution-table .df-table-actions,
+.execution-table .row-actions {
+  justify-content: flex-start !important;
+  text-align: left !important;
+}
+
+
+/* ==========================================================
+   EXECUTION — FILTER GROUP SPACING
+   ========================================================== */
+
+.execution-type-filters,
+.operational-type-filters {
+  margin-bottom: 14px;
+}
+
+
+/* ==========================================================
+   EXECUTION — TYPE TABS SPACING
+   ========================================================== */
+
+.operational-type-tabs {
+  margin-bottom: 14px;
+}
+
+
+/* ==========================================================
+   BUSINESS LIST CARD — TOP RIGHT SIGNATURE
+   Clients / Demandes / Devis
+   ========================================================== */
+
+.table-card {
+  position: relative;
+}
+
+.table-card::after {
+  content: "";
+
+  position: absolute;
+  top: 14px;
+  right: 14px;
+
+  width: 24px;
+  height: 24px;
+
+  border-top: 2px solid var(--core-cyan-500);
+  border-right: 2px solid var(--core-cyan-500);
+
+  border-radius: 0 8px 0 0;
+
+  opacity: 0.85;
+
+  pointer-events: none;
+}
+
+
+/* ==========================================================
+   FACTURES — PREMIUM UX V1
+   ========================================================== */
+
+.invoice-table {
+  min-width: 1420px;
+}
+
+/* Facture */
+.invoice-table th:nth-child(1),
+.invoice-table td:nth-child(1) {
+  min-width: 145px;
+}
+
+/* Client */
+.invoice-table th:nth-child(2),
+.invoice-table td:nth-child(2) {
+  min-width: 155px;
+}
+
+/* Devis */
+.invoice-table th:nth-child(3),
+.invoice-table td:nth-child(3) {
+  min-width: 130px;
+}
+
+/* Origine / Type */
+.invoice-table th:nth-child(4),
+.invoice-table td:nth-child(4),
+.invoice-table th:nth-child(5),
+.invoice-table td:nth-child(5) {
+  min-width: 105px;
+}
+
+/* Montants */
+.invoice-table th:nth-child(6),
+.invoice-table td:nth-child(6),
+.invoice-table th:nth-child(7),
+.invoice-table td:nth-child(7),
+.invoice-table th:nth-child(8),
+.invoice-table td:nth-child(8) {
+  min-width: 115px;
+  white-space: nowrap;
+}
+
+/* Échéance */
+.invoice-table th:nth-child(9),
+.invoice-table td:nth-child(9) {
+  min-width: 110px;
+  white-space: nowrap;
+}
+
+/* Statut + trace email */
+.invoice-table th:nth-child(10),
+.invoice-table td:nth-child(10) {
+  min-width: 190px;
+}
+
+/* Actions */
+.invoice-table th:last-child,
+.invoice-table td:last-child {
+  min-width: 230px;
+  text-align: left !important;
+}
+
+.invoice-table .df-table-actions,
+.invoice-table .business-row-actions {
+  justify-content: flex-start !important;
+  text-align: left !important;
+}
+
+
+/* ==========================================================
+   FACTURES — TABLE CONTAINED INSIDE BUSINESS CARD
+   ========================================================== */
+
+.table-card {
+  min-width: 0;
+}
+
+.invoice-table-scroll {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: visible;
+  padding-bottom: 4px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.invoice-table-scroll .invoice-table {
+  margin: 0;
+}
+
+
+/* ==========================================================
+   PREMIUM KPI — FINAL UNIFIED SURFACE
+   ========================================================== */
+
+.df-premium-kpi-card {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.98) 0%,
+      rgba(248, 250, 252, 0.96) 100%
+    ) !important;
+
+  box-shadow:
+    0 8px 24px rgba(15, 23, 42, 0.055) !important;
+}
+
+/* Keep semantic meaning on borders / labels, not full card fill */
+
+.df-premium-kpi-card[data-tone="primary"],
+.df-premium-kpi-card[data-tone="cyan"],
+.df-premium-kpi-card[data-tone="success"],
+.df-premium-kpi-card[data-tone="neutral"],
+.df-premium-kpi-card[data-tone="danger"] {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.98) 0%,
+      rgba(248, 250, 252, 0.96) 100%
+    ) !important;
+}
+
+
+/* ==========================================================
+   PREMIUM KPI — UNIFIED SHADOW
+   ========================================================== */
+
+.df-premium-kpi-card,
+.df-premium-kpi-card[data-tone="primary"],
+.df-premium-kpi-card[data-tone="success"],
+.df-premium-kpi-card[data-tone="cyan"],
+.df-premium-kpi-card[data-tone="neutral"],
+.df-premium-kpi-card[data-tone="danger"] {
+  box-shadow:
+    0 8px 24px rgba(15, 23, 42, 0.065) !important;
+}
+
+
+/* ==========================================================
+   PREMIUM KPI — FINAL LEFT ACCENT
+   ========================================================== */
+
+.df-premium-kpi-card {
+  border-left-width: 4px !important;
+  border-left-style: solid !important;
+}
+
+.df-premium-kpi-card[data-tone="primary"] {
+  border-left-color: var(--core-blue-600) !important;
+}
+
+.df-premium-kpi-card[data-tone="success"] {
+  border-left-color: var(--core-success) !important;
+}
+
+.df-premium-kpi-card[data-tone="cyan"] {
+  border-left-color: var(--core-cyan-500) !important;
+}
+
+.df-premium-kpi-card[data-tone="neutral"] {
+  border-left-color: var(--core-neutral) !important;
+}
+
+.df-premium-kpi-card[data-tone="danger"] {
+  border-left-color: var(--core-danger) !important;
+}
+
+
+/* ==========================================================
+   FACTURES — STICKY ACTIONS COLUMN
+   ========================================================== */
+
+.invoice-table th:last-child,
+.invoice-table td:last-child {
+  position: sticky;
+  right: 0;
+  z-index: 6;
+
+  background: var(--core-surface, #ffffff);
+}
+
+.invoice-table thead th:last-child {
+  z-index: 8;
+  background: var(--core-surface-soft, #f8fafc);
+}
+
+.invoice-table tbody td:last-child {
+  box-shadow:
+    -10px 0 18px -16px rgba(15, 23, 42, 0.30);
+}
+
+.invoice-table tbody tr:hover td:last-child {
+  background: var(--core-surface, #ffffff);
+}
+
+
+/* ==========================================================
+   RECURRENCES — PREMIUM UX V1 FINAL
+   ========================================================== */
+
+.recurring-list-card {
+  position: relative;
+  min-width: 0;
+}
+
+.recurring-list-card::after {
+  content: "";
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 24px;
+  height: 24px;
+  border-top: 2px solid var(--core-cyan-500);
+  border-right: 2px solid var(--core-cyan-500);
+  border-radius: 0 8px 0 0;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.recurring-table-wrap {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: visible;
+}
+
+.recurring-table.df-premium-table {
+  min-width: 1080px;
+}
+
+.recurring-table tbody tr {
+  height: 72px;
+}
+
+.recurring-table tbody td {
+  height: 72px;
+  vertical-align: middle;
+}
+
+.recurring-table th:nth-child(1),
+.recurring-table td:nth-child(1) {
+  min-width: 190px;
+}
+
+.recurring-table th:nth-child(2),
+.recurring-table td:nth-child(2) {
+  min-width: 150px;
+}
+
+.recurring-table th:nth-child(3),
+.recurring-table td:nth-child(3) {
+  min-width: 125px;
+}
+
+.recurring-table th:nth-child(4),
+.recurring-table td:nth-child(4) {
+  min-width: 125px;
+}
+
+.recurring-table th:nth-child(5),
+.recurring-table td:nth-child(5) {
+  min-width: 150px;
+  white-space: nowrap;
+}
+
+.recurring-table th:nth-child(6),
+.recurring-table td:nth-child(6) {
+  min-width: 110px;
+}
+
+.recurring-table th:nth-child(7),
+.recurring-table td:nth-child(7) {
+  min-width: 145px;
+  text-align: center;
+}
+
+.recurring-table th:last-child,
+.recurring-table td:last-child {
+  min-width: 250px;
+  text-align: left !important;
+}
+
+.recurring-actions {
+  justify-content: flex-start !important;
+  gap: 8px;
+}
+
+
+/* ==========================================================
+   RECURRENCES — SERVICE + ACTIONS PREMIUM
+   ========================================================== */
+
+.recurring-service-name {
+  display: -webkit-box;
+  max-width: 190px;
+  overflow: hidden;
+
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+
+  line-height: 1.35;
+
+  font-weight: var(--font-weight-semibold);
+  color: var(--core-text);
+}
+
+.recurring-due-label {
+  display: block;
+  width: fit-content;
+  margin-top: 6px;
+}
+
+.recurring-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start !important;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+
+.recurring-action-button {
+  min-height: 36px !important;
+  height: 36px !important;
+  padding: 0 14px !important;
+
+  border-radius: var(--core-radius-md) !important;
+
+  font-family: Inter, sans-serif !important;
+  font-size: 13px !important;
+  font-weight: var(--font-weight-semibold) !important;
+
+  white-space: nowrap;
+  transform: none !important;
+}
+
+.recurring-actions .button-primary {
+  border: 1px solid var(--core-blue-600) !important;
+  background: var(--core-blue-600) !important;
+  color: #fff !important;
+
+  box-shadow:
+    0 2px 5px rgba(37, 99, 235, 0.16) !important;
+}
+
+.recurring-actions .button-secondary {
+  border: 1px solid var(--core-border) !important;
+  background: var(--core-surface) !important;
+  color: var(--core-text) !important;
+
+  box-shadow:
+    0 1px 3px rgba(15, 23, 42, 0.06) !important;
+}
+
+.recurring-actions .button-secondary:hover:not(:disabled) {
+  border-color: var(--core-blue-300, #93c5fd) !important;
+  background: var(--core-blue-50, #eff6ff) !important;
+  color: var(--core-blue-700, #1d4ed8) !important;
+}
+
+
+/* RECURRENCES — ACTIONS FINAL */
+.recurring-table th:last-child,
+.recurring-table td:last-child {
+  min-width: 170px;
+  text-align: left !important;
+}
+
+.recurring-table .df-table-actions,
+.recurring-table .recurring-actions {
+  justify-content: flex-start !important;
+  align-items: center;
+  gap: 8px;
+}
+
+
+/* ==========================================================
+   PAIEMENTS — PREMIUM UX V1
+   ========================================================== */
+
+.payments-table {
+  min-width: 1040px;
+}
+
+.payments-table tbody tr {
+  height: 68px;
+}
+
+.payments-table tbody td {
+  height: 68px;
+  vertical-align: middle;
+}
+
+/* Date */
+.payments-table th:nth-child(1),
+.payments-table td:nth-child(1) {
+  min-width: 110px;
+  white-space: nowrap;
+}
+
+/* Facture */
+.payments-table th:nth-child(2),
+.payments-table td:nth-child(2) {
+  min-width: 145px;
+  white-space: nowrap;
+}
+
+/* Client */
+.payments-table th:nth-child(3),
+.payments-table td:nth-child(3) {
+  width: 180px;
+  min-width: 180px;
+  max-width: 180px;
+}
+
+/* Montant */
+.payments-table th:nth-child(4),
+.payments-table td:nth-child(4) {
+  min-width: 125px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Mode */
+.payments-table th:nth-child(5),
+.payments-table td:nth-child(5) {
+  min-width: 120px;
+}
+
+/* Référence */
+.payments-table th:nth-child(6),
+.payments-table td:nth-child(6) {
+  width: 170px;
+  min-width: 170px;
+  max-width: 170px;
+}
+
+/* Actions */
+.payments-table th:last-child,
+.payments-table td:last-child {
+  min-width: 150px;
+  text-align: left !important;
+}
+
+.payments-table .business-row-actions {
+  justify-content: flex-start !important;
+  align-items: center;
+  gap: 8px;
+}
+
+
+/* PAIEMENTS — CELLULES COMPACTES */
+.payments-table td:nth-child(3) .df-cell-truncate,
+.payments-table td:nth-child(6) .df-cell-truncate {
+  display: block;
+  max-width: 100%;
+}
+
+
+/* ==========================================================
+   AVOIRS — PREMIUM UX V1
+   ========================================================== */
+
+.credit-notes-table {
+  min-width: 1180px;
+}
+
+.credit-notes-table tbody tr {
+  height: 68px;
+}
+
+.credit-notes-table tbody td {
+  height: 68px;
+  vertical-align: middle;
+}
+
+/* Avoir */
+.credit-notes-table th:nth-child(1),
+.credit-notes-table td:nth-child(1) {
+  min-width: 150px;
+  white-space: nowrap;
+}
+
+/* Date */
+.credit-notes-table th:nth-child(2),
+.credit-notes-table td:nth-child(2) {
+  min-width: 105px;
+  white-space: nowrap;
+}
+
+/* Facture */
+.credit-notes-table th:nth-child(3),
+.credit-notes-table td:nth-child(3) {
+  min-width: 145px;
+  white-space: nowrap;
+}
+
+/* Client */
+.credit-notes-table th:nth-child(4),
+.credit-notes-table td:nth-child(4) {
+  width: 170px;
+  min-width: 170px;
+  max-width: 170px;
+}
+
+/* Motif */
+.credit-notes-table th:nth-child(5),
+.credit-notes-table td:nth-child(5) {
+  width: 210px;
+  min-width: 210px;
+  max-width: 210px;
+}
+
+/* Montant */
+.credit-notes-table th:nth-child(6),
+.credit-notes-table td:nth-child(6) {
+  min-width: 125px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Statut */
+.credit-notes-table th:nth-child(7),
+.credit-notes-table td:nth-child(7) {
+  min-width: 100px;
+}
+
+/* Actions */
+.credit-notes-table th:last-child,
+.credit-notes-table td:last-child {
+  min-width: 150px;
+  text-align: left !important;
+}
+
+.credit-notes-table .business-row-actions {
+  justify-content: flex-start !important;
+}
+
+
+/* ==========================================================
+   RELANCES — PREMIUM UX V1
+   ========================================================== */
+
+.reminders-table {
+  min-width: 1080px;
+}
+
+.reminders-table tbody tr {
+  height: 68px;
+}
+
+.reminders-table tbody td {
+  height: 68px;
+  vertical-align: middle;
+}
+
+/* Date */
+.reminders-table th:nth-child(1),
+.reminders-table td:nth-child(1) {
+  min-width: 105px;
+  white-space: nowrap;
+}
+
+/* Facture */
+.reminders-table th:nth-child(2),
+.reminders-table td:nth-child(2) {
+  min-width: 145px;
+  white-space: nowrap;
+}
+
+/* Client */
+.reminders-table th:nth-child(3),
+.reminders-table td:nth-child(3) {
+  width: 175px;
+  min-width: 175px;
+  max-width: 175px;
+}
+
+/* Reste dû */
+.reminders-table th:nth-child(4),
+.reminders-table td:nth-child(4) {
+  min-width: 125px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Canal */
+.reminders-table th:nth-child(5),
+.reminders-table td:nth-child(5) {
+  min-width: 110px;
+}
+
+/* Objet */
+.reminders-table th:nth-child(6),
+.reminders-table td:nth-child(6) {
+  width: 220px;
+  min-width: 220px;
+  max-width: 220px;
+}
+
+/* Actions */
+.reminders-table th:last-child,
+.reminders-table td:last-child {
+  min-width: 150px;
+  text-align: left !important;
+}
+
+.reminders-table .business-row-actions {
+  justify-content: flex-start !important;
+}
+
+
+/* RELANCES — CELLULES COMPACTES */
+.reminders-table td:nth-child(6) .df-cell-truncate {
+  display: block;
+  max-width: 100%;
+}
+
+
+/* ==========================================================
+   RELANCES V2 — COCKPIT DE RECOUVREMENT
+   ========================================================== */
+
+.reminders-table {
+  min-width: 1420px;
+}
+
+.reminders-table th:nth-child(1),
+.reminders-table td:nth-child(1) {
+  min-width: 145px;
+}
+
+.reminders-table th:nth-child(2),
+.reminders-table td:nth-child(2) {
+  min-width: 155px;
+}
+
+.reminders-table th:nth-child(3),
+.reminders-table td:nth-child(3) {
+  min-width: 105px;
+  white-space: nowrap;
+}
+
+.reminders-table th:nth-child(4),
+.reminders-table td:nth-child(4) {
+  min-width: 125px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.reminders-table th:nth-child(5),
+.reminders-table td:nth-child(5) {
+  min-width: 135px;
+  white-space: nowrap;
+}
+
+.reminders-table th:nth-child(6),
+.reminders-table td:nth-child(6) {
+  min-width: 105px;
+  white-space: nowrap;
+}
+
+.reminders-table th:nth-child(7),
+.reminders-table td:nth-child(7) {
+  min-width: 145px;
+  white-space: nowrap;
+}
+
+.reminders-table th:nth-child(8),
+.reminders-table td:nth-child(8) {
+  min-width: 115px;
+}
+
+.reminders-table th:last-child,
+.reminders-table td:last-child {
+  min-width: 210px;
+  text-align: left !important;
+}
+
+.reminders-table .business-row-actions {
+  justify-content: flex-start !important;
+  align-items: center;
+  gap: 8px;
+}
+
+
+/* ==========================================================
+   RELANCES V2 — COLONNES STICKY
+   ========================================================== */
+
+.reminders-table th:first-child,
+.reminders-table td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 6;
+  background: var(--core-surface, #fff);
+}
+
+.reminders-table thead th:first-child {
+  z-index: 9;
+  background: var(--core-surface-soft, #f8fafc);
+}
+
+.reminders-table tbody td:first-child {
+  box-shadow:
+    10px 0 18px -16px
+    rgba(15, 23, 42, 0.30);
+}
+
+.reminders-table th:last-child,
+.reminders-table td:last-child {
+  position: sticky;
+  right: 0;
+  z-index: 6;
+  background: var(--core-surface, #fff);
+}
+
+.reminders-table thead th:last-child {
+  z-index: 9;
+  background: var(--core-surface-soft, #f8fafc);
+}
+
+.reminders-table tbody td:last-child {
+  box-shadow:
+    -10px 0 18px -16px
+    rgba(15, 23, 42, 0.30);
+}
+
+.reminders-table tbody tr:hover td:first-child,
+.reminders-table tbody tr:hover td:last-child {
+  background: var(--core-surface, #fff);
+}
+
+
+/* ==========================================================
+   RELANCES V2 — COMPACTAGE FINAL
+   ========================================================== */
+
+.reminders-table {
+  min-width: 1320px;
+}
+
+/* Facture */
+.reminders-table th:nth-child(1),
+.reminders-table td:nth-child(1) {
+  min-width: 145px;
+}
+
+/* Client */
+.reminders-table th:nth-child(2),
+.reminders-table td:nth-child(2) {
+  min-width: 135px;
+}
+
+/* Échéance */
+.reminders-table th:nth-child(3),
+.reminders-table td:nth-child(3) {
+  min-width: 105px;
+}
+
+/* Reste dû */
+.reminders-table th:nth-child(4),
+.reminders-table td:nth-child(4) {
+  min-width: 120px;
+}
+
+/* Dernière relance */
+.reminders-table th:nth-child(5),
+.reminders-table td:nth-child(5) {
+  min-width: 125px;
+}
+
+/* Relance N° */
+.reminders-table th:nth-child(6),
+.reminders-table td:nth-child(6) {
+  min-width: 100px;
+}
+
+/* Prochaine relance */
+.reminders-table th:nth-child(7),
+.reminders-table td:nth-child(7) {
+  min-width: 135px;
+}
+
+/* Statut */
+.reminders-table th:nth-child(8),
+.reminders-table td:nth-child(8) {
+  min-width: 105px;
+  white-space: nowrap;
+}
+
+/* Actions */
+.reminders-table th:last-child,
+.reminders-table td:last-child {
+  min-width: 165px;
+  width: 165px;
+}
+
+.reminders-table td:nth-child(8) {
+  position: relative;
+  z-index: 7;
+}
+
+.reminders-table th:nth-child(8) {
+  position: relative;
+  z-index: 8;
+}
+
+
+/* ==========================================================
+   HISTORIQUE — PREMIUM UX V1
+   ========================================================== */
+
+.history-table {
+  min-width: 1180px;
+}
+
+.history-table tbody tr {
+  height: 68px;
+}
+
+.history-table tbody td {
+  height: 68px;
+  vertical-align: middle;
+}
+
+/* Date */
+.history-table th:nth-child(1),
+.history-table td:nth-child(1) {
+  min-width: 110px;
+  white-space: nowrap;
+}
+
+/* Événement */
+.history-table th:nth-child(2),
+.history-table td:nth-child(2) {
+  min-width: 145px;
+}
+
+/* Document */
+.history-table th:nth-child(3),
+.history-table td:nth-child(3) {
+  min-width: 155px;
+  white-space: nowrap;
+}
+
+/* Client */
+.history-table th:nth-child(4),
+.history-table td:nth-child(4) {
+  width: 170px;
+  min-width: 170px;
+  max-width: 170px;
+}
+
+/* Détail */
+.history-table th:nth-child(5),
+.history-table td:nth-child(5) {
+  width: 240px;
+  min-width: 240px;
+  max-width: 240px;
+}
+
+.history-table td:nth-child(5)
+.df-cell-truncate {
+  display: block;
+  max-width: 100%;
+}
+
+/* Montant */
+.history-table th:nth-child(6),
+.history-table td:nth-child(6) {
+  min-width: 125px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Actions */
+.history-table th:last-child,
+.history-table td:last-child {
+  min-width: 150px;
+  text-align: left !important;
+}
+
+.history-table .business-row-actions {
+  justify-content: flex-start !important;
+  align-items: center;
+}
+
+/* ==========================================================
+   GLOBAL UX CONSISTENCY — BUSINESS NAVIGATION
+   ========================================================== */
+
+.df-nav-link {
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif !important;
+  font-weight: var(--font-weight-semibold) !important;
+  line-height: 1.2;
+}
+
+.df-nav-link-active {
+  font-weight: var(--font-weight-semibold) !important;
+}
+
+/* ==========================================================
+   DASHBOARD V1 — ACTIONS À TRAITER
+   ========================================================== */
+
+.dashboard-action-list {
+  display: grid;
+  gap: 10px;
+}
+
+.dashboard-action-item {
+  width: 100%;
+  min-height: 64px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  padding: 12px 14px;
+
+  border: 1px solid var(--core-border-soft);
+  border-radius: 14px;
+
+  background: var(--core-surface);
+  color: var(--core-text);
+
+  text-align: left;
+  cursor: pointer;
+
+  transition:
+    border-color 160ms ease,
+    background 160ms ease,
+    transform 160ms ease;
+}
+
+.dashboard-action-item:hover {
+  border-color: var(--core-blue-200);
+  background: var(--core-blue-50);
+  transform: translateY(-1px);
+}
+
+.dashboard-action-main {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dashboard-action-main strong {
+  font-size: 14px;
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.3;
+}
+
+.dashboard-action-main span {
+  color: var(--core-text-soft);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.dashboard-action-count {
+  flex: 0 0 auto;
+
+  min-width: 34px;
+  height: 34px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 9px;
+
+  border-radius: 999px;
+
+  background: var(--core-blue-50);
+  color: var(--core-blue-700);
+
+  font-size: 14px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.dashboard-action-item[data-tone="danger"]
+  .dashboard-action-count {
+  background: #fef3f2;
+  color: #b42318;
+}
+
+.dashboard-action-item[data-tone="warning"]
+  .dashboard-action-count {
+  background: #fffaeb;
+  color: #b54708;
+}
+
+.dashboard-action-item[data-tone="cyan"]
+  .dashboard-action-count {
+  background: #ecfdff;
+  color: #087e8b;
+}
+
+/* ==========================================================
+   DASHBOARD V1 — 4 WIDGETS ALIGNÉS
+   ========================================================== */
+
+.dashboard-widget-grid-v3 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: stretch;
+}
+
+.dashboard-widget-v3 {
+  min-width: 0;
+  padding: 20px;
+}
+
+.dashboard-widget-v3 .dashboard-widget-header {
+  margin-bottom: 22px;
+}
+
+.dashboard-widget-v3 h3 {
+  font-size: 16px;
+  line-height: 1.3;
+}
+
+.dashboard-widget-v3 .dashboard-widget-label {
+  font-size: 12px;
+}
+
+.dashboard-action-item {
+  min-height: 56px;
+  padding: 10px 12px;
+}
+
+.dashboard-action-main strong {
+  font-size: 13px;
+}
+
+.dashboard-action-main span {
+  font-size: 11px;
+}
+
+.dashboard-action-count {
+  min-width: 30px;
+  height: 30px;
+  font-size: 13px;
+}
+
+/* Desktop intermédiaire */
+@media (max-width: 1280px) {
+  .dashboard-widget-grid-v3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Mobile */
+@media (max-width: 760px) {
+  .dashboard-widget-grid-v3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================
+   DASHBOARD V1 — TOP CLIENTS TITLE
+   ========================================================== */
+
+.dashboard-widget-v3 h3 {
+  white-space: nowrap;
+}
+
+@media (max-width: 1280px) {
+  .dashboard-widget-v3 h3 {
+    white-space: normal;
+  }
+}
+
+/* ==========================================================
+   DASHBOARD V1 — ICON POSITION
+   ========================================================== */
+
+.dashboard-widget-v3 .dashboard-widget-icon {
+  margin-top: 6px;
+  margin-right: 10px;
+}
+
+/* ==========================================================
+   DASHBOARD V1 — ICONES MÉTIER
+   ========================================================== */
+
+.business-cyan .dashboard-widget-icon {
+  color: #0891b2;
+  background: #ecfeff;
+  border-color: #bae6fd;
+}
+
+.business-warning .dashboard-widget-icon {
+  color: #d97706;
+  background: #fff7ed;
+  border-color: #fed7aa;
+}
+
+.business-info .dashboard-widget-icon {
+  color: #2563eb;
+  background: #eff6ff;
+  border-color: #bfdbfe;
+}
+
+.business-success .dashboard-widget-icon {
+  color: #059669;
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+}
+
+/* ==========================================================
+   GLOBAL UX — NAVIGATION CENTRÉE DESKTOP
+   ========================================================== */
+
+@media (min-width: 1101px) {
+  .df-business-nav-inner {
+    justify-content: center;
+  }
+}
+
+/* ==========================================================
+   RESPONSIVE V1 — DASHBOARD
+   ========================================================== */
+
+/* Tablette */
+@media (max-width: 1100px) {
+  .dashboard-business-kpis {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .dashboard-business-kpi {
+    min-width: 0;
+  }
+
+  .dashboard-widget-grid-v3 {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Mobile */
+@media (max-width: 680px) {
+  .dashboard-business-kpis {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-widget-grid-v3 {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-business-kpi,
+  .dashboard-widget-v3 {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .dashboard-widget-v3 {
+    padding: 18px;
+  }
+
+  .dashboard-widget-v3 h3 {
+    white-space: normal;
+    font-size: 16px;
+  }
+
+  .dashboard-widget-v3
+    .dashboard-widget-icon {
+    margin-right: 4px;
+  }
+
+  .dashboard-action-item {
+    min-height: 58px;
+  }
+}
+
+/* ==========================================================
+   RESPONSIVE V1 — NAVIGATION / HEADERS / TABLEAUX
+   ========================================================== */
+
+/* ----------------------------------------------------------
+   TABLETTE
+   ---------------------------------------------------------- */
+
+@media (max-width: 900px) {
+
+  /* Navigation : conserver le scroll depuis le début */
+  .df-business-nav-inner {
+    justify-content: flex-start !important;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .df-nav-link {
+    flex: 0 0 auto;
+    min-height: 44px;
+  }
+
+  /* Aucun tableau ne doit agrandir toute la page */
+  .df-premium-table {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    white-space: nowrap;
+
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+  }
+
+  .df-premium-table thead,
+  .df-premium-table tbody {
+    width: max-content;
+    min-width: 100%;
+  }
+}
+
+
+/* ----------------------------------------------------------
+   MOBILE
+   ---------------------------------------------------------- */
+
+@media (max-width: 680px) {
+
+  /* Header : titre puis CTA */
+  .page-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+    margin-bottom: 24px;
+  }
+
+  .page-header > div:first-child {
+    min-width: 0;
+  }
+
+  .page-header h1 {
+    font-size: 28px;
+    line-height: 1.15;
+  }
+
+  .page-header p {
+    max-width: 100%;
+  }
+
+  /* CTA principal facile à toucher */
+  .page-header > button,
+  .page-header > a {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Navigation mobile plus compacte */
+  .df-business-nav-inner {
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+
+  .df-nav-link {
+    min-height: 44px;
+    padding-right: 10px;
+    padding-left: 10px;
+    font-size: 13px;
+  }
+
+  /* Tableaux : conserver la vraie structure métier
+     plutôt que compresser les colonnes */
+  .df-premium-table {
+    min-width: 760px;
+  }
+
+  .df-premium-table thead th,
+  .df-premium-table tbody td {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  /* Actions tactiles */
+  .business-row-actions button,
+  .row-actions button,
+  .df-table-actions button {
+    min-height: 40px;
+  }
+}
+
+/* ==========================================================
+   RESPONSIVE V1 — NAVIGATION / HEADERS / TABLEAUX
+   ========================================================== */
+
+/* ----------------------------------------------------------
+   TABLETTE
+   ---------------------------------------------------------- */
+
+@media (max-width: 900px) {
+
+  /* Navigation : conserver le scroll depuis le début */
+  .df-business-nav-inner {
+    justify-content: flex-start !important;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .df-nav-link {
+    flex: 0 0 auto;
+    min-height: 44px;
+  }
+
+  /* Aucun tableau ne doit agrandir toute la page */
+  .df-premium-table {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    white-space: nowrap;
+
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+  }
+
+  .df-premium-table thead,
+  .df-premium-table tbody {
+    width: max-content;
+    min-width: 100%;
+  }
+}
+
+
+/* ----------------------------------------------------------
+   MOBILE
+   ---------------------------------------------------------- */
+
+@media (max-width: 680px) {
+
+  /* Header : titre puis CTA */
+  .page-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+    margin-bottom: 24px;
+  }
+
+  .page-header > div:first-child {
+    min-width: 0;
+  }
+
+  .page-header h1 {
+    font-size: 28px;
+    line-height: 1.15;
+  }
+
+  .page-header p {
+    max-width: 100%;
+  }
+
+  /* CTA principal facile à toucher */
+  .page-header > button,
+  .page-header > a {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Navigation mobile plus compacte */
+  .df-business-nav-inner {
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+
+  .df-nav-link {
+    min-height: 44px;
+    padding-right: 10px;
+    padding-left: 10px;
+    font-size: 13px;
+  }
+
+  /* Tableaux : conserver la vraie structure métier
+     plutôt que compresser les colonnes */
+  .df-premium-table {
+    min-width: 760px;
+  }
+
+  .df-premium-table thead th,
+  .df-premium-table tbody td {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  /* Actions tactiles */
+  .business-row-actions button,
+  .row-actions button,
+  .df-table-actions button {
+    min-height: 40px;
+  }
+}
+
+/* ==========================================================
+   RESPONSIVE V1 — TABLE SCROLL CORRECTION
+   Le conteneur porte le scroll, jamais le <table>
+   ========================================================== */
+
+.table-scroll {
+  width: 100%;
+  max-width: 100%;
+}
+
+@media (max-width: 900px) {
+  .table-scroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+  }
+
+  .table-scroll .df-premium-table {
+    display: table;
+    width: max-content;
+    min-width: 100%;
+    max-width: none;
+
+    overflow: visible;
+
+    white-space: nowrap;
+  }
+
+  .table-scroll .df-premium-table thead,
+  .table-scroll .df-premium-table tbody {
+    width: auto;
+    min-width: 0;
+  }
+
+  /* La colonne Actions doit garder toute sa largeur */
+  .table-scroll .df-premium-table th:last-child,
+  .table-scroll .df-premium-table td:last-child {
+    min-width: max-content;
+    white-space: nowrap;
+    padding-right: 20px;
+  }
+
+  .table-scroll .business-row-actions,
+  .table-scroll .row-actions {
+    width: max-content;
+    min-width: max-content;
+    flex-wrap: nowrap;
+  }
+}
+
+/* ==========================================================
+   RESPONSIVE V1 — FACTURES : ACTIONS NON STICKY
+   ========================================================== */
+
+@media (max-width: 900px) {
+  .invoice-table th:last-child,
+  .invoice-table td:last-child {
+    position: static !important;
+    right: auto !important;
+    z-index: auto !important;
+  }
+
+  .invoice-table tbody td:last-child {
+    box-shadow: none !important;
+  }
+}
+
+/* ==========================================================
+   RESPONSIVE V1 — FORMULAIRES / MODALES / FILTRES / ACTIONS
+   ========================================================== */
+
+
+/* ----------------------------------------------------------
+   TABLETTE
+   ---------------------------------------------------------- */
+
+@media (max-width: 900px) {
+
+  /* Formulaires */
+  .form-grid,
+  .payment-form-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  /* Modales : ne jamais dépasser l'écran */
+  .payment-modal,
+  .billing-modal,
+  .recurring-modal-card,
+  .modal-card {
+    width: min(92vw, 720px);
+    max-width: 92vw;
+    max-height: 88vh;
+    overflow-y: auto;
+  }
+
+  /* Barres de filtres / contrôles */
+  .business-context-filter,
+  .client-list-header,
+  .business-toolbar,
+  .table-toolbar {
+    flex-wrap: wrap;
+  }
+}
+
+
+/* ----------------------------------------------------------
+   MOBILE
+   ---------------------------------------------------------- */
+
+@media (max-width: 680px) {
+
+  /* Formulaires : une colonne */
+  .form-grid,
+  .payment-form-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Tous les champs doivent rester dans l'écran */
+  .form-grid > *,
+  .payment-form-grid > *,
+  .billing-modal-field,
+  .recurring-modal-body {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  input,
+  select,
+  textarea {
+    max-width: 100%;
+  }
+
+  /* Modales mobiles */
+  .payment-modal,
+  .billing-modal,
+  .recurring-modal-card,
+  .modal-card,
+  .purchase-order-modal {
+    width: calc(100vw - 24px) !important;
+    max-width: calc(100vw - 24px) !important;
+    max-height: calc(100vh - 24px);
+    margin: 12px;
+    border-radius: 16px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .payment-modal-backdrop,
+  .billing-modal-overlay,
+  .recurring-modal-overlay,
+  .modal-overlay {
+    padding: 0 !important;
+    align-items: center;
+  }
+
+  /* Headers de modale */
+  .payment-modal-header,
+  .billing-modal-header,
+  .recurring-modal-header,
+  .modal-header {
+    gap: 12px;
+  }
+
+  /* Footer / actions de modale */
+  .billing-modal-actions,
+  .recurring-modal-footer,
+  .modal-actions {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .billing-modal-actions button,
+  .recurring-modal-footer button,
+  .modal-actions button {
+    width: 100%;
+    min-height: 44px;
+    justify-content: center;
+  }
+
+  /* Filtres */
+  .business-context-filter,
+  .client-list-header,
+  .business-toolbar,
+  .table-toolbar {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .business-context-filter > *,
+  .client-list-header > *,
+  .business-toolbar > *,
+  .table-toolbar > * {
+    max-width: 100%;
+  }
+
+  /* Boutons tactiles */
+  button,
+  .primary-button,
+  .secondary-button {
+    min-height: 42px;
+  }
+
+  /* Menus d'actions */
+  .business-row-actions,
+  .row-actions,
+  .df-table-actions {
+    gap: 8px;
+  }
+
+  /* Texte des modales */
+  .payment-modal h2,
+  .billing-modal h2,
+  .recurring-modal-card h2,
+  .modal-card h2 {
+    font-size: 20px;
+    line-height: 1.25;
+  }
+}
+
+/* ==========================================================
+   RESPONSIVE V1 — FORMULAIRES MÉTIER EN MODALE
+   ========================================================== */
+
+.business-form-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  background: rgba(15, 23, 42, 0.46);
+  backdrop-filter: blur(3px);
+
+  overflow-y: auto;
+}
+
+.business-form-overlay > form {
+  width: min(960px, calc(100vw - 48px));
+  max-width: 960px;
+  max-height: calc(100vh - 48px);
+
+  margin: 0 !important;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  background: var(--core-surface, #ffffff);
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 24px 64px rgba(15, 23, 42, 0.20);
+}
+
+
+/* Devis : formulaire plus riche */
+.business-form-overlay > .quote-form {
+  width: min(1100px, calc(100vw - 48px));
+  max-width: 1100px;
+}
+
+
+/* Mobile */
+@media (max-width: 680px) {
+  .business-form-overlay {
+    padding: 12px;
+    align-items: center;
+  }
+
+  .business-form-overlay > form,
+  .business-form-overlay > .quote-form {
+    width: calc(100vw - 24px);
+    max-width: calc(100vw - 24px);
+
+    max-height: calc(100vh - 24px);
+
+    border-radius: 16px;
+  }
+}

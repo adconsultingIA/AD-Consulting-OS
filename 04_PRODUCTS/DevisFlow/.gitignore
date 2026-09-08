@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+.venv/
+backend/.venv/
+
+# Environment variables
+.env
+backend/.env
+
+# Frontend
+node_modules/
+dist/
+
+# IDE / OS
+.vscode/
+.DS_Store
+Thumbs.db
+
+# ---------------------------------------------------------------------
+# Local development databases / snapshots
+# ---------------------------------------------------------------------
+backend/*.db
+backend/*.db.*
+
+# Generated PDF tests / previews
+backend/*.pdf
+
+# Temporary development backups
+*.before-*
+*.before_*
+*.backup.*
+**/*.before-*
+**/*.before_*
+**/*.backup.*
+
+# Local IDE / SQLTools artefacts
+*node-runtime*
+
+# Temporary scratch files
+frontend/CHEMIN_DU_FICHIER.css
+# Accidental root npm lockfile
+/package-lock.json
+

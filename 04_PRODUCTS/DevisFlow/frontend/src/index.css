@@ -1,0 +1,8827 @@
+:root {
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  color: #101828;
+  background: #f8fafc;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+}
+
+.sidebar {
+  min-height: 100vh;
+  padding: 24px 18px;
+  background: #0B2239;
+  color: white;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.brand-mark {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: white;
+  color: #111827;
+  font-weight: 800;
+}
+
+.brand strong,
+.brand span {
+  display: block;
+}
+
+.brand span {
+  margin-top: 2px;
+  color: #8CCFE3;
+  font-size: 12px;
+}
+
+.nav {
+  display: grid;
+  gap: 6px;
+}
+
+.nav a {
+  padding: 11px 12px;
+  border-radius: 8px;
+  color: #d0d5dd;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.nav a:hover,
+.nav a.active {
+  color: white;
+  background: #123B55;
+}
+
+.main-content {
+  padding: 38px 42px;
+}
+
+.page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 34px;
+}
+
+.eyebrow {
+  display: block;
+  margin-bottom: 8px;
+  color: #667085;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+h1 {
+  margin: 0;
+  font-size: 32px;
+  letter-spacing: -0.04em;
+}
+
+.page-header p {
+  margin: 8px 0 0;
+  color: #667085;
+}
+
+.primary-button {
+  border: 0;
+  border-radius: 9px;
+  padding: 11px 16px;
+  background: #111827;
+  color: white;
+  font-weight: 600;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.stat-card {
+  min-height: 126px;
+  padding: 20px;
+  border: 1px solid #eaecf0;
+  border-radius: 12px;
+  background: white;
+}
+
+.stat-card span {
+  color: #667085;
+  font-size: 13px;
+}
+
+.stat-card strong {
+  display: block;
+  margin-top: 18px;
+  font-size: 28px;
+}
+
+@media (max-width: 900px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    min-height: auto;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.error-message {
+  margin-bottom: 20px;
+  padding: 12px 14px;
+  border: 1px solid #fda29b;
+  border-radius: 8px;
+  background: #fffbfa;
+  color: #b42318;
+  font-size: 14px;
+}
+
+.client-form,
+.table-card {
+  margin-bottom: 24px;
+  padding: 24px;
+  border: 1px solid #eaecf0;
+  border-radius: 12px;
+  background: white;
+}
+
+.form-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.form-header h2 {
+  margin: 0;
+}
+
+.form-header p {
+  margin: 6px 0 0;
+  color: #667085;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.form-grid label {
+  display: grid;
+  gap: 7px;
+  color: #344054;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-grid input,
+.form-grid textarea {
+  width: 100%;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: white;
+  color: #101828;
+  outline: none;
+}
+
+.form-grid input:focus,
+.form-grid textarea:focus {
+  border-color: #667085;
+}
+
+.form-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.secondary-button {
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  padding: 10px 14px;
+  background: white;
+  color: #344054;
+  font-weight: 600;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th {
+  padding: 12px;
+  border-bottom: 1px solid #eaecf0;
+  color: #667085;
+  font-size: 12px;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.data-table td {
+  padding: 14px 12px;
+  border-bottom: 1px solid #f2f4f7;
+  color: #344054;
+  font-size: 14px;
+}
+
+.status-badge {
+  display: inline-flex;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #ecfdf3;
+  color: #027a48;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.form-grid select {
+  width: 100%;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: white;
+  color: #101828;
+  outline: none;
+}
+
+.form-grid select:focus {
+  border-color: #667085;
+}
+
+.table-action-button {
+  border: 1px solid #d0d5dd;
+  border-radius: 7px;
+  padding: 7px 10px;
+  background: white;
+  color: #344054;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.table-action-button:hover {
+  background: #f9fafb;
+}
+
+.quote-form {
+  margin-bottom: 28px;
+  padding: 24px;
+  border: 1px solid #eaecf0;
+  border-radius: 12px;
+  background: white;
+}
+
+.quote-lines-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin: 30px 0 16px;
+}
+
+.quote-lines-header h3 {
+  margin: 0;
+}
+
+.quote-lines-header p {
+  margin: 5px 0 0;
+  color: #667085;
+  font-size: 13px;
+}
+
+.quote-lines {
+  display: grid;
+  gap: 12px;
+}
+
+.quote-line {
+  display: grid;
+  grid-template-columns:
+    minmax(240px, 2fr)
+    90px
+    130px
+    90px
+    130px
+    42px;
+  gap: 10px;
+  align-items: end;
+  padding: 14px;
+  border: 1px solid #eaecf0;
+  border-radius: 10px;
+  background: #f9fafb;
+}
+
+.quote-line label {
+  display: grid;
+  gap: 6px;
+  color: #475467;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.quote-line input {
+  width: 100%;
+  border: 1px solid #d0d5dd;
+  border-radius: 7px;
+  padding: 9px 10px;
+  background: white;
+}
+
+.quote-line-total {
+  display: grid;
+  gap: 7px;
+}
+
+.quote-line-total span {
+  color: #667085;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.quote-line-total strong {
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+}
+
+.remove-line-button {
+  height: 38px;
+  border: 1px solid #d0d5dd;
+  border-radius: 7px;
+  background: white;
+  color: #b42318;
+  font-size: 20px;
+}
+
+.remove-line-button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.quote-summary {
+  width: 320px;
+  margin: 24px 0 0 auto;
+}
+
+.quote-summary > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 8px 0;
+}
+
+.quote-summary span {
+  color: #667085;
+}
+
+.quote-summary-total {
+  margin-top: 5px;
+  padding: 13px 0 !important;
+  border-top: 1px solid #101828;
+  font-size: 18px;
+}
+
+@media (max-width: 1100px) {
+  .quote-line {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.quote-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.status-action-button,
+.success-action-button,
+.danger-action-button {
+  border: 0;
+  border-radius: 7px;
+  padding: 7px 10px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.status-action-button {
+  background: #1d4ed8;
+  color: white;
+}
+
+.success-action-button {
+  background: #067647;
+  color: white;
+}
+
+.danger-action-button {
+  background: #b42318;
+  color: white;
+}
+
+/* =========================================================
+   AD CONSULTING IA — DESIGN SYSTEM
+   DevisFlow secondary identity: Cyan
+   ========================================================= */
+
+:root {
+  --ad-navy: #111827;
+  --ad-blue: #1d4ed8;
+  --ad-blue-hover: #1e40af;
+
+  --devis-cyan: #06b6d4;
+  --devis-cyan-dark: #0891b2;
+  --devis-cyan-soft: #cffafe;
+}
+
+
+/* Primary AD actions */
+
+.primary-button,
+.status-action-button {
+  background: var(--ad-blue);
+  color: white;
+}
+
+.primary-button:hover,
+.status-action-button:hover {
+  background: var(--ad-blue-hover);
+}
+
+
+/* DevisFlow identity accent */
+
+.eyebrow {
+  color: var(--devis-cyan-dark);
+}
+
+.brand-mark {
+  box-shadow: inset 0 -3px 0 var(--devis-cyan);
+}
+
+
+/* Quote statuses */
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.status-draft {
+  background: #f2f4f7;
+  color: #475467;
+}
+
+.status-ready {
+  background: var(--devis-cyan-soft);
+  color: #0e7490;
+}
+
+.status-sent {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.status-accepted {
+  background: #dcfae6;
+  color: #067647;
+}
+
+.status-rejected {
+  background: #fee4e2;
+  color: #b42318;
+}
+
+.status-expired {
+  background: #fef0c7;
+  color: #b54708;
+}
+
+.status-cancelled {
+  background: #eaecf0;
+  color: #344054;
+}
+
+.status-default {
+  background: #f2f4f7;
+  color: #475467;
+}
+
+/* ==========================================================
+   PAYMENTS
+   ========================================================== */
+
+.payment-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(15, 23, 42, 0.55);
+}
+
+.payment-modal {
+  width: min(780px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 28px;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.22);
+}
+
+.payment-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.payment-modal-header h2 {
+  margin: 4px 0 8px;
+}
+
+.payment-modal-header p {
+  margin: 0;
+}
+
+.payment-form {
+  margin-top: 24px;
+  padding: 22px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  background: #f8fafc;
+}
+
+.payment-form h3 {
+  margin: 0 0 18px;
+}
+
+.payment-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.payment-form-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #344054;
+}
+
+.payment-form-grid input,
+.payment-form-grid select {
+  width: 100%;
+  min-height: 42px;
+  box-sizing: border-box;
+  padding: 9px 12px;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  background: #ffffff;
+  font: inherit;
+}
+
+.payment-notes {
+  grid-column: 1 / -1;
+}
+
+.payment-history {
+  margin-top: 28px;
+}
+
+.payment-history h3 {
+  margin-bottom: 14px;
+}
+
+.payment-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.payment-history-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px 24px;
+  padding: 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.payment-history-item > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.payment-history-item > div:last-of-type {
+  text-align: right;
+}
+
+.payment-history-item span {
+  font-size: 12px;
+  color: #667085;
+}
+
+.payment-history-item p {
+  grid-column: 1 / -1;
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: #475467;
+}
+
+@media (max-width: 720px) {
+  .payment-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .payment-notes {
+    grid-column: auto;
+  }
+
+  .payment-modal-header {
+    flex-direction: column;
+  }
+}
+
+.payment-form-grid textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  background: #ffffff;
+  font: inherit;
+  resize: vertical;
+}
+
+
+/* ---------------------------------------------------------
+   Dashboard V1
+--------------------------------------------------------- */
+
+.dashboard-stats {
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+}
+
+.stat-card {
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 8px 24px rgba(16, 24, 40, 0.05);
+}
+
+.stat-card small {
+  display: block;
+  margin-top: 10px;
+  color: #98a2b3;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.stat-card-alert {
+  border-color: #fecdca;
+  background: #fffbfa;
+}
+
+.stat-card-alert strong {
+  color: #b42318;
+}
+
+@media (max-width: 1200px) {
+  .dashboard-stats {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .dashboard-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .main-content {
+    padding: 24px 18px;
+  }
+
+  .page-header {
+    flex-direction: column;
+  }
+}
+
+/* ---------------------------------------------------------
+   Clients V1
+--------------------------------------------------------- */
+
+.client-summary-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.client-summary-card {
+  padding: 18px 20px;
+  border: 1px solid #eaecf0;
+  border-radius: 12px;
+  background: white;
+}
+
+.client-summary-card span {
+  color: #667085;
+  font-size: 13px;
+}
+
+.client-summary-card strong {
+  display: block;
+  margin-top: 10px;
+  color: #101828;
+  font-size: 26px;
+}
+
+.client-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.client-list-header h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.client-list-header p {
+  margin: 5px 0 0;
+  color: #667085;
+  font-size: 13px;
+}
+
+.client-search {
+  width: min(320px, 100%);
+  border: 1px solid #d0d5dd;
+  border-radius: 9px;
+  padding: 10px 12px;
+  background: white;
+  color: #101828;
+  outline: none;
+}
+
+.client-search:focus {
+  border-color: #123b55;
+  box-shadow:
+    0 0 0 3px rgba(18, 59, 85, 0.08);
+}
+
+.client-link {
+  color: #155eef;
+}
+
+.client-link:hover {
+  text-decoration: underline;
+}
+
+.status-badge-inactive {
+  background: #f2f4f7;
+  color: #667085;
+}
+
+.table-scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.empty-state {
+  padding: 36px 12px;
+  color: #667085;
+  text-align: center;
+  font-size: 14px;
+}
+
+.primary-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+@media (max-width: 900px) {
+  .client-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .client-list-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .client-search {
+    width: 100%;
+  }
+}
+
+/* ---------------------------------------------------------
+   Dynamic business cards
+--------------------------------------------------------- */
+
+.request-summary-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.event-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 128px;
+  padding: 20px;
+  border: 1px solid #eaecf0;
+  border-radius: 14px;
+  background: white;
+  box-shadow:
+    0 8px 24px rgba(16, 24, 40, 0.035);
+}
+
+.event-card::after {
+  content: "";
+  position: absolute;
+  inset: auto -24px -40px auto;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  filter: blur(24px);
+  opacity: 0.16;
+  pointer-events: none;
+}
+
+.event-card span {
+  color: #667085;
+  font-size: 13px;
+}
+
+.event-card strong {
+  display: block;
+  margin-top: 14px;
+  color: #101828;
+  font-size: 27px;
+}
+
+.event-card small {
+  display: block;
+  margin-top: 8px;
+  color: #98a2b3;
+  font-size: 12px;
+}
+
+.event-card-blue::after {
+  background: #06b6d4;
+}
+
+.event-card-green::after {
+  background: #12b76a;
+}
+
+.event-card-warning {
+  border-color: #fedf89;
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff 55%,
+      #fff7e8
+    );
+}
+
+.event-card-warning::after {
+  background: #f79009;
+}
+
+.event-card-warning strong {
+  color: #b54708;
+}
+
+.event-card-danger {
+  border-color: #fecdca;
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff 55%,
+      #fff1f0
+    );
+}
+
+.event-card-danger::after {
+  background: #f04438;
+}
+
+.event-card-danger strong {
+  color: #b42318;
+}
+
+.table-subtext {
+  display: block;
+  max-width: 420px;
+  margin-top: 5px;
+  color: #98a2b3;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.row-warning {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(247, 144, 9, 0.045),
+      transparent 36%
+    );
+}
+
+.row-danger {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(240, 68, 56, 0.055),
+      transparent 38%
+    );
+}
+
+.deadline {
+  display: inline-flex;
+  border-radius: 999px;
+  padding: 5px 8px;
+  color: #475467;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.deadline-warning {
+  background: #fffaeb;
+  color: #b54708;
+}
+
+.deadline-danger {
+  background: #fef3f2;
+  color: #b42318;
+}
+
+@media (max-width: 1200px) {
+  .request-summary-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .request-summary-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------------------------------------------------------
+   Business semantic glow system V1
+   Futur candidat CoreFlow UI
+--------------------------------------------------------- */
+
+.business-card {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid #eaecf0;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow:
+    0 8px 24px rgba(16, 24, 40, 0.04);
+}
+
+.business-card::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 180px;
+  height: 180px;
+  right: -45px;
+  bottom: -75px;
+  border-radius: 999px;
+  opacity: 0.18;
+  filter: blur(32px);
+  pointer-events: none;
+}
+
+/* Neutre / brouillon */
+
+.business-neutral::before {
+  background: #98a2b3;
+}
+
+/* Information / prêt */
+
+.business-info::before {
+  background: #155eef;
+}
+
+/* Envoyé / action en cours */
+
+.business-cyan::before {
+  background: #06b6d4;
+}
+
+/* Succès / accepté / payé */
+
+.business-success {
+  border-color: #d1fadf;
+}
+
+.business-success::before {
+  background: #12b76a;
+}
+
+/* Attention / échéance / reste à traiter */
+
+.business-warning {
+  border-color: #fedf89;
+}
+
+.business-warning::before {
+  background: #f79009;
+}
+
+/* Danger / retard / refus */
+
+.business-danger {
+  border-color: #fecdca;
+}
+
+.business-danger::before {
+  background: #f04438;
+}
+
+/* Élément désactivé / annulé */
+
+.business-muted {
+  opacity: 0.72;
+}
+
+.business-muted::before {
+  background: #667085;
+}
+
+/* Effet légèrement plus vivant au survol */
+
+.business-card {
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.business-card:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 14px 34px rgba(16, 24, 40, 0.075);
+}
+
+/* ---------------------------------------------------------
+   Quotes V1
+--------------------------------------------------------- */
+
+.quote-kpi-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.quote-kpi-card {
+  min-height: 132px;
+  padding: 20px;
+}
+
+.quote-kpi-card span {
+  color: #667085;
+  font-size: 13px;
+}
+
+.quote-kpi-card strong {
+  display: block;
+  margin-top: 14px;
+  color: #101828;
+  font-size: 27px;
+}
+
+.quote-kpi-card small {
+  display: block;
+  margin-top: 8px;
+  color: #98a2b3;
+  font-size: 12px;
+}
+
+
+/* ---------------------------------------------------------
+   Quote table semantic states
+--------------------------------------------------------- */
+
+.quote-business-row {
+  position: relative;
+  transition:
+    background 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.quote-business-row.business-info {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(21, 94, 239, 0.045),
+      transparent 28%
+    );
+}
+
+.quote-business-row.business-cyan {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(6, 182, 212, 0.05),
+      transparent 30%
+    );
+}
+
+.quote-business-row.business-success {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(18, 183, 106, 0.055),
+      transparent 32%
+    );
+}
+
+.quote-business-row.business-danger {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(240, 68, 56, 0.055),
+      transparent 32%
+    );
+}
+
+.quote-business-row.business-muted {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(102, 112, 133, 0.035),
+      transparent 28%
+    );
+}
+
+.quote-row-warning {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(247, 144, 9, 0.09),
+      transparent 36%
+    ) !important;
+}
+
+.quote-row-overdue {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(240, 68, 56, 0.10),
+      transparent 38%
+    ) !important;
+}
+
+
+/* ---------------------------------------------------------
+   Existing quote status badges
+--------------------------------------------------------- */
+
+.status-draft {
+  background: #f2f4f7;
+  color: #475467;
+}
+
+.status-ready {
+  background: #eff4ff;
+  color: #3538cd;
+}
+
+.status-sent {
+  background: #ecfdff;
+  color: #0e7090;
+}
+
+.status-accepted {
+  background: #ecfdf3;
+  color: #027a48;
+}
+
+.status-rejected {
+  background: #fef3f2;
+  color: #b42318;
+}
+
+.status-expired {
+  background: #fff6ed;
+  color: #c4320a;
+}
+
+.status-cancelled {
+  background: #f2f4f7;
+  color: #667085;
+}
+
+
+@media (max-width: 1200px) {
+  .quote-kpi-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .quote-kpi-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------------------------------------------------------
+   Invoices V1
+--------------------------------------------------------- */
+
+.invoice-kpi-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.invoice-kpi-card {
+  min-height: 132px;
+  padding: 20px;
+}
+
+.invoice-kpi-card span {
+  color: #667085;
+  font-size: 13px;
+}
+
+.invoice-kpi-card strong {
+  display: block;
+  margin-top: 14px;
+  color: #101828;
+  font-size: 27px;
+}
+
+.invoice-kpi-card small {
+  display: block;
+  margin-top: 8px;
+  color: #98a2b3;
+  font-size: 12px;
+}
+
+
+/* Facture : lecture métier dans le tableau */
+
+.invoice-business-row {
+  transition:
+    background 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.invoice-business-row.business-info {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(21, 94, 239, 0.045),
+      transparent 30%
+    );
+}
+
+.invoice-business-row.business-cyan {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(6, 182, 212, 0.055),
+      transparent 30%
+    );
+}
+
+.invoice-business-row.business-warning {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(247, 144, 9, 0.08),
+      transparent 36%
+    );
+}
+
+.invoice-business-row.business-success {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(18, 183, 106, 0.06),
+      transparent 34%
+    );
+}
+
+.invoice-business-row.business-danger {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(240, 68, 56, 0.095),
+      transparent 38%
+    );
+}
+
+.invoice-business-row.business-muted {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(102, 112, 133, 0.04),
+      transparent 30%
+    );
+}
+
+
+/* Statut partiellement payé */
+
+.status-partial {
+  background: #fffaeb;
+  color: #b54708;
+}
+
+
+@media (max-width: 1200px) {
+  .invoice-kpi-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .invoice-kpi-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------------------------------------------------------
+   Core-like interactive business surfaces V1
+   À remonter plus tard dans CoreFlow UI Kit
+--------------------------------------------------------- */
+
+.business-row,
+.stat-card,
+.client-summary-card,
+.event-card,
+.quote-kpi-card,
+.invoice-kpi-card {
+  transition:
+    transform 0.16s ease,
+    box-shadow 0.16s ease,
+    border-color 0.16s ease,
+    background 0.16s ease;
+}
+
+.business-row:hover,
+.stat-card:hover,
+.client-summary-card:hover,
+.event-card:hover,
+.quote-kpi-card:hover,
+.invoice-kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 12px 28px rgba(16, 24, 40, 0.07);
+}
+
+/* ---------------------------------------------------------
+   Dashboard Starter Widgets V1
+   Futurs candidats CoreFlow KPI / Widget Registry
+--------------------------------------------------------- */
+
+.dashboard-pilotage {
+  margin-top: 34px;
+}
+
+.dashboard-section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 18px;
+}
+
+.dashboard-section-header h2 {
+  margin: 0;
+  font-size: 21px;
+  letter-spacing: -0.025em;
+}
+
+.dashboard-section-header p {
+  margin: 6px 0 0;
+  color: #667085;
+  font-size: 13px;
+}
+
+.starter-insight-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 5px 10px;
+  border: 1px solid #b9e6fe;
+  border-radius: 999px;
+  background: #f0f9ff;
+  color: #026aa2;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.dashboard-widget-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.dashboard-widget {
+  min-height: 300px;
+  padding: 22px;
+}
+
+.dashboard-widget-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.dashboard-widget-label {
+  display: block;
+  margin-bottom: 5px;
+  color: #667085;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.055em;
+}
+
+.dashboard-widget h3 {
+  margin: 0;
+  color: #101828;
+  font-size: 17px;
+}
+
+.dashboard-widget-icon {
+  min-width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #eaecf0;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.72);
+  color: #475467;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+
+/* Pipeline */
+
+.pipeline-chart {
+  display: grid;
+  gap: 18px;
+}
+
+.pipeline-item {
+  display: grid;
+  gap: 7px;
+}
+
+.pipeline-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.pipeline-meta span {
+  color: #667085;
+  font-size: 12px;
+}
+
+.pipeline-meta strong {
+  color: #101828;
+  font-size: 13px;
+}
+
+.visual-track {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #f2f4f7;
+}
+
+.visual-fill {
+  height: 100%;
+  min-width: 4px;
+  border-radius: inherit;
+  transition: width 0.4s ease;
+}
+
+.visual-fill-cyan {
+  background: #06b6d4;
+}
+
+.visual-fill-blue {
+  background: #155eef;
+}
+
+.visual-fill-green {
+  background: #12b76a;
+}
+
+.visual-fill-navy {
+  background: #0b2239;
+}
+
+
+/* Facturation */
+
+.collection-highlight {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  margin-bottom: 16px;
+}
+
+.collection-highlight strong {
+  color: #027a48;
+  font-size: 32px;
+  letter-spacing: -0.04em;
+}
+
+.collection-highlight span {
+  color: #667085;
+  font-size: 12px;
+}
+
+.collection-progress {
+  height: 10px;
+  overflow: hidden;
+  margin-bottom: 24px;
+  border-radius: 999px;
+  background: #ecfdf3;
+}
+
+.collection-progress-value {
+  height: 100%;
+  border-radius: inherit;
+  background: #12b76a;
+  transition: width 0.45s ease;
+}
+
+.collection-values {
+  display: grid;
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.collection-values div {
+  padding: 10px;
+  border: 1px solid #f2f4f7;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.68);
+}
+
+.collection-values span,
+.collection-values strong {
+  display: block;
+}
+
+.collection-values span {
+  color: #98a2b3;
+  font-size: 10px;
+}
+
+.collection-values strong {
+  margin-top: 5px;
+  color: #344054;
+  font-size: 12px;
+}
+
+
+/* Santé factures */
+
+.health-distribution {
+  display: flex;
+  width: 100%;
+  height: 12px;
+  overflow: hidden;
+  margin: 8px 0 26px;
+  border-radius: 999px;
+  background: #f2f4f7;
+}
+
+.health-segment {
+  height: 100%;
+  min-width: 3px;
+  transition: width 0.4s ease;
+}
+
+.health-list {
+  display: grid;
+  gap: 14px;
+}
+
+.health-item {
+  display: grid;
+  grid-template-columns: 10px 1fr auto;
+  align-items: center;
+  gap: 9px;
+}
+
+.health-item span {
+  color: #667085;
+  font-size: 12px;
+}
+
+.health-item strong {
+  color: #101828;
+  font-size: 13px;
+}
+
+.health-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+}
+
+.health-green {
+  background: #12b76a;
+}
+
+.health-orange {
+  background: #f79009;
+}
+
+.health-cyan {
+  background: #06b6d4;
+}
+
+.health-red {
+  background: #f04438;
+}
+
+.dashboard-widget-empty {
+  padding: 50px 0;
+  color: #98a2b3;
+  text-align: center;
+  font-size: 13px;
+}
+
+
+/* Responsive préparatoire */
+
+@media (max-width: 1200px) {
+  .dashboard-widget-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------------------------------------------------------
+   Business Button System V1
+   Futur candidat CoreFlow UI Kit
+--------------------------------------------------------- */
+
+.business-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  min-height: 36px;
+  padding: 8px 13px;
+
+  border: 1px solid transparent;
+  border-radius: 9px;
+
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.business-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow:
+    0 8px 18px rgba(16, 24, 40, 0.08);
+}
+
+.business-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.business-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+
+/* Primary */
+
+.business-button-primary {
+  background: #155eef;
+  color: #ffffff;
+}
+
+.business-button-primary:hover:not(:disabled) {
+  background: #1849a9;
+}
+
+
+/* Secondary */
+
+.business-button-secondary {
+  border-color: #d0d5dd;
+  background: #ffffff;
+  color: #344054;
+}
+
+.business-button-secondary:hover:not(:disabled) {
+  background: #f9fafb;
+  border-color: #98a2b3;
+}
+
+
+/* Success */
+
+.business-button-success {
+  background: #027a48;
+  color: #ffffff;
+}
+
+.business-button-success:hover:not(:disabled) {
+  background: #05603a;
+}
+
+
+/* Warning */
+
+.business-button-warning {
+  border-color: #fedf89;
+  background: #fffaeb;
+  color: #b54708;
+}
+
+.business-button-warning:hover:not(:disabled) {
+  background: #fef0c7;
+}
+
+
+/* Danger */
+
+.business-button-danger {
+  background: #b42318;
+  color: #ffffff;
+}
+
+.business-button-danger:hover:not(:disabled) {
+  background: #912018;
+}
+
+
+/* Neutral */
+
+.business-button-neutral {
+  border-color: #eaecf0;
+  background: #f2f4f7;
+  color: #475467;
+}
+
+
+/* Sizes */
+
+.business-button-sm {
+  min-height: 32px;
+  padding: 7px 10px;
+  border-radius: 8px;
+  font-size: 11px;
+}
+
+.business-button-lg {
+  min-height: 42px;
+  padding: 11px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+
+/* Icon-only */
+
+.business-button-icon {
+  width: 36px;
+  min-width: 36px;
+  height: 36px;
+  padding: 0;
+}
+
+.business-button-square {
+  border-radius: 9px;
+}
+
+.business-button-circle {
+  border-radius: 999px;
+}
+
+
+/* ---------------------------------------------------------
+   Legacy compatibility aliases
+   À retirer après migration complète
+--------------------------------------------------------- */
+
+.primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 36px;
+  padding: 8px 13px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  background: #155eef;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+.primary-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow:
+    0 8px 18px rgba(16, 24, 40, 0.08);
+  background: #1849a9;
+}
+
+.secondary-button,
+.table-action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 32px;
+  padding: 7px 10px;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #344054;
+  font-size: 11px;
+  font-weight: 700;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+.secondary-button:hover:not(:disabled),
+.table-action-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow:
+    0 7px 16px rgba(16, 24, 40, 0.07);
+  background: #f9fafb;
+}
+
+.status-action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 7px 10px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: #155eef;
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+.status-action-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow:
+    0 7px 16px rgba(21, 94, 239, 0.18);
+  background: #1849a9;
+}
+
+.success-action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 7px 10px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: #027a48;
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+.success-action-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow:
+    0 7px 16px rgba(2, 122, 72, 0.18);
+  background: #05603a;
+}
+
+.danger-action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 7px 10px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: #b42318;
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+.danger-action-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow:
+    0 7px 16px rgba(180, 35, 24, 0.18);
+  background: #912018;
+}
+
+.remove-line-button {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  min-width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid #fecdca;
+  border-radius: 9px;
+  background: #fef3f2;
+  color: #b42318;
+  font-size: 18px;
+  font-weight: 700;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+.remove-line-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow:
+    0 7px 16px rgba(180, 35, 24, 0.12);
+  background: #fee4e2;
+}
+
+/* ---------------------------------------------------------
+   Business Button System V1
+   Futur candidat CoreFlow UI Kit
+--------------------------------------------------------- */
+
+.business-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  min-height: 36px;
+  padding: 8px 13px;
+
+  border: 1px solid transparent;
+  border-radius: 9px;
+
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.business-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow:
+    0 8px 18px rgba(16, 24, 40, 0.08);
+}
+
+.business-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.business-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+
+/* Primary */
+
+.business-button-primary {
+  background: #155eef;
+  color: #ffffff;
+}
+
+.business-button-primary:hover:not(:disabled) {
+  background: #1849a9;
+}
+
+
+/* Secondary */
+
+.business-button-secondary {
+  border-color: #d0d5dd;
+  background: #ffffff;
+  color: #344054;
+}
+
+.business-button-secondary:hover:not(:disabled) {
+  background: #f9fafb;
+  border-color: #98a2b3;
+}
+
+
+/* Success */
+
+.business-button-success {
+  background: #027a48;
+  color: #ffffff;
+}
+
+.business-button-success:hover:not(:disabled) {
+  background: #05603a;
+}
+
+
+/* Warning */
+
+.business-button-warning {
+  border-color: #fedf89;
+  background: #fffaeb;
+  color: #b54708;
+}
+
+.business-button-warning:hover:not(:disabled) {
+  background: #fef0c7;
+}
+
+
+/* Danger */
+
+.business-button-danger {
+  background: #b42318;
+  color: #ffffff;
+}
+
+.business-button-danger:hover:not(:disabled) {
+  background: #912018;
+}
+
+
+/* Neutral */
+
+.business-button-neutral {
+  border-color: #eaecf0;
+  background: #f2f4f7;
+  color: #475467;
+}
+
+
+/* Sizes */
+
+.business-button-sm {
+  min-height: 32px;
+  padding: 7px 10px;
+  border-radius: 8px;
+  font-size: 11px;
+}
+
+.business-button-lg {
+  min-height: 42px;
+  padding: 11px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+
+/* Icon-only */
+
+.business-button-icon {
+  width: 36px;
+  min-width: 36px;
+  height: 36px;
+  padding: 0;
+}
+
+.business-button-square {
+  border-radius: 9px;
+}
+
+.business-button-circle {
+  border-radius: 999px;
+}
+
+
+/* ---------------------------------------------------------
+   Legacy compatibility aliases
+   À retirer après migration complète
+--------------------------------------------------------- */
+
+.primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 36px;
+  padding: 8px 13px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  background: #155eef;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+.primary-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow:
+    0 8px 18px rgba(16, 24, 40, 0.08);
+  background: #1849a9;
+}
+
+.secondary-button,
+.table-action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 32px;
+  padding: 7px 10px;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #344054;
+  font-size: 11px;
+  font-weight: 700;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+.secondary-button:hover:not(:disabled),
+.table-action-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow:
+    0 7px 16px rgba(16, 24, 40, 0.07);
+  background: #f9fafb;
+}
+
+.status-action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 7px 10px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: #155eef;
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+.status-action-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow:
+    0 7px 16px rgba(21, 94, 239, 0.18);
+  background: #1849a9;
+}
+
+.success-action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 7px 10px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: #027a48;
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+.success-action-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow:
+    0 7px 16px rgba(2, 122, 72, 0.18);
+  background: #05603a;
+}
+
+.danger-action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 7px 10px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: #b42318;
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+.danger-action-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow:
+    0 7px 16px rgba(180, 35, 24, 0.18);
+  background: #912018;
+}
+
+.remove-line-button {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  min-width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid #fecdca;
+  border-radius: 9px;
+  background: #fef3f2;
+  color: #b42318;
+  font-size: 18px;
+  font-weight: 700;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+.remove-line-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow:
+    0 7px 16px rgba(180, 35, 24, 0.12);
+  background: #fee4e2;
+}
+
+/* Business Button — progression / envoi */
+
+.business-button-cyan {
+  border-color: transparent;
+  background: #0891b2;
+  color: #ffffff;
+}
+
+.business-button-cyan:hover:not(:disabled) {
+  background: #0e7490;
+  box-shadow:
+    0 7px 16px rgba(8, 145, 178, 0.18);
+}
+
+/* ---------------------------------------------------------
+   Purchase Orders V1
+--------------------------------------------------------- */
+
+.purchase-order-kpi-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.purchase-order-kpi-card {
+  min-height: 132px;
+  padding: 22px;
+}
+
+.purchase-order-kpi-card span,
+.purchase-order-kpi-card strong,
+.purchase-order-kpi-card small {
+  display: block;
+}
+
+.purchase-order-kpi-card span {
+  color: #667085;
+  font-size: 13px;
+}
+
+.purchase-order-kpi-card strong {
+  margin-top: 18px;
+  color: #101828;
+  font-size: 25px;
+  letter-spacing: -0.035em;
+}
+
+.purchase-order-kpi-card small {
+  margin-top: 7px;
+  color: #98a2b3;
+  font-size: 11px;
+}
+
+.purchase-order-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.purchase-order-address {
+  display: block;
+  max-width: 220px;
+  color: #475467;
+  line-height: 1.45;
+}
+
+.purchase-order-row-neutral {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(249, 250, 251, 0.8),
+      transparent 32%
+    );
+}
+
+.purchase-order-row-info {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(239, 244, 255, 0.78),
+      transparent 34%
+    );
+}
+
+.purchase-order-row-cyan {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(236, 254, 255, 0.78),
+      transparent 34%
+    );
+}
+
+.purchase-order-row-muted {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(242, 244, 247, 0.72),
+      transparent 34%
+    );
+  opacity: 0.76;
+}
+
+.status-issued {
+  background: #eef4ff;
+  color: #3538cd;
+}
+
+.status-sent {
+  background: #ecfdff;
+  color: #0e7490;
+}
+
+.status-cancelled {
+  background: #f2f4f7;
+  color: #667085;
+}
+
+.purchase-order-modal {
+  width: min(
+    680px,
+    calc(100vw - 32px)
+  );
+}
+
+@media (max-width: 1100px) {
+  .purchase-order-kpi-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .purchase-order-kpi-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.purchase-order-created-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 7px 10px;
+  border: 1px solid #a5f3fc;
+  border-radius: 8px;
+  background: #ecfeff;
+  color: #0e7490;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+.purchase-order-created-badge:hover {
+  transform: translateY(-1px);
+  background: #cffafe;
+  box-shadow:
+    0 6px 14px rgba(14, 116, 144, 0.12);
+}
+
+/* Facture liée depuis un devis */
+
+.invoice-created-button {
+  cursor: pointer;
+  font: inherit;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    filter 0.15s ease;
+}
+
+.invoice-created-button:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 6px 14px rgba(2, 122, 72, 0.12);
+  filter: brightness(0.98);
+}
+
+/* ---------------------------------------------------------
+   Invoice targeted navigation
+--------------------------------------------------------- */
+
+.invoice-row-targeted {
+  position: relative;
+  z-index: 1;
+
+  box-shadow:
+    inset 4px 0 0 #155eef,
+    0 0 0 2px rgba(21, 94, 239, 0.16),
+    0 14px 32px rgba(21, 94, 239, 0.12);
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(239, 244, 255, 0.96),
+      rgba(255, 255, 255, 0.88)
+    ) !important;
+
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* ---------------------------------------------------------
+   Purchase Orders V1 — UX final polish
+   Avant remontée des primitives dans CoreFlow UI Kit
+--------------------------------------------------------- */
+
+/* Ligne métier plus lisible */
+
+.purchase-orders-table tbody tr {
+  transition:
+    transform 0.16s ease,
+    box-shadow 0.16s ease,
+    background 0.16s ease;
+}
+
+.purchase-orders-table tbody tr:hover {
+  position: relative;
+  z-index: 1;
+  transform: translateY(-1px);
+  box-shadow:
+    0 10px 24px rgba(16, 24, 40, 0.06);
+}
+
+
+/* Indicateur discret du statut sur le bord gauche */
+
+.purchase-orders-table
+.purchase-order-row-neutral {
+  box-shadow:
+    inset 3px 0 0 #d0d5dd;
+}
+
+.purchase-orders-table
+.purchase-order-row-info {
+  box-shadow:
+    inset 3px 0 0 #155eef;
+}
+
+.purchase-orders-table
+.purchase-order-row-cyan {
+  box-shadow:
+    inset 3px 0 0 #06b6d4;
+}
+
+.purchase-orders-table
+.purchase-order-row-muted {
+  box-shadow:
+    inset 3px 0 0 #98a2b3;
+}
+
+
+/* Référence du BC */
+
+.purchase-orders-table td:first-child strong {
+  color: #101828;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+}
+
+
+/* Devis lié : référence métier secondaire */
+
+.purchase-orders-table .table-reference {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 4px 7px;
+
+  border: 1px solid #e4e7ec;
+  border-radius: 6px;
+
+  background: rgba(255, 255, 255, 0.72);
+
+  color: #475467;
+  font-size: 11px;
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+
+/* Adresse d'intervention */
+
+.purchase-order-address {
+  display: -webkit-box;
+
+  max-width: 230px;
+
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+
+  color: #475467;
+  line-height: 1.45;
+}
+
+.purchase-order-address:not(:empty) {
+  padding-left: 9px;
+
+  border-left: 2px solid #e4e7ec;
+}
+
+
+/* Montant */
+
+.purchase-orders-table td:nth-child(5) strong {
+  color: #101828;
+  white-space: nowrap;
+}
+
+
+/* Actions */
+
+.purchase-order-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 6px;
+}
+
+.purchase-order-actions
+.business-button {
+  white-space: nowrap;
+}
+
+
+/* La consultation reste discrète */
+
+.purchase-order-actions
+.business-button-secondary {
+  background: rgba(255, 255, 255, 0.82);
+}
+
+
+/* Envoyer reste l'action de progression */
+
+.purchase-order-actions
+.business-button-cyan {
+  box-shadow:
+    0 3px 8px rgba(8, 145, 178, 0.10);
+}
+
+
+/* Annuler reste identifiable sans dominer la ligne */
+
+.purchase-order-actions
+.business-button-danger {
+  box-shadow:
+    0 3px 8px rgba(180, 35, 24, 0.08);
+}
+
+
+/* KPI : interaction cohérente avec les autres briques */
+
+.purchase-order-kpi-card {
+  transition:
+    transform 0.16s ease,
+    box-shadow 0.16s ease;
+}
+
+.purchase-order-kpi-card:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 12px 28px rgba(16, 24, 40, 0.07);
+}
+
+
+/* Modal BC */
+
+.purchase-order-modal {
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.purchase-order-modal textarea {
+  resize: vertical;
+}
+
+
+/* Responsive tableau */
+
+@media (max-width: 1100px) {
+  .purchase-order-address {
+    max-width: 180px;
+  }
+}
+
+
+/* ==========================================================
+   DEVISFLOW — COREFLOW UI ALIGNMENT V1
+   Shared visual scale
+   ========================================================== */
+
+:root {
+  /* Typography */
+  --ui-page-title: 30px;
+  --ui-section-title: 20px;
+  --ui-card-value: 24px;
+
+  --ui-body: 14px;
+  --ui-table: 13px;
+  --ui-table-header: 12px;
+  --ui-label: 12px;
+  --ui-caption: 11px;
+
+  /* Spacing */
+  --ui-space-1: 4px;
+  --ui-space-2: 8px;
+  --ui-space-3: 12px;
+  --ui-space-4: 16px;
+  --ui-space-5: 20px;
+  --ui-space-6: 24px;
+  --ui-space-7: 28px;
+  --ui-space-8: 32px;
+}
+
+
+/* ---------------------------------------------------------
+   Global page hierarchy
+--------------------------------------------------------- */
+
+body {
+  font-size: var(--ui-body);
+}
+
+h1,
+.page-header h1 {
+  font-size: var(--ui-page-title);
+  line-height: 1.2;
+}
+
+.page-header p {
+  font-size: var(--ui-body);
+  line-height: 1.55;
+}
+
+.eyebrow {
+  font-size: var(--ui-label);
+}
+
+
+/* ---------------------------------------------------------
+   Tables
+--------------------------------------------------------- */
+
+.data-table th {
+  font-size: var(--ui-table-header);
+}
+
+.data-table td {
+  font-size: var(--ui-table);
+}
+
+
+/* ---------------------------------------------------------
+   Status badges
+--------------------------------------------------------- */
+
+.status-badge {
+  font-size: var(--ui-label);
+}
+
+
+/* ---------------------------------------------------------
+   Generic KPI / Business cards
+--------------------------------------------------------- */
+
+.stat-card span,
+.business-card > span {
+  font-size: var(--ui-table);
+}
+
+.stat-card strong,
+.business-card > strong {
+  font-size: var(--ui-card-value);
+}
+
+.stat-card small,
+.business-card > small {
+  font-size: var(--ui-caption);
+}
+
+
+/* ---------------------------------------------------------
+   Invoice KPIs
+--------------------------------------------------------- */
+
+.invoice-kpi-card span {
+  font-size: var(--ui-table);
+}
+
+.invoice-kpi-card strong {
+  font-size: var(--ui-card-value);
+}
+
+.invoice-kpi-card small {
+  font-size: var(--ui-caption);
+}
+
+
+/* ---------------------------------------------------------
+   Purchase Order KPIs
+--------------------------------------------------------- */
+
+.purchase-order-kpi-card span {
+  font-size: var(--ui-table);
+}
+
+.purchase-order-kpi-card strong {
+  font-size: var(--ui-card-value);
+}
+
+.purchase-order-kpi-card small {
+  font-size: var(--ui-caption);
+}
+
+
+/* ---------------------------------------------------------
+   Dashboard
+--------------------------------------------------------- */
+
+.dashboard-section-header h2 {
+  font-size: var(--ui-section-title);
+}
+
+.dashboard-section-header p {
+  font-size: var(--ui-table);
+}
+
+.dashboard-widget h3 {
+  font-size: var(--ui-body);
+}
+
+.dashboard-widget-label {
+  font-size: var(--ui-caption);
+}
+
+
+/* ---------------------------------------------------------
+   Buttons
+--------------------------------------------------------- */
+
+.business-button {
+  font-size: var(--ui-label);
+}
+
+.business-button-sm {
+  font-size: var(--ui-caption);
+}
+
+.business-button-lg {
+  font-size: var(--ui-body);
+}
+
+
+/* ---------------------------------------------------------
+   Purchase Order references
+--------------------------------------------------------- */
+
+.purchase-orders-table .table-reference,
+.purchase-order-created-badge,
+.invoice-created-button {
+  font-size: var(--ui-caption);
+}
+
+/* ==========================================================
+   PURCHASE ORDERS — TABLE LAYOUT FIX
+   ========================================================== */
+
+.purchase-orders-table {
+  width: 100%;
+  min-width: 980px;
+  table-layout: auto;
+}
+
+.purchase-orders-table th,
+.purchase-orders-table td {
+  padding: 12px 14px;
+  vertical-align: middle;
+}
+
+.purchase-orders-table th {
+  white-space: nowrap;
+}
+
+.purchase-orders-table td {
+  line-height: 1.45;
+}
+
+.purchase-orders-table td:first-child,
+.purchase-orders-table td:nth-child(2),
+.purchase-orders-table td:nth-child(3),
+.purchase-orders-table td:nth-child(5),
+.purchase-orders-table td:nth-child(6) {
+  white-space: nowrap;
+}
+
+.purchase-orders-table td:nth-child(4) {
+  min-width: 240px;
+}
+
+.purchase-orders-table td:last-child {
+  min-width: 220px;
+}
+
+.purchase-order-actions {
+  flex-wrap: nowrap;
+}
+
+.purchase-orders-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 16px;
+  border: 1px solid #eaecf0;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow:
+    0 6px 18px rgba(16, 24, 40, 0.04);
+}
+
+.purchase-orders-table-wrapper .data-table {
+  margin: 0;
+}
+
+.purchase-order-search {
+  width: min(340px, 100%);
+  min-height: 40px;
+  padding: 9px 12px;
+  border: 1px solid #d0d5dd;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #101828;
+  font-size: 13px;
+  outline: none;
+}
+
+.purchase-order-search:focus {
+  border-color: #155eef;
+  box-shadow:
+    0 0 0 3px rgba(21, 94, 239, 0.10);
+}
+
+/* ==========================================================
+   PURCHASE ORDERS — TABLE LAYOUT FIX
+   ========================================================== */
+
+.purchase-orders-table {
+  width: 100%;
+  min-width: 980px;
+  table-layout: auto;
+}
+
+.purchase-orders-table th,
+.purchase-orders-table td {
+  padding: 12px 14px;
+  vertical-align: middle;
+}
+
+.purchase-orders-table th {
+  white-space: nowrap;
+}
+
+.purchase-orders-table td {
+  line-height: 1.45;
+}
+
+.purchase-orders-table td:first-child,
+.purchase-orders-table td:nth-child(2),
+.purchase-orders-table td:nth-child(3),
+.purchase-orders-table td:nth-child(5),
+.purchase-orders-table td:nth-child(6) {
+  white-space: nowrap;
+}
+
+.purchase-orders-table td:nth-child(4) {
+  min-width: 240px;
+}
+
+.purchase-orders-table td:last-child {
+  min-width: 220px;
+}
+
+.purchase-order-actions {
+  flex-wrap: nowrap;
+}
+
+.purchase-orders-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 16px;
+  border: 1px solid #eaecf0;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow:
+    0 6px 18px rgba(16, 24, 40, 0.04);
+}
+
+.purchase-orders-table-wrapper .data-table {
+  margin: 0;
+}
+
+.purchase-order-search {
+  width: min(340px, 100%);
+  min-height: 40px;
+  padding: 9px 12px;
+  border: 1px solid #d0d5dd;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #101828;
+  font-size: 13px;
+  outline: none;
+}
+
+.purchase-order-search:focus {
+  border-color: #155eef;
+  box-shadow:
+    0 0 0 3px rgba(21, 94, 239, 0.10);
+}
+
+/* ==========================================================
+   CLIENTS — SEMANTIC KPI CARDS
+   ========================================================== */
+
+.client-summary-card {
+  position: relative;
+  overflow: hidden;
+
+  border: 1px solid #eaecf0;
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  transition:
+    transform 0.16s ease,
+    box-shadow 0.16s ease,
+    border-color 0.16s ease;
+}
+
+.client-summary-card:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 12px 28px rgba(16, 24, 40, 0.07);
+}
+
+.client-summary-info {
+  border-color: #c7d7fe;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(239, 244, 255, 0.92),
+      #ffffff 72%
+    );
+}
+
+.client-summary-success {
+  border-color: #abefc6;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(236, 253, 243, 0.94),
+      #ffffff 72%
+    );
+}
+
+.client-summary-neutral {
+  border-color: #e4e7ec;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(249, 250, 251, 0.96),
+      #ffffff 72%
+    );
+}
+
+.client-summary-info::before,
+.client-summary-success::before,
+.client-summary-neutral::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 4px;
+  height: 100%;
+
+  border-radius: 14px 0 0 14px;
+
+  content: "";
+}
+
+.client-summary-info::before {
+  background: #155eef;
+}
+
+.client-summary-success::before {
+  background: #12b76a;
+}
+
+.client-summary-neutral::before {
+  background: #98a2b3;
+}
+
+/* ==========================================================
+   PURCHASE ORDERS — TABLE READABILITY FIX
+   ========================================================== */
+
+.purchase-orders-table {
+  width: 100%;
+  min-width: 1040px;
+  table-layout: auto;
+}
+
+.purchase-orders-table th,
+.purchase-orders-table td {
+  padding: 13px 16px;
+  vertical-align: middle;
+}
+
+.purchase-orders-table th {
+  white-space: nowrap;
+}
+
+.purchase-orders-table td:first-child,
+.purchase-orders-table td:nth-child(2),
+.purchase-orders-table td:nth-child(3),
+.purchase-orders-table td:nth-child(5),
+.purchase-orders-table td:nth-child(6) {
+  white-space: nowrap;
+}
+
+.purchase-orders-table td:nth-child(4) {
+  min-width: 260px;
+}
+
+.purchase-orders-table td:last-child {
+  min-width: 235px;
+}
+
+.purchase-order-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 7px;
+}
+
+
+/* ==========================================================
+   BUSINESS CARD SYSTEM V2
+   Référence visuelle commune DevisFlow / futur CoreFlow UI
+   ========================================================== */
+
+.business-card {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+
+  border: 1px solid #eaecf0;
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 8px 24px rgba(16, 24, 40, 0.045);
+
+  transition:
+    transform 0.16s ease,
+    box-shadow 0.16s ease,
+    border-color 0.16s ease;
+}
+
+
+/* Barre métier verticale — remplace le halo circulaire */
+
+.business-card::before {
+  position: absolute;
+
+  z-index: 1;
+
+  top: 0;
+  left: 0;
+  right: auto;
+  bottom: auto;
+
+  width: 4px;
+  height: 100%;
+
+  border-radius: 14px 0 0 14px;
+
+  opacity: 1;
+  filter: none;
+
+  content: "";
+  pointer-events: none;
+}
+
+
+/* ---------------------------------------------------------
+   Neutral / Brouillon
+--------------------------------------------------------- */
+
+.business-card.business-neutral {
+  border-color: #e4e7ec;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(249, 250, 251, 0.96),
+      #ffffff 72%
+    );
+}
+
+.business-card.business-neutral::before {
+  background: #98a2b3;
+}
+
+
+/* ---------------------------------------------------------
+   Information
+--------------------------------------------------------- */
+
+.business-card.business-info {
+  border-color: #c7d7fe;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(239, 244, 255, 0.92),
+      #ffffff 72%
+    );
+}
+
+.business-card.business-info::before {
+  background: #155eef;
+}
+
+
+/* ---------------------------------------------------------
+   Progression / Envoi
+--------------------------------------------------------- */
+
+.business-card.business-cyan {
+  border-color: #a5f3fc;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(236, 254, 255, 0.94),
+      #ffffff 72%
+    );
+}
+
+.business-card.business-cyan::before {
+  background: #06b6d4;
+}
+
+
+/* ---------------------------------------------------------
+   Succès
+--------------------------------------------------------- */
+
+.business-card.business-success {
+  border-color: #abefc6;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(236, 253, 243, 0.94),
+      #ffffff 72%
+    );
+}
+
+.business-card.business-success::before {
+  background: #12b76a;
+}
+
+
+/* ---------------------------------------------------------
+   Attention
+--------------------------------------------------------- */
+
+.business-card.business-warning {
+  border-color: #fedf89;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 250, 235, 0.94),
+      #ffffff 72%
+    );
+}
+
+.business-card.business-warning::before {
+  background: #f79009;
+}
+
+
+/* ---------------------------------------------------------
+   Danger
+--------------------------------------------------------- */
+
+.business-card.business-danger {
+  border-color: #fecdca;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(254, 243, 242, 0.94),
+      #ffffff 72%
+    );
+}
+
+.business-card.business-danger::before {
+  background: #f04438;
+}
+
+
+/* ---------------------------------------------------------
+   Désactivé / Annulé
+--------------------------------------------------------- */
+
+.business-card.business-muted {
+  border-color: #e4e7ec;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(242, 244, 247, 0.96),
+      #ffffff 72%
+    );
+
+  opacity: 0.76;
+}
+
+.business-card.business-muted::before {
+  background: #667085;
+}
+
+
+/* ---------------------------------------------------------
+   Interaction commune
+--------------------------------------------------------- */
+
+.business-card:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 12px 28px rgba(16, 24, 40, 0.07);
+}
+
+/* ==========================================================
+   REQUESTS — BUSINESS CARD ALIGNMENT
+   ========================================================== */
+
+.request-summary-card {
+  min-height: 128px;
+  padding: 20px;
+}
+
+.request-summary-card span,
+.request-summary-card strong,
+.request-summary-card small {
+  display: block;
+}
+
+.request-summary-card span {
+  color: #667085;
+  font-size: var(--ui-table);
+}
+
+.request-summary-card strong {
+  margin-top: 14px;
+  color: #101828;
+  font-size: var(--ui-card-value);
+}
+
+.request-summary-card small {
+  margin-top: 8px;
+  color: #98a2b3;
+  font-size: var(--ui-caption);
+}
+
+
+/* ==========================================================
+   LIST FOUNDATION V1 — DEVISFLOW IMPLEMENTATION
+   Basé sur CoreFlow UI Foundation
+   ========================================================== */
+
+.list-foundation-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  margin: 18px 0 16px;
+  padding: 12px 14px;
+
+  border: 1px solid #eaecf0;
+  border-radius: 12px;
+
+  background: #f9fafb;
+}
+
+.list-period-chips {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.list-filter-chip {
+  display: inline-flex;
+  min-height: 32px;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 12px;
+
+  border: 1px solid #d0d5dd;
+  border-radius: 999px;
+
+  background: #ffffff;
+  color: #475467;
+
+  font-size: 12px;
+  font-weight: 650;
+
+  transition:
+    background 0.16s ease,
+    border-color 0.16s ease,
+    color 0.16s ease,
+    box-shadow 0.16s ease,
+    transform 0.16s ease;
+}
+
+.list-filter-chip:hover {
+  border-color: #b2ccff;
+  background: #f5f8ff;
+  color: #155eef;
+}
+
+.list-filter-chip-active {
+  border-color: #155eef;
+  background: #155eef;
+  color: #ffffff;
+
+  box-shadow:
+    0 3px 8px rgba(21, 94, 239, 0.14);
+}
+
+.list-page-size {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #667085;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+.list-page-size select {
+  min-height: 32px;
+
+  padding: 0 10px;
+
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: #344054;
+
+  font-size: 12px;
+}
+
+
+/* Pagination */
+
+.list-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 16px;
+
+  margin-top: 16px;
+  padding-top: 14px;
+
+  border-top: 1px solid #eaecf0;
+}
+
+.list-pagination-meta {
+  color: #98a2b3;
+  font-size: 11px;
+}
+
+.list-pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.list-pagination-button {
+  min-height: 34px;
+
+  padding: 0 12px;
+
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: #475467;
+
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.list-pagination-button:hover:not(:disabled) {
+  border-color: #b2ccff;
+  background: #f5f8ff;
+  color: #155eef;
+}
+
+.list-pagination-button:disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+}
+
+.list-pagination-current {
+  display: grid;
+
+  min-width: 34px;
+  min-height: 34px;
+
+  place-items: center;
+
+  border-radius: 8px;
+
+  background: #155eef;
+  color: #ffffff;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+
+/* Responsive */
+
+@media (max-width: 800px) {
+  .list-foundation-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .list-page-size {
+    justify-content: flex-end;
+  }
+
+  .list-pagination {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
+
+/* ==========================================================
+   LIST FOUNDATION — FILTER / PAGINATION SHAPE ALIGNMENT
+   ========================================================== */
+
+.list-filter-chip {
+  min-height: 34px;
+  padding: 0 12px;
+
+  border-radius: 8px;
+
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.list-filter-chip-active {
+  border-radius: 8px;
+}
+
+.list-pagination-button,
+.list-pagination-current {
+  min-height: 34px;
+  border-radius: 8px;
+}
+
+.list-page-size select {
+  min-height: 34px;
+  border-radius: 8px;
+}
+
+/* ==========================================================
+   LINKED DOCUMENT BADGES — FINAL ALIGNMENT
+   ========================================================== */
+
+/* Bon de commande existant */
+
+.purchase-order-created-badge {
+  display: inline-flex;
+  min-height: 32px;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 10px;
+
+  border: 1px solid #a5f3fc;
+  border-radius: 8px;
+
+  background: #ecfeff;
+  color: #0e7490;
+
+  font-size: 11px;
+  font-weight: 700;
+  font-family: inherit;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.purchase-order-created-badge:hover {
+  transform: translateY(-1px);
+
+  background: #cffafe;
+
+  box-shadow:
+    0 6px 14px rgba(14, 116, 144, 0.12);
+}
+
+
+/* Facture existante */
+
+.invoice-created-badge {
+  display: inline-flex;
+  min-height: 32px;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 10px;
+
+  border: 1px solid #b2ccff;
+  border-radius: 8px;
+
+  background: #eff4ff;
+  color: #3538cd;
+
+  font-size: 11px;
+  font-weight: 700;
+  font-family: inherit;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.invoice-created-badge:hover {
+  transform: translateY(-1px);
+
+  background: #e0e7ff;
+
+  box-shadow:
+    0 6px 14px rgba(53, 56, 205, 0.12);
+}
+
+/* ==========================================================
+   PURCHASE ORDERS — LIST HEADER ALIGNMENT
+   ========================================================== */
+
+.business-list-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 0;
+}
+
+.business-list-header > div {
+  min-width: 0;
+}
+
+.business-search-input {
+  width: min(360px, 100%);
+  min-height: 40px;
+  padding: 9px 12px;
+
+  border: 1px solid #d0d5dd;
+  border-radius: 9px;
+
+  background: #ffffff;
+  color: #101828;
+
+  font-size: 13px;
+  font-family: inherit;
+
+  outline: none;
+}
+
+.business-search-input:focus {
+  border-color: #155eef;
+  box-shadow:
+    0 0 0 3px rgba(21, 94, 239, 0.10);
+}
+
+@media (max-width: 800px) {
+  .business-list-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .business-search-input {
+    width: 100%;
+  }
+}
+
+/* ==========================================================
+   LIST SECTION TITLES — FINAL ALIGNMENT
+   ========================================================== */
+
+.client-list-header h2,
+.business-list-header h2,
+.table-card h2 {
+  margin: 0;
+  font-size: var(--ui-section-title);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.client-list-header p,
+.business-list-header p {
+  margin: 6px 0 0;
+  font-size: var(--ui-table);
+  color: #667085;
+}
+
+/* ==========================================================
+   SMART EMPTY STATES V1
+   ========================================================== */
+
+.smart-empty-state {
+  display: grid;
+  gap: 6px;
+
+  margin-top: 16px;
+  padding: 28px 24px;
+
+  border: 1px dashed #d0d5dd;
+  border-radius: 12px;
+
+  background: #f9fafb;
+
+  text-align: center;
+}
+
+.smart-empty-state strong,
+.table-smart-empty strong {
+  color: #344054;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.smart-empty-state span,
+.table-smart-empty span {
+  color: #98a2b3;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.table-smart-empty {
+  display: grid;
+  gap: 5px;
+
+  padding: 20px;
+
+  text-align: center;
+}
+
+/* ==========================================================
+   BUSINESS ROW ACTION HIERARCHY V1
+   CoreFlow candidate
+   ========================================================== */
+
+.business-row-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+}
+
+
+/* ----------------------------------------------------------
+   1. Prochaine action métier
+   ---------------------------------------------------------- */
+
+.business-primary-action {
+  position: relative;
+  order: 1;
+
+  font-weight: 700;
+
+  box-shadow:
+    0 3px 8px rgba(21, 94, 239, 0.12);
+}
+
+.business-primary-action:hover {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 5px 12px rgba(21, 94, 239, 0.16);
+}
+
+
+/* ----------------------------------------------------------
+   2. Document déjà créé / lié
+   ---------------------------------------------------------- */
+
+.business-linked-document {
+  order: 2;
+}
+
+
+/* ----------------------------------------------------------
+   3. Action complémentaire
+   ---------------------------------------------------------- */
+
+.business-complementary-action {
+  order: 3;
+}
+
+
+/* ----------------------------------------------------------
+   4. Actions secondaires
+   ---------------------------------------------------------- */
+
+.business-secondary-action {
+  order: 4;
+}
+
+
+/* Les boutons non classés restent après l'action principale. */
+
+.business-row-actions
+  > .business-button:not(.business-primary-action):not(.business-complementary-action):not(.business-secondary-action) {
+  order: 4;
+}
+
+
+/* PDF volontairement discret */
+
+.business-row-actions
+  > .business-button-secondary {
+  box-shadow: none;
+}
+
+
+/* Evite une colonne Actions trop comprimée */
+
+.data-table th:last-child,
+.data-table td:last-child {
+  min-width: 210px;
+}
+
+
+/* Mobile */
+
+@media (max-width: 900px) {
+  .business-row-actions {
+    align-items: stretch;
+  }
+}
+
+/* ==========================================================
+   ROW ACTION ORDER — FINAL V1
+   ========================================================== */
+
+.business-row-actions > .business-primary-action {
+  order: 1;
+}
+
+.business-row-actions > .business-complementary-action {
+  order: 2;
+}
+
+.business-row-actions > .business-linked-document {
+  order: 3;
+}
+
+.business-row-actions > .business-secondary-action {
+  order: 4;
+}
+
+/* Tous les boutons secondaires non explicitement classés */
+.business-row-actions
+  > .business-button-secondary:not(.business-linked-document) {
+  order: 4;
+}
+
+/* Danger en dernier */
+.business-row-actions
+  > .business-button-danger {
+  order: 5;
+}
+
+/* ==========================================================
+   POLISH FINAL — PURCHASE ORDERS TABLE ALIGNMENT
+   ========================================================== */
+
+.purchase-orders-table th {
+  font-size: var(--ui-table-header);
+  font-weight: 600;
+  padding: 12px;
+}
+
+.purchase-orders-table td {
+  font-size: var(--ui-table);
+  padding: 14px 12px;
+}
+
+
+/* ==========================================================
+   POLISH FINAL — LIST FOUNDATION TOOLBAR
+   ========================================================== */
+
+.list-foundation-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+
+  margin: 18px 0 16px;
+  padding: 12px 14px;
+
+  border: 1px solid #eaecf0;
+  border-radius: 12px;
+
+  background: #f9fafb;
+}
+
+
+/* Périodes */
+
+.list-period-chips {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.list-filter-chip {
+  min-height: 34px;
+  padding: 0 12px;
+
+  border-radius: 8px;
+
+  font-size: 12px;
+  line-height: 1;
+}
+
+
+/* Trier par / Par page */
+
+.list-page-size {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  min-height: 34px;
+
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+
+  white-space: nowrap;
+}
+
+.list-page-size > span {
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 34px;
+}
+
+.list-page-size select {
+  min-height: 34px;
+
+  padding: 0 30px 0 10px;
+
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+
+  background-color: #ffffff;
+  color: #344054;
+
+  font-size: 12px;
+  font-family: inherit;
+
+  cursor: pointer;
+}
+
+
+/* Interaction uniforme */
+
+.list-filter-chip:focus-visible,
+.list-page-size select:focus-visible,
+.list-pagination-button:focus-visible {
+  outline: 2px solid #84adff;
+  outline-offset: 2px;
+}
+
+
+/* Mobile / largeur réduite */
+
+@media (max-width: 900px) {
+  .list-foundation-toolbar {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 700px) {
+  .list-foundation-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .list-period-chips {
+    width: 100%;
+  }
+
+  .list-page-size {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .list-page-size select {
+    min-width: 150px;
+  }
+}
+
+
+/* ==========================================================
+   POLISH FINAL — AD CONSULTING CYAN ROW SIGNATURE
+   ========================================================== */
+
+/*
+ * Signature visuelle commune des listes métier.
+ * Le cyan identifie la ligne et l'ADN DevisFlow.
+ * Le fond / badge conserve la sémantique métier du statut.
+ */
+
+.business-row > td:first-child {
+  position: relative;
+
+  box-shadow:
+    inset 4px 0 0 #06b6d4;
+
+  transition:
+    box-shadow 0.16s ease,
+    background-color 0.16s ease;
+}
+
+
+/* Interaction : la barre reste visible et se renforce */
+
+.business-row:hover > td:first-child {
+  box-shadow:
+    inset 5px 0 0 #0891b2;
+}
+
+
+/* Petit retrait pour laisser respirer le contenu */
+
+.business-row > td:first-child {
+  padding-left: 16px;
+}
+
+
+/* Ligne annulée / atténuée :
+   conserver la signature mais plus discrète */
+
+.business-row.business-muted > td:first-child,
+.business-row.purchase-order-row-muted > td:first-child {
+  box-shadow:
+    inset 4px 0 0 rgba(6, 182, 212, 0.42);
+}
+
+
+/* Focus futur / navigation clavier */
+
+.business-row:focus-within > td:first-child {
+  box-shadow:
+    inset 5px 0 0 #0891b2;
+}
+
+
+/* ==========================================================
+   POLISH FINAL — COMPACT ROW ACTIONS + MORE MENU
+   ========================================================== */
+
+/*
+ * Les actions métier restent sur une seule ligne.
+ * Les actions secondaires seront déplacées dans le menu "...".
+ */
+
+.business-row-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 6px;
+
+  min-height: 34px;
+
+  white-space: nowrap;
+}
+
+
+/* Empêche les boutons visibles de s'écraser */
+
+.business-row-actions > * {
+  flex-shrink: 0;
+}
+
+
+/* ----------------------------------------------------------
+   More actions menu
+   ---------------------------------------------------------- */
+
+.row-actions-menu {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+
+  order: 10;
+
+  flex-shrink: 0;
+}
+
+
+/* Bouton ... */
+
+.row-actions-menu-trigger {
+  display: inline-grid;
+
+  width: 34px;
+  height: 34px;
+
+  place-items: center;
+
+  padding: 0;
+
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: #475467;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease,
+    color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+}
+
+.row-actions-menu-trigger:hover {
+  border-color: #a5f3fc;
+
+  background: #ecfeff;
+  color: #0891b2;
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 4px 10px rgba(6, 182, 212, 0.10);
+}
+
+.row-actions-menu-trigger:focus-visible {
+  outline: 2px solid #67e8f9;
+  outline-offset: 2px;
+}
+
+
+/* ----------------------------------------------------------
+   Popover
+   ---------------------------------------------------------- */
+
+.row-actions-menu-popover {
+  position: absolute;
+  z-index: 80;
+
+  top: calc(100% + 6px);
+  right: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  min-width: 170px;
+
+  padding: 6px;
+
+  border: 1px solid #eaecf0;
+  border-radius: 10px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 12px 30px rgba(16, 24, 40, 0.14);
+}
+
+
+/*
+ * Les boutons existants peuvent être réutilisés
+ * directement dans le menu.
+ */
+
+.row-actions-menu-popover
+  .business-button {
+  width: 100%;
+  min-height: 34px;
+
+  justify-content: flex-start;
+
+  padding: 7px 10px;
+
+  border-color: transparent;
+  border-radius: 7px;
+
+  background: transparent;
+
+  box-shadow: none;
+
+  text-align: left;
+
+  transform: none;
+}
+
+.row-actions-menu-popover
+  .business-button:hover {
+  background: #f9fafb;
+
+  transform: none;
+}
+
+
+/* Danger reste clairement identifiable */
+
+.row-actions-menu-popover
+  .business-button-danger {
+  color: #b42318;
+}
+
+.row-actions-menu-popover
+  .business-button-danger:hover {
+  background: #fef3f2;
+  color: #b42318;
+}
+
+
+/* ----------------------------------------------------------
+   Stabilité des lignes
+   ---------------------------------------------------------- */
+
+.business-row > td {
+  vertical-align: middle;
+}
+
+/*
+ * Pas de retour à la ligne dans la zone Actions.
+ * Le tableau peut rester horizontalement scrollable si nécessaire.
+ */
+
+.business-row > td:last-child {
+  white-space: nowrap;
+}
+
+
+/* ==========================================================
+   POLISH FINAL — ROW ACTIONS MENU SIDE OPENING
+   ========================================================== */
+
+/*
+ * Le menu "..." s'ouvre horizontalement à droite
+ * afin de ne plus recouvrir la ligne métier suivante.
+ */
+
+.row-actions-menu {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+
+  flex-shrink: 0;
+
+  overflow: visible;
+
+  order: 10;
+
+  z-index: 20;
+}
+
+
+/* Bouton ... */
+
+.row-actions-menu-trigger {
+  display: inline-grid;
+
+  width: 34px;
+  height: 34px;
+
+  place-items: center;
+
+  flex-shrink: 0;
+
+  padding: 0;
+
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: #475467;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease,
+    color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+}
+
+.row-actions-menu-trigger:hover {
+  border-color: #a5f3fc;
+
+  background: #ecfeff;
+  color: #0891b2;
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 4px 10px rgba(6, 182, 212, 0.10);
+}
+
+.row-actions-menu-trigger:focus-visible {
+  outline: 2px solid #67e8f9;
+  outline-offset: 2px;
+}
+
+
+/* ----------------------------------------------------------
+   Menu latéral
+   ---------------------------------------------------------- */
+
+.row-actions-menu-popover {
+  position: absolute;
+
+  z-index: 999;
+
+  top: 50%;
+  left: calc(100% + 8px);
+
+  display: flex;
+  flex-direction: column;
+
+  min-width: 160px;
+
+  padding: 6px;
+
+  border: 1px solid #eaecf0;
+  border-radius: 10px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 14px 34px rgba(16, 24, 40, 0.16);
+
+  transform: translateY(-50%);
+
+  overflow: visible;
+}
+
+
+/* ----------------------------------------------------------
+   Boutons contenus dans le menu
+   ---------------------------------------------------------- */
+
+.row-actions-menu-popover
+  .business-button {
+  display: flex;
+
+  width: 100%;
+  min-height: 34px;
+
+  align-items: center;
+  justify-content: flex-start;
+
+  padding: 7px 10px;
+
+  border-color: transparent;
+  border-radius: 7px;
+
+  background: transparent;
+
+  box-shadow: none;
+
+  color: #344054;
+
+  text-align: left;
+
+  white-space: nowrap;
+
+  transform: none;
+}
+
+.row-actions-menu-popover
+  .business-button:hover {
+  background: #f9fafb;
+
+  box-shadow: none;
+
+  transform: none;
+}
+
+
+/* Danger */
+
+.row-actions-menu-popover
+  .business-button-danger {
+  color: #b42318;
+}
+
+.row-actions-menu-popover
+  .business-button-danger:hover {
+  background: #fef3f2;
+  color: #b42318;
+}
+
+
+/* ----------------------------------------------------------
+   Autorise visuellement le débordement du menu
+   ---------------------------------------------------------- */
+
+.business-row,
+.business-row > td,
+.business-row-actions {
+  overflow: visible;
+}
+
+.data-table {
+  overflow: visible;
+}
+
+
+/* Maintient les actions principales sur une seule ligne */
+
+.business-row-actions {
+  display: flex;
+  align-items: center;
+
+  flex-wrap: nowrap;
+
+  gap: 6px;
+
+  min-height: 34px;
+
+  white-space: nowrap;
+}
+
+.business-row-actions > * {
+  flex-shrink: 0;
+}
+
+
+/* ==========================================================
+   POLISH FINAL — ROW ACTIONS FORK MENU
+   ========================================================== */
+
+/*
+ * Menu secondaire en éventail vers la gauche.
+ * Adapté à la colonne Actions placée à droite des tableaux.
+ */
+
+.row-actions-menu {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  overflow: visible;
+
+  order: 10;
+
+  z-index: 30;
+}
+
+
+/* ----------------------------------------------------------
+   Trigger
+   ---------------------------------------------------------- */
+
+.row-actions-menu-trigger {
+  position: relative;
+  z-index: 4;
+
+  display: inline-grid;
+
+  width: 34px;
+  height: 34px;
+
+  place-items: center;
+
+  padding: 0;
+
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: #475467;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.16s ease,
+    border-color 0.16s ease,
+    background 0.16s ease,
+    color 0.16s ease,
+    box-shadow 0.16s ease;
+}
+
+.row-actions-menu-trigger:hover {
+  border-color: #67e8f9;
+
+  background: #ecfeff;
+  color: #0891b2;
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 5px 12px rgba(6, 182, 212, 0.12);
+}
+
+.row-actions-menu-trigger:focus-visible {
+  outline: 2px solid #67e8f9;
+  outline-offset: 2px;
+}
+
+
+/* ----------------------------------------------------------
+   Fork container
+   ---------------------------------------------------------- */
+
+.row-actions-menu-popover {
+  position: absolute;
+
+  z-index: 999;
+
+  top: 50%;
+  right: calc(100% + 8px);
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  gap: 5px;
+
+  min-width: 0;
+
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  box-shadow: none;
+
+  transform: translateY(-50%);
+
+  overflow: visible;
+
+  pointer-events: auto;
+}
+
+
+/* ----------------------------------------------------------
+   Fork buttons
+   ---------------------------------------------------------- */
+
+.row-actions-menu-popover
+  .business-button {
+  width: auto;
+  min-width: 92px;
+  min-height: 32px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 6px 11px;
+
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: #344054;
+
+  box-shadow:
+    0 6px 16px rgba(16, 24, 40, 0.10);
+
+  font-size: 11px;
+  font-weight: 650;
+
+  white-space: nowrap;
+
+  transform: none;
+
+  transition:
+    transform 0.15s ease,
+    border-color 0.15s ease,
+    background 0.15s ease,
+    color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+
+/* Haut de la fourchette */
+
+.row-actions-menu-popover
+  .business-button:nth-child(1) {
+  transform: translateX(-10px);
+}
+
+
+/* Centre */
+
+.row-actions-menu-popover
+  .business-button:nth-child(2) {
+  transform: translateX(-28px);
+}
+
+
+/* Bas */
+
+.row-actions-menu-popover
+  .business-button:nth-child(3) {
+  transform: translateX(-10px);
+}
+
+
+/* Quatrième action éventuelle */
+
+.row-actions-menu-popover
+  .business-button:nth-child(4) {
+  transform: translateX(-22px);
+}
+
+
+/* Hover */
+
+.row-actions-menu-popover
+  .business-button:hover {
+  border-color: #a5f3fc;
+
+  background: #ecfeff;
+  color: #0891b2;
+
+  box-shadow:
+    0 8px 18px rgba(6, 182, 212, 0.14);
+}
+
+
+/* Danger */
+
+.row-actions-menu-popover
+  .business-button-danger {
+  border-color: #fecdca;
+
+  background: #ffffff;
+  color: #b42318;
+}
+
+.row-actions-menu-popover
+  .business-button-danger:hover {
+  border-color: #fda29b;
+
+  background: #fef3f2;
+  color: #b42318;
+}
+
+
+/* ----------------------------------------------------------
+   Tables must allow menu overflow
+   ---------------------------------------------------------- */
+
+.business-row,
+.business-row > td,
+.business-row-actions,
+.row-actions-menu {
+  overflow: visible;
+}
+
+
+/* Actions restent compactes */
+
+.business-row-actions {
+  display: flex;
+  align-items: center;
+
+  flex-wrap: nowrap;
+
+  gap: 6px;
+
+  min-height: 34px;
+
+  white-space: nowrap;
+}
+
+.business-row-actions > * {
+  flex-shrink: 0;
+}
+
+
+/* ==========================================================
+   DASHBOARD STARTER V3 — BUSINESS PILOTAGE
+   ========================================================== */
+
+
+/* ----------------------------------------------------------
+   KPI métier
+   ---------------------------------------------------------- */
+
+.dashboard-business-kpis {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 16px;
+
+  margin-bottom: 28px;
+}
+
+
+.dashboard-business-kpi {
+  min-height: 132px;
+
+  padding: 20px;
+
+  cursor: default;
+}
+
+
+.dashboard-kpi-label {
+  display: block;
+
+  color: #667085;
+
+  font-size: var(--ui-label);
+  font-weight: 650;
+}
+
+
+.dashboard-business-kpi > strong {
+  display: block;
+
+  margin-top: 15px;
+
+  color: #101828;
+
+  font-size: var(--ui-card-value);
+  font-weight: 750;
+
+  letter-spacing: -0.035em;
+
+  white-space: nowrap;
+}
+
+
+.dashboard-business-kpi > small {
+  display: block;
+
+  margin-top: 9px;
+
+  color: #98a2b3;
+
+  font-size: var(--ui-caption);
+  line-height: 1.4;
+}
+
+
+.dashboard-business-kpi-alert > strong {
+  color: #b42318;
+}
+
+
+/* ----------------------------------------------------------
+   Pilotage
+   ---------------------------------------------------------- */
+
+.dashboard-pilotage-v3 {
+  margin-top: 8px;
+}
+
+
+.dashboard-widget-grid-v3 {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 18px;
+
+  align-items: stretch;
+}
+
+
+.dashboard-widget-v3 {
+  min-height: 370px;
+
+  padding: 22px;
+}
+
+
+/* ----------------------------------------------------------
+   Top clients
+   ---------------------------------------------------------- */
+
+.dashboard-top-clients {
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+
+  margin-top: 22px;
+}
+
+
+.dashboard-top-client {
+  display: grid;
+
+  grid-template-columns:
+    28px minmax(0, 1fr) auto;
+
+  gap: 10px;
+
+  align-items: center;
+
+  min-height: 52px;
+
+  padding: 8px 6px;
+
+  border-bottom: 1px solid #f2f4f7;
+}
+
+
+.dashboard-top-client:last-child {
+  border-bottom: 0;
+}
+
+
+.dashboard-top-client-rank {
+  display: grid;
+
+  width: 26px;
+  height: 26px;
+
+  place-items: center;
+
+  border: 1px solid #b2ccff;
+  border-radius: 8px;
+
+  background: #eff4ff;
+  color: #3538cd;
+
+  font-size: 11px;
+  font-weight: 750;
+}
+
+
+.dashboard-top-client-main {
+  min-width: 0;
+}
+
+
+.dashboard-top-client-main strong {
+  display: block;
+
+  overflow: hidden;
+
+  color: #101828;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+.dashboard-top-client-main span {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #98a2b3;
+
+  font-size: 10px;
+}
+
+
+.dashboard-top-client-amount {
+  color: #344054;
+
+  font-size: 12px;
+  font-weight: 750;
+
+  white-space: nowrap;
+}
+
+
+/* ----------------------------------------------------------
+   Analyse Starter
+   ---------------------------------------------------------- */
+
+.dashboard-starter-analysis {
+  position: relative;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff 50%,
+      rgba(236, 254, 255, 0.56)
+    );
+}
+
+
+.dashboard-analysis-label {
+  color: #0891b2;
+}
+
+
+.dashboard-ai-icon {
+  color: #06b6d4;
+}
+
+
+.dashboard-insight-list {
+  display: flex;
+  flex-direction: column;
+
+  gap: 12px;
+
+  margin-top: 22px;
+}
+
+
+.dashboard-insight-item {
+  display: grid;
+
+  grid-template-columns:
+    22px minmax(0, 1fr);
+
+  gap: 9px;
+
+  align-items: start;
+
+  padding: 10px 11px;
+
+  border: 1px solid #ecfdff;
+  border-radius: 10px;
+
+  background: rgba(
+    255,
+    255,
+    255,
+    0.72
+  );
+}
+
+
+.dashboard-insight-dot {
+  display: grid;
+
+  width: 22px;
+  height: 22px;
+
+  place-items: center;
+
+  border-radius: 7px;
+
+  background: #ecfeff;
+  color: #0891b2;
+
+  font-size: 11px;
+}
+
+
+.dashboard-insight-item p {
+  margin: 1px 0 0;
+
+  color: #344054;
+
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+
+.dashboard-insight-teaser {
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+
+  margin-top: 18px;
+  padding-top: 14px;
+
+  border-top: 1px solid #d5f5fa;
+}
+
+
+.dashboard-insight-teaser span {
+  color: #0891b2;
+
+  font-size: 10px;
+  font-weight: 750;
+
+  text-transform: uppercase;
+  letter-spacing: 0.055em;
+}
+
+
+.dashboard-insight-teaser strong {
+  max-width: 330px;
+
+  color: #475467;
+
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+
+/* ----------------------------------------------------------
+   Responsive
+   ---------------------------------------------------------- */
+
+@media (max-width: 1200px) {
+  .dashboard-business-kpis {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .dashboard-widget-grid-v3 {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-widget-v3 {
+    min-height: auto;
+  }
+}
+
+
+@media (max-width: 640px) {
+  .dashboard-business-kpis {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ==========================================================
+   DASHBOARD V3 — TOP CLIENTS VISUAL BARS
+   ========================================================== */
+
+.dashboard-top-client {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  padding: 10px 6px 12px;
+
+  border-bottom: 1px solid #f2f4f7;
+}
+
+.dashboard-top-client:last-child {
+  border-bottom: 0;
+}
+
+.dashboard-top-client-head {
+  display: grid;
+
+  grid-template-columns:
+    28px minmax(0, 1fr) auto;
+
+  gap: 10px;
+
+  align-items: center;
+}
+
+.dashboard-top-client-track {
+  width: calc(100% - 38px);
+
+  height: 6px;
+
+  margin-left: 38px;
+
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  background: #f2f4f7;
+}
+
+.dashboard-top-client-fill {
+  height: 100%;
+
+  border-radius: inherit;
+
+  background:
+    linear-gradient(
+      90deg,
+      #155eef,
+      #06b6d4
+    );
+
+  transition: width 0.3s ease;
+}
+
+.dashboard-top-client:hover
+  .dashboard-top-client-fill {
+  filter: brightness(1.04);
+}
+
+
+/* ==========================================================
+   DASHBOARD V3 — TOP CLIENTS ALIGNMENT POLISH
+   ========================================================== */
+
+.dashboard-top-client-head {
+  display: grid;
+
+  grid-template-columns:
+    30px minmax(0, 1fr) auto;
+
+  column-gap: 12px;
+
+  align-items: start;
+}
+
+
+.dashboard-top-client-rank {
+  margin-top: 1px;
+}
+
+
+.dashboard-top-client-main {
+  min-width: 0;
+
+  text-align: left;
+}
+
+
+.dashboard-top-client-main strong {
+  display: block;
+
+  margin: 0;
+
+  color: #101828;
+
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.35;
+
+  text-align: left;
+}
+
+
+.dashboard-top-client-main span {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #98a2b3;
+
+  font-size: 10px;
+  line-height: 1.3;
+
+  text-align: left;
+}
+
+
+.dashboard-top-client-amount {
+  align-self: center;
+
+  min-width: 88px;
+
+  color: #344054;
+
+  font-size: 12px;
+  font-weight: 750;
+
+  text-align: right;
+
+  white-space: nowrap;
+}
+
+
+.dashboard-top-client-track {
+  width: calc(100% - 42px);
+
+  margin-left: 42px;
+}
+
+
+/* ==========================================================
+   DASHBOARD V3 — TOP CLIENTS FINAL NAME ALIGNMENT
+   ========================================================== */
+
+.dashboard-top-client-head {
+  display: grid;
+
+  grid-template-columns:
+    30px minmax(0, 1fr) 92px;
+
+  column-gap: 12px;
+
+  align-items: start;
+
+  width: 100%;
+}
+
+
+/* Rang */
+
+.dashboard-top-client-rank {
+  margin-top: 1px;
+}
+
+
+/* Zone nom + part du CA */
+
+.dashboard-top-client-main {
+  min-width: 0;
+
+  text-align: left;
+}
+
+
+/* Le nom peut maintenant respirer sur 2 lignes */
+
+.dashboard-top-client-main strong {
+  display: -webkit-box;
+
+  margin: 0;
+
+  overflow: hidden;
+
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+
+  white-space: normal;
+
+  text-overflow: clip;
+
+  color: #101828;
+
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.35;
+
+  text-align: left;
+}
+
+
+/* % sous le nom */
+
+.dashboard-top-client-main span {
+  display: block;
+
+  margin-top: 4px;
+
+  color: #98a2b3;
+
+  font-size: 10px;
+  line-height: 1.3;
+
+  text-align: left;
+}
+
+
+/* Montants tous alignés à droite */
+
+.dashboard-top-client-amount {
+  width: 92px;
+
+  align-self: start;
+
+  padding-top: 1px;
+
+  color: #344054;
+
+  font-size: 12px;
+  font-weight: 750;
+
+  line-height: 1.35;
+
+  text-align: right;
+
+  white-space: nowrap;
+}
+
+
+/* Barre alignée avec le début du nom client */
+
+.dashboard-top-client-track {
+  width: calc(100% - 42px);
+
+  margin-left: 42px;
+}
+
+
+/* ==========================================================
+   POLISH FINAL — LISTS / HEADERS / BADGES / EMPTY STATES
+   ========================================================== */
+
+
+/* ----------------------------------------------------------
+   1. En-têtes de listes
+   ---------------------------------------------------------- */
+
+.client-list-header,
+.business-list-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 24px;
+
+  margin-bottom: 18px;
+}
+
+.client-list-header > div,
+.business-list-header > div {
+  min-width: 0;
+}
+
+.client-list-header h2,
+.business-list-header h2 {
+  margin: 0;
+
+  color: #101828;
+
+  font-size: var(--ui-section-title);
+  font-weight: 700;
+  line-height: 1.25;
+
+  letter-spacing: -0.02em;
+}
+
+.client-list-header p,
+.business-list-header p {
+  margin: 6px 0 0;
+
+  max-width: 640px;
+
+  color: #667085;
+
+  font-size: var(--ui-body);
+  line-height: 1.5;
+}
+
+
+/* ----------------------------------------------------------
+   2. Status badges
+   ---------------------------------------------------------- */
+
+.status-badge {
+  display: inline-flex;
+
+  min-height: 26px;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 4px 9px;
+
+  border-radius: 8px;
+
+  font-size: var(--ui-caption);
+  font-weight: 700;
+  line-height: 1;
+
+  white-space: nowrap;
+}
+
+
+/* ----------------------------------------------------------
+   3. Empty states
+   ---------------------------------------------------------- */
+
+.smart-empty-state,
+.table-smart-empty {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  min-height: 118px;
+
+  padding: 26px 18px;
+
+  color: #667085;
+
+  text-align: center;
+}
+
+.smart-empty-state strong,
+.table-smart-empty strong {
+  color: #344054;
+
+  font-size: var(--ui-body);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.smart-empty-state span,
+.table-smart-empty span {
+  max-width: 520px;
+
+  color: #98a2b3;
+
+  font-size: var(--ui-caption);
+  line-height: 1.5;
+}
+
+
+/* ----------------------------------------------------------
+   4. Tables — finition visuelle commune
+   ---------------------------------------------------------- */
+
+.data-table th,
+.business-table th {
+  color: #667085;
+
+  font-size: var(--ui-table-header);
+  font-weight: 600;
+
+  letter-spacing: 0.02em;
+
+  text-transform: uppercase;
+}
+
+.data-table td,
+.business-table td {
+  font-size: var(--ui-table);
+
+  vertical-align: middle;
+}
+
+
+/* ----------------------------------------------------------
+   5. Actions secondaires
+   ---------------------------------------------------------- */
+
+.business-button-secondary {
+  border-color: #d0d5dd;
+
+  background: #ffffff;
+  color: #344054;
+}
+
+.business-button-secondary:hover:not(:disabled) {
+  border-color: #b2ccff;
+
+  background: #f5f8ff;
+  color: #155eef;
+}
+
+
+/* ----------------------------------------------------------
+   6. Danger — cohérence globale
+   ---------------------------------------------------------- */
+
+.business-button-danger {
+  border-color: #fecdca;
+
+  background: #ffffff;
+  color: #b42318;
+}
+
+.business-button-danger:hover:not(:disabled) {
+  border-color: #fda29b;
+
+  background: #fef3f2;
+  color: #b42318;
+}
+
+
+/* ----------------------------------------------------------
+   Responsive
+   ---------------------------------------------------------- */
+
+@media (max-width: 760px) {
+  .client-list-header,
+  .business-list-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
+
+
+/* ==========================================================
+   DEVISFLOW — SIGNATURE UI V1
+   AD Consulting IA / Navy + Cyan
+   ========================================================== */
+
+:root {
+  --df-signature-cyan: #06b6d4;
+  --df-signature-cyan-dark: #0891b2;
+  --df-signature-navy: #0b2239;
+}
+
+
+/* ==========================================================
+   1. BUSINESS CARDS — SIGNATURE CORNER
+   ========================================================== */
+
+.business-card {
+  position: relative;
+
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    border-color 0.18s ease;
+}
+
+
+/*
+ * Petit angle cyan en haut à droite.
+ * Signature visuelle discrète plutôt qu'un décor massif.
+ */
+
+.business-card::after {
+  content: "";
+
+  position: absolute;
+
+  z-index: 3;
+
+  top: 11px;
+  right: 11px;
+
+  width: 22px;
+  height: 22px;
+
+  border-top: 2px solid rgba(6, 182, 212, 0.58);
+  border-right: 2px solid rgba(6, 182, 212, 0.58);
+  border-radius: 0 7px 0 0;
+
+  opacity: 0.58;
+
+  pointer-events: none;
+
+  transition:
+    width 0.2s ease,
+    height 0.2s ease,
+    opacity 0.2s ease,
+    border-color 0.2s ease;
+}
+
+
+.business-card:hover::after {
+  width: 29px;
+  height: 29px;
+
+  opacity: 1;
+
+  border-color: var(--df-signature-cyan);
+}
+
+
+.business-card:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 14px 34px rgba(16, 24, 40, 0.075),
+    0 0 0 1px rgba(6, 182, 212, 0.035);
+}
+
+
+/* ==========================================================
+   2. KPI VALUES — MICRO EMPHASIS
+   ========================================================== */
+
+.dashboard-business-kpi > strong,
+.stat-card > strong,
+.quote-kpi-card > strong,
+.invoice-kpi-card > strong,
+.purchase-order-kpi-card > strong {
+  transition:
+    transform 0.18s ease,
+    color 0.18s ease;
+}
+
+
+.business-card:hover
+  > strong {
+  transform: translateX(2px);
+}
+
+
+/* ==========================================================
+   3. BUSINESS ROWS — LIVE INTERACTION
+   ========================================================== */
+
+.business-row {
+  position: relative;
+
+  transition:
+    background 0.16s ease,
+    box-shadow 0.16s ease,
+    transform 0.16s ease;
+}
+
+
+/*
+ * Le fond métier reste prioritaire.
+ * On ajoute seulement une lumière froide au survol.
+ */
+
+.business-row:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(6, 182, 212, 0.055),
+    inset 0 -1px 0 rgba(6, 182, 212, 0.055);
+
+  transform: translateX(1px);
+}
+
+
+/* La signature cyan existante devient plus vive */
+
+.business-row > td:first-child {
+  transition:
+    box-shadow 0.16s ease,
+    padding-left 0.16s ease;
+}
+
+
+.business-row:hover > td:first-child,
+.business-row:focus-within > td:first-child {
+  padding-left: 18px;
+
+  box-shadow:
+    inset 5px 0 0 var(--df-signature-cyan-dark);
+}
+
+
+/* ==========================================================
+   4. ACTIONS — MICRO REVEAL
+   ========================================================== */
+
+/*
+ * Seulement sur machines avec véritable hover.
+ * Mobile/tactile conserve toujours toutes les actions visibles.
+ */
+
+@media (hover: hover) and (pointer: fine) {
+
+  .business-row-actions {
+    transition:
+      opacity 0.16s ease,
+      transform 0.16s ease;
+  }
+
+  .business-row:not(:hover):not(:focus-within)
+    .business-row-actions {
+    opacity: 0.78;
+
+    transform: translateX(3px);
+  }
+
+  .business-row:hover
+    .business-row-actions,
+  .business-row:focus-within
+    .business-row-actions {
+    opacity: 1;
+
+    transform: translateX(0);
+  }
+}
+
+
+/* ==========================================================
+   5. PRIMARY BUTTONS — AD CONSULTING DEPTH
+   ========================================================== */
+
+.business-button-primary,
+.primary-button {
+  position: relative;
+
+  overflow: hidden;
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+
+/*
+ * Trait cyan ultra discret sous l'action principale.
+ */
+
+.business-button-primary::after,
+.primary-button::after {
+  content: "";
+
+  position: absolute;
+
+  right: 14%;
+  bottom: 0;
+  left: 14%;
+
+  height: 2px;
+
+  border-radius: 999px 999px 0 0;
+
+  background: rgba(103, 232, 249, 0.88);
+
+  transform: scaleX(0.35);
+
+  opacity: 0.55;
+
+  pointer-events: none;
+
+  transition:
+    transform 0.16s ease,
+    opacity 0.16s ease;
+}
+
+
+.business-button-primary:hover:not(:disabled),
+.primary-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 7px 16px rgba(21, 94, 239, 0.18);
+}
+
+
+.business-button-primary:hover::after,
+.primary-button:hover::after {
+  transform: scaleX(1);
+
+  opacity: 1;
+}
+
+
+/* ==========================================================
+   6. CYAN ACTIONS — PRODUCT IDENTITY
+   ========================================================== */
+
+.business-button-cyan {
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    filter 0.15s ease;
+}
+
+
+.business-button-cyan:hover:not(:disabled) {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 7px 16px rgba(6, 182, 212, 0.17);
+
+  filter: saturate(1.05);
+}
+
+
+/* ==========================================================
+   7. FILTER CHIPS — MICRO MOTION
+   ========================================================== */
+
+.list-filter-chip {
+  transition:
+    transform 0.14s ease,
+    border-color 0.14s ease,
+    background 0.14s ease,
+    color 0.14s ease,
+    box-shadow 0.14s ease;
+}
+
+
+.list-filter-chip:hover {
+  transform: translateY(-1px);
+}
+
+
+.list-filter-chip-active {
+  box-shadow:
+    0 4px 10px rgba(21, 94, 239, 0.13);
+}
+
+
+/* ==========================================================
+   8. TOP CLIENTS — LIVE BARS
+   ========================================================== */
+
+.dashboard-top-client {
+  transition:
+    background 0.16s ease,
+    transform 0.16s ease;
+}
+
+
+.dashboard-top-client:hover {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(6, 182, 212, 0.035),
+      transparent 72%
+    );
+
+  transform: translateX(2px);
+}
+
+
+.dashboard-top-client-fill {
+  position: relative;
+
+  overflow: hidden;
+}
+
+
+.dashboard-top-client-fill::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.45),
+      transparent
+    );
+
+  transform: translateX(-120%);
+
+  transition:
+    transform 0.5s ease;
+}
+
+
+.dashboard-top-client:hover
+  .dashboard-top-client-fill::after {
+  transform: translateX(120%);
+}
+
+
+/* ==========================================================
+   9. ANALYSE STARTER — IA SIGNAL
+   ========================================================== */
+
+.dashboard-ai-icon,
+.dashboard-insight-dot {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.dashboard-starter-analysis:hover
+  .dashboard-ai-icon {
+  transform:
+    translateY(-1px)
+    rotate(8deg);
+}
+
+
+.dashboard-insight-item {
+  transition:
+    transform 0.16s ease,
+    border-color 0.16s ease,
+    background 0.16s ease;
+}
+
+
+.dashboard-insight-item:hover {
+  transform: translateX(2px);
+
+  border-color: #cffafe;
+
+  background: rgba(
+    236,
+    254,
+    255,
+    0.45
+  );
+}
+
+
+/* ==========================================================
+   10. REDUCED MOTION — ACCESSIBILITY
+   ========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .business-card,
+  .business-card::after,
+  .business-row,
+  .business-row-actions,
+  .business-button,
+  .list-filter-chip,
+  .dashboard-top-client,
+  .dashboard-top-client-fill::after,
+  .dashboard-insight-item,
+  .dashboard-ai-icon {
+    transition: none !important;
+
+    transform: none !important;
+  }
+}
+
+
+/* ==========================================================
+   POLISH FINAL — DOCUMENT REFERENCES ONE LINE
+   ========================================================== */
+
+/*
+ * Références documentaires compactes et toujours sur une ligne.
+ * On conserve l'année pour la traçabilité.
+ */
+
+.data-table td:first-child strong,
+.business-table td:first-child strong,
+.table-reference {
+  display: inline-block;
+
+  white-space: nowrap;
+
+  font-size: 12px;
+  line-height: 1.2;
+
+  letter-spacing: -0.01em;
+}
+
+
+/* Colonne référence : largeur minimale stable */
+
+.data-table th:first-child,
+.data-table td:first-child,
+.business-table th:first-child,
+.business-table td:first-child {
+  min-width: 118px;
+}
+
+
+/* BC un peu plus compact si nécessaire */
+
+.purchase-orders-table th:first-child,
+.purchase-orders-table td:first-child {
+  min-width: 120px;
+}
+
+
+/* Mobile / largeur réduite :
+   on garde la référence intacte, le tableau scroll si besoin */
+
+@media (max-width: 900px) {
+  .data-table td:first-child strong,
+  .business-table td:first-child strong,
+  .table-reference {
+    white-space: nowrap;
+  }
+}
+
+
+/* ==========================================================
+   BC — ALIGNEMENT TYPOGRAPHIQUE DES REFERENCES
+   ========================================================== */
+
+.purchase-orders-table td:first-child strong,
+.purchase-orders-table .table-reference {
+  font-weight: 600;
+}
+
+
+/* ==========================================================
+   FACTURES — TABLE COMPACTE ALIGNÉE SUR BC
+   ========================================================== */
+
+/* Références facture + devis toujours sur une ligne */
+.invoices-table td:first-child strong,
+.invoices-table td:nth-child(3),
+.invoices-table td:nth-child(3) strong {
+  white-space: nowrap;
+}
+
+/* Référence facture */
+.invoices-table td:first-child strong {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* Colonne client compacte */
+.invoices-table th:nth-child(2),
+.invoices-table td:nth-child(2) {
+  width: 155px;
+  max-width: 155px;
+}
+
+/* Nom client : une ligne avec ellipsis */
+.invoices-table td:nth-child(2) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Colonne devis compacte et stable */
+.invoices-table th:nth-child(3),
+.invoices-table td:nth-child(3) {
+  width: 120px;
+  min-width: 120px;
+  max-width: 120px;
+}
+
+/* Hauteur des lignes plus proche des BC */
+.invoices-table td {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  vertical-align: middle;
+}
+
+
+/* ==========================================================
+   DEVISFLOW — HORIZONTAL SHELL V1
+   EXPERIMENTAL / REVERSIBLE
+   ========================================================== */
+
+.df-app-shell {
+  min-height: 100vh;
+
+  background:
+    linear-gradient(
+      180deg,
+      #f8fafc 0,
+      #ffffff 230px
+    );
+}
+
+
+/* ==========================================================
+   1. PRODUCT TOPBAR
+   ========================================================== */
+
+.df-topbar {
+  position: relative;
+  z-index: 30;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  min-height: 72px;
+
+  padding: 0 32px;
+
+  background:
+    linear-gradient(
+      105deg,
+      #081a2b 0%,
+      #0b2239 52%,
+      #0d2b46 100%
+    );
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.06);
+
+  box-shadow:
+    0 4px 18px rgba(8, 26, 43, 0.12);
+}
+
+
+/*
+ * Petite ligne de lumière AD Consulting
+ */
+
+.df-topbar::after {
+  content: "";
+
+  position: absolute;
+
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(6, 182, 212, 0.25) 20%,
+      rgba(6, 182, 212, 0.9) 50%,
+      rgba(21, 94, 239, 0.3) 80%,
+      transparent 100%
+    );
+}
+
+
+.df-topbar-brand {
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+}
+
+
+.df-topbar-mark {
+  position: relative;
+
+  display: grid;
+  place-items: center;
+
+  width: 42px;
+  height: 42px;
+
+  border:
+    1px solid rgba(103, 232, 249, 0.28);
+
+  border-radius: 11px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(6, 182, 212, 0.17),
+      rgba(21, 94, 239, 0.12)
+    );
+
+  box-shadow:
+    inset 0 0 18px rgba(6, 182, 212, 0.06),
+    0 7px 20px rgba(0, 0, 0, 0.12);
+
+  color: #ffffff;
+
+  font-size: 15px;
+  font-weight: 800;
+
+  letter-spacing: -0.02em;
+}
+
+
+/* Mini signature lumineuse */
+
+.df-topbar-mark::after {
+  content: "";
+
+  position: absolute;
+
+  right: 5px;
+  bottom: 5px;
+
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: #22d3ee;
+
+  box-shadow:
+    0 0 8px rgba(34, 211, 238, 0.75);
+}
+
+
+.df-topbar-product {
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+
+.df-topbar-product strong {
+  color: #ffffff;
+
+  font-size: 16px;
+  font-weight: 750;
+
+  line-height: 1.2;
+}
+
+
+.df-topbar-product span {
+  color: #8ccfe3;
+
+  font-size: 10px;
+  font-weight: 500;
+
+  letter-spacing: 0.045em;
+}
+
+
+.df-topbar-organization {
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-end;
+
+  gap: 2px;
+}
+
+
+.df-topbar-organization span {
+  color: #7897aa;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+}
+
+
+.df-topbar-organization strong {
+  color: #d9edf5;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+
+/* ==========================================================
+   2. BUSINESS NAVIGATION
+   ========================================================== */
+
+.df-business-nav {
+  position: sticky;
+  z-index: 20;
+
+  top: 0;
+
+  width: 100%;
+
+  background:
+    rgba(255, 255, 255, 0.96);
+
+  border-bottom:
+    1px solid #e4e7ec;
+
+  box-shadow:
+    0 5px 18px rgba(16, 24, 40, 0.035);
+
+  backdrop-filter: blur(12px);
+}
+
+
+.df-business-nav-inner {
+  display: flex;
+  align-items: stretch;
+
+  width: 100%;
+
+  padding: 0 24px;
+
+  overflow-x: auto;
+
+  scrollbar-width: none;
+}
+
+
+.df-business-nav-inner::-webkit-scrollbar {
+  display: none;
+}
+
+
+.df-nav-link {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 48px;
+
+  padding: 0 13px;
+
+  flex: 0 0 auto;
+
+  border-radius: 0;
+
+  color: #667085;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  white-space: nowrap;
+
+  transition:
+    color 0.16s ease,
+    background 0.16s ease,
+    transform 0.16s ease;
+}
+
+
+.df-nav-link:hover {
+  background:
+    linear-gradient(
+      180deg,
+      transparent,
+      rgba(6, 182, 212, 0.045)
+    );
+
+  color: #155eef;
+}
+
+
+/*
+ * Petit rail horizontal actif
+ */
+
+.df-nav-link::after {
+  content: "";
+
+  position: absolute;
+
+  right: 13px;
+  bottom: -1px;
+  left: 13px;
+
+  height: 3px;
+
+  border-radius: 4px 4px 0 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      #155eef,
+      #06b6d4
+    );
+
+  opacity: 0;
+
+  transform: scaleX(0.35);
+
+  transform-origin: center;
+
+  transition:
+    transform 0.18s ease,
+    opacity 0.18s ease;
+}
+
+
+.df-nav-link-active {
+  color: #0b2239;
+
+  font-weight: 750;
+
+  background:
+    linear-gradient(
+      180deg,
+      transparent 35%,
+      rgba(6, 182, 212, 0.055)
+    );
+}
+
+
+.df-nav-link-active::after {
+  opacity: 1;
+
+  transform: scaleX(1);
+}
+
+
+/* ==========================================================
+   3. FULL WIDTH BUSINESS WORKSPACE
+   ========================================================== */
+
+.df-main-content {
+  width: 100%;
+
+  margin: 0;
+
+  padding: 28px 30px 48px;
+
+  box-sizing: border-box;
+}
+
+
+/*
+ * On exploite beaucoup plus la largeur écran,
+ * sans coller les tableaux aux bords.
+ */
+
+.df-main-content > * {
+  width: 100%;
+
+  max-width: 1680px;
+
+  margin-right: auto;
+  margin-left: auto;
+}
+
+
+/* ==========================================================
+   4. LARGE DESKTOP
+   ========================================================== */
+
+@media (min-width: 1500px) {
+
+  .df-topbar {
+    padding-right: 42px;
+    padding-left: 42px;
+  }
+
+  .df-business-nav-inner {
+    padding-right: 34px;
+    padding-left: 34px;
+  }
+
+  .df-main-content {
+    padding-right: 38px;
+    padding-left: 38px;
+  }
+
+}
+
+
+/* ==========================================================
+   5. TABLET
+   ========================================================== */
+
+@media (max-width: 900px) {
+
+  .df-topbar {
+    min-height: 64px;
+
+    padding:
+      0 18px;
+  }
+
+  .df-topbar-mark {
+    width: 38px;
+    height: 38px;
+  }
+
+  .df-business-nav-inner {
+    padding:
+      0 10px;
+  }
+
+  .df-nav-link {
+    min-height: 46px;
+
+    padding:
+      0 11px;
+  }
+
+  .df-main-content {
+    padding:
+      22px 18px 40px;
+  }
+
+}
+
+
+/* ==========================================================
+   6. MOBILE
+   ========================================================== */
+
+@media (max-width: 620px) {
+
+  .df-topbar-organization span {
+    display: none;
+  }
+
+  .df-topbar-organization strong {
+    max-width: 145px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .df-topbar-product span {
+    display: none;
+  }
+
+  .df-main-content {
+    padding:
+      18px 12px 34px;
+  }
+
+}
+
+
+/* ==========================================================
+   7. ACCESSIBILITY
+   ========================================================== */
+
+.df-nav-link:focus-visible {
+  outline:
+    2px solid rgba(6, 182, 212, 0.72);
+
+  outline-offset: -3px;
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+
+  .df-nav-link,
+  .df-nav-link::after {
+    transition: none;
+  }
+
+}
+
+
+/* ==========================================================
+   DEVISFLOW — DASHBOARD COCKPIT V1
+   ========================================================== */
+
+.dashboard-clickable-card,
+.dashboard-navigation-item {
+  appearance: none;
+  font: inherit;
+  text-align: inherit;
+  cursor: pointer;
+}
+
+
+/* KPI ====================================================== */
+
+.dashboard-clickable-card {
+  width: 100%;
+}
+
+.dashboard-clickable-card::before {
+  content: "↗";
+
+  position: absolute;
+
+  top: 14px;
+  right: 16px;
+
+  color: #06b6d4;
+
+  font-size: 13px;
+  font-weight: 800;
+
+  opacity: 0;
+
+  transform:
+    translate(-3px, 3px);
+
+  transition:
+    opacity .16s ease,
+    transform .16s ease;
+}
+
+.dashboard-clickable-card:hover::before,
+.dashboard-clickable-card:focus-visible::before {
+  opacity: .9;
+
+  transform:
+    translate(0, 0);
+}
+
+
+/* PIPELINE ================================================= */
+
+.pipeline-item.dashboard-navigation-item {
+  width: 100%;
+
+  padding: 5px 6px;
+
+  border: 0;
+  border-radius: 8px;
+
+  background: transparent;
+
+  color: inherit;
+
+  transition:
+    background .16s ease,
+    transform .16s ease;
+}
+
+.pipeline-item.dashboard-navigation-item:hover {
+  background:
+    rgba(6, 182, 212, .045);
+
+  transform:
+    translateX(2px);
+}
+
+
+/* TOP CLIENTS ============================================= */
+
+button.dashboard-top-client {
+  width: 100%;
+
+  padding:
+    7px 6px;
+
+  border: 0;
+  border-radius: 9px;
+
+  background: transparent;
+
+  color: inherit;
+}
+
+
+/* CONTEXT FILTER ========================================== */
+
+.business-context-filter {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 18px;
+
+  margin:
+    -6px 0
+    22px;
+
+  padding:
+    11px 14px;
+
+  border:
+    1px solid #cffafe;
+
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #ecfeff,
+      #f8fafc
+    );
+
+  box-shadow:
+    0 4px 14px
+    rgba(6, 182, 212, .045);
+}
+
+.business-context-filter > div {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+.business-context-filter span {
+  color: #0891b2;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  letter-spacing: .06em;
+
+  text-transform: uppercase;
+}
+
+.business-context-filter strong {
+  color: #164e63;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.business-context-filter-clear {
+  min-height: 30px;
+
+  padding:
+    0 9px;
+
+  border:
+    1px solid #a5f3fc;
+
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: #0e7490;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    border-color .15s ease,
+    background .15s ease,
+    transform .15s ease;
+}
+
+.business-context-filter-clear:hover {
+  border-color: #22d3ee;
+
+  background: #ecfeff;
+
+  transform:
+    translateY(-1px);
+}
+
+
+/* ACCESSIBILITY =========================================== */
+
+.dashboard-clickable-card:focus-visible,
+.dashboard-navigation-item:focus-visible {
+  outline:
+    2px solid rgba(
+      6,
+      182,
+      212,
+      .72
+    );
+
+  outline-offset: 2px;
+}
+
+
+/* ==========================================================
+   DEVISFLOW — TOPBAR V2
+   CoreFlow-ready transverse controls
+   ========================================================== */
+
+.df-topbar-controls {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  gap: 6px;
+}
+
+
+.df-topbar-control-wrapper {
+  position: relative;
+}
+
+
+/* ----------------------------------------------------------
+   COMMON CONTROLS
+   ---------------------------------------------------------- */
+
+.df-topbar-control,
+.df-topbar-plan,
+.df-topbar-icon-button,
+.df-topbar-profile {
+  border: 0;
+
+  font: inherit;
+
+  cursor: pointer;
+
+  transition:
+    background .16s ease,
+    border-color .16s ease,
+    transform .16s ease;
+}
+
+
+.df-topbar-control,
+.df-topbar-plan {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 7px;
+
+  min-height: 36px;
+
+  padding: 0 10px;
+
+  border:
+    1px solid rgba(255,255,255,.08);
+
+  border-radius: 9px;
+
+  background:
+    rgba(255,255,255,.035);
+
+  color: #c9dbe5;
+
+  font-size: 11px;
+  font-weight: 650;
+}
+
+
+.df-topbar-control:hover,
+.df-topbar-plan:hover {
+  border-color:
+    rgba(34,211,238,.26);
+
+  background:
+    rgba(6,182,212,.08);
+
+  transform:
+    translateY(-1px);
+}
+
+
+.df-control-icon {
+  color: #67e8f9;
+
+  font-size: 13px;
+}
+
+
+.df-control-chevron {
+  color: #7897aa;
+
+  font-size: 9px;
+}
+
+
+/* ----------------------------------------------------------
+   PLAN
+   ---------------------------------------------------------- */
+
+.df-topbar-plan {
+  color: #dff9ff;
+}
+
+
+.df-plan-dot {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: #22d3ee;
+
+  box-shadow:
+    0 0 8px
+    rgba(34,211,238,.6);
+}
+
+
+/* ----------------------------------------------------------
+   ICON BUTTONS
+   ---------------------------------------------------------- */
+
+.df-topbar-icon-button {
+  position: relative;
+
+  display: grid;
+  place-items: center;
+
+  width: 36px;
+  height: 36px;
+
+  border:
+    1px solid rgba(255,255,255,.08);
+
+  border-radius: 9px;
+
+  background:
+    rgba(255,255,255,.035);
+
+  color: #d4e5ed;
+
+  font-size: 14px;
+}
+
+
+.df-topbar-icon-button:hover {
+  border-color:
+    rgba(34,211,238,.26);
+
+  background:
+    rgba(6,182,212,.08);
+
+  transform:
+    translateY(-1px);
+}
+
+
+.df-notification-indicator {
+  position: absolute;
+
+  top: 7px;
+  right: 7px;
+
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: #22d3ee;
+
+  box-shadow:
+    0 0 6px
+    rgba(34,211,238,.6);
+}
+
+
+/* ----------------------------------------------------------
+   PROFILE
+   ---------------------------------------------------------- */
+
+.df-topbar-separator {
+  width: 1px;
+  height: 28px;
+
+  margin: 0 4px;
+
+  background:
+    rgba(255,255,255,.08);
+}
+
+
+.df-topbar-profile {
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  min-height: 40px;
+
+  padding:
+    4px 8px
+    4px 5px;
+
+  border-radius: 10px;
+
+  background: transparent;
+
+  color: #ffffff;
+}
+
+
+.df-topbar-profile:hover {
+  background:
+    rgba(255,255,255,.05);
+}
+
+
+.df-profile-avatar {
+  display: grid;
+  place-items: center;
+
+  width: 30px;
+  height: 30px;
+
+  flex: 0 0 auto;
+
+  border:
+    1px solid
+    rgba(103,232,249,.25);
+
+  border-radius: 9px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(6,182,212,.18),
+      rgba(21,94,239,.12)
+    );
+
+  color: #e6fbff;
+
+  font-size: 10px;
+  font-weight: 800;
+}
+
+
+.df-profile-copy {
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  gap: 1px;
+}
+
+
+.df-profile-copy small {
+  color: #7897aa;
+
+  font-size: 8px;
+  font-weight: 700;
+
+  letter-spacing: .06em;
+
+  text-transform: uppercase;
+}
+
+
+.df-profile-copy strong {
+  max-width: 150px;
+
+  overflow: hidden;
+
+  color: #dceef5;
+
+  font-size: 11px;
+  font-weight: 650;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* ==========================================================
+   POPOVERS
+   ========================================================== */
+
+.df-topbar-popover {
+  position: absolute;
+
+  z-index: 100;
+
+  top:
+    calc(100% + 12px);
+
+  right: 0;
+
+  width: 300px;
+
+  padding: 14px;
+
+  border:
+    1px solid #e4e7ec;
+
+  border-radius: 13px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 22px 55px
+    rgba(16,24,40,.16);
+
+  color: #344054;
+}
+
+
+.df-topbar-popover::before {
+  content: "";
+
+  position: absolute;
+
+  top: -5px;
+  right: 16px;
+
+  width: 9px;
+  height: 9px;
+
+  border-top:
+    1px solid #e4e7ec;
+
+  border-left:
+    1px solid #e4e7ec;
+
+  background: #ffffff;
+
+  transform:
+    rotate(45deg);
+}
+
+
+.df-popover-heading {
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+
+  padding:
+    2px 2px
+    11px;
+
+  border-bottom:
+    1px solid #f0f2f5;
+}
+
+
+.df-popover-heading span {
+  color: #06a6c4;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  letter-spacing: .08em;
+
+  text-transform: uppercase;
+}
+
+
+.df-popover-heading strong {
+  color: #101828;
+
+  font-size: 14px;
+  font-weight: 750;
+}
+
+
+/* ----------------------------------------------------------
+   PRODUCT SWITCHER
+   ---------------------------------------------------------- */
+
+.df-products-popover {
+  width: 335px;
+}
+
+
+.df-product-switcher-list {
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+
+  padding-top: 10px;
+}
+
+
+.df-product-switcher-item {
+  display: grid;
+
+  grid-template-columns:
+    34px minmax(0,1fr) auto;
+
+  align-items: center;
+
+  gap: 10px;
+
+  width: 100%;
+
+  padding: 8px;
+
+  border: 0;
+  border-radius: 9px;
+
+  background: transparent;
+
+  color: #344054;
+
+  text-align: left;
+
+  cursor: pointer;
+}
+
+
+.df-product-switcher-item:hover:not(:disabled) {
+  background: #f5fbfd;
+}
+
+
+.df-product-switcher-item:disabled {
+  cursor: default;
+
+  opacity: .68;
+}
+
+
+.df-product-switcher-active {
+  background:
+    linear-gradient(
+      90deg,
+      #ecfeff,
+      #f8fafc
+    );
+}
+
+
+.df-product-mini-mark {
+  display: grid;
+  place-items: center;
+
+  width: 32px;
+  height: 32px;
+
+  border:
+    1px solid #bae6fd;
+
+  border-radius: 8px;
+
+  background: #f0fdff;
+
+  color: #075985;
+
+  font-size: 9px;
+  font-weight: 800;
+}
+
+
+.df-product-switcher-item > span:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+
+.df-product-switcher-item strong {
+  color: #101828;
+
+  font-size: 11px;
+}
+
+
+.df-product-switcher-item small {
+  color: #98a2b3;
+
+  font-size: 9px;
+}
+
+
+.df-product-state {
+  color: #0891b2;
+
+  font-size: 9px;
+  font-weight: 750;
+}
+
+
+.df-product-state-muted {
+  color: #98a2b3;
+}
+
+
+/* ----------------------------------------------------------
+   PLAN
+   ---------------------------------------------------------- */
+
+.df-plan-summary {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0,1fr));
+
+  gap: 8px;
+
+  padding:
+    12px 0;
+}
+
+
+.df-plan-summary > div {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+
+  padding: 9px;
+
+  border:
+    1px solid #eaecf0;
+
+  border-radius: 9px;
+
+  background: #f9fafb;
+}
+
+
+.df-plan-summary span {
+  color: #98a2b3;
+
+  font-size: 8px;
+
+  text-transform: uppercase;
+}
+
+
+.df-plan-summary strong {
+  color: #101828;
+
+  font-size: 11px;
+}
+
+
+.df-plan-features {
+  padding:
+    2px 2px
+    8px;
+}
+
+
+.df-plan-features > span {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #667085;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  text-transform: uppercase;
+}
+
+
+.df-plan-features p {
+  margin:
+    5px 0;
+
+  color: #344054;
+
+  font-size: 10px;
+}
+
+
+.df-popover-note {
+  margin-top: 8px;
+
+  padding: 9px;
+
+  border-radius: 8px;
+
+  background: #f0fdff;
+
+  color: #0e7490;
+
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+
+/* ----------------------------------------------------------
+   NOTIFICATIONS
+   ---------------------------------------------------------- */
+
+.df-notifications-popover {
+  width: 285px;
+}
+
+
+.df-notification-empty {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  padding:
+    20px 10px
+    12px;
+
+  text-align: center;
+}
+
+
+.df-notification-empty-icon {
+  display: grid;
+  place-items: center;
+
+  width: 34px;
+  height: 34px;
+
+  margin-bottom: 8px;
+
+  border-radius: 50%;
+
+  background: #ecfdf3;
+
+  color: #039855;
+
+  font-size: 13px;
+  font-weight: 800;
+}
+
+
+.df-notification-empty strong {
+  color: #344054;
+
+  font-size: 11px;
+}
+
+
+.df-notification-empty p {
+  max-width: 220px;
+
+  margin:
+    5px 0 0;
+
+  color: #98a2b3;
+
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+
+/* ----------------------------------------------------------
+   SETTINGS / PROFILE
+   ---------------------------------------------------------- */
+
+.df-settings-list {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+
+  padding-top: 9px;
+}
+
+
+.df-settings-list button {
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  width: 100%;
+
+  gap: 2px;
+
+  padding:
+    8px 9px;
+
+  border: 0;
+  border-radius: 8px;
+
+  background: transparent;
+
+  text-align: left;
+
+  cursor: pointer;
+}
+
+
+.df-settings-list button:hover {
+  background: #f8fafc;
+}
+
+
+.df-settings-list span {
+  color: #344054;
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+
+.df-settings-list small {
+  color: #98a2b3;
+
+  font-size: 8px;
+}
+
+
+.df-profile-popover {
+  width: 290px;
+}
+
+
+.df-profile-popover-head {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding:
+    2px 2px
+    12px;
+
+  border-bottom:
+    1px solid #f0f2f5;
+}
+
+
+.df-profile-avatar-large {
+  width: 38px;
+  height: 38px;
+
+  color: #0e7490;
+}
+
+
+.df-profile-popover-head > div {
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+
+.df-profile-popover-head strong {
+  color: #101828;
+
+  font-size: 12px;
+}
+
+
+.df-profile-popover-head span {
+  color: #98a2b3;
+
+  font-size: 9px;
+}
+
+
+/* ----------------------------------------------------------
+   RESPONSIVE PREVIEW
+   ---------------------------------------------------------- */
+
+@media (max-width: 1120px) {
+
+  .df-topbar-control > span:nth-child(2) {
+    display: none;
+  }
+
+  .df-profile-copy {
+    display: none;
+  }
+
+}
+
+
+@media (max-width: 820px) {
+
+  .df-topbar-controls {
+    gap: 3px;
+  }
+
+  .df-topbar-separator {
+    display: none;
+  }
+
+  .df-topbar-plan {
+    padding:
+      0 8px;
+  }
+
+}
+
+
+/* ==========================================================
+   DEVISFLOW — TOPBAR 3 ZONES V1
+   Produit | Contrôles | Identité
+   ========================================================== */
+
+.df-topbar {
+  display: grid;
+
+  grid-template-columns:
+    minmax(220px, 1fr)
+    minmax(0, 3fr);
+
+  align-items: center;
+
+  column-gap: 24px;
+}
+
+
+/* ----------------------------------------------------------
+   Centre + droite
+   ---------------------------------------------------------- */
+
+.df-topbar-transverse {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(215px, auto);
+
+  align-items: center;
+
+  gap: 22px;
+
+  min-width: 0;
+}
+
+
+/* ----------------------------------------------------------
+   Contrôles réellement centrés
+   ---------------------------------------------------------- */
+
+.df-topbar-center {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  min-width: 0;
+}
+
+
+/* ----------------------------------------------------------
+   Identité à droite
+   ---------------------------------------------------------- */
+
+.df-topbar-identity {
+  display: flex;
+
+  align-items: center;
+  justify-content: flex-end;
+
+  min-width: 0;
+}
+
+
+/* ----------------------------------------------------------
+   Profil V2
+   ---------------------------------------------------------- */
+
+.df-topbar-profile-v2 {
+  min-width: 200px;
+
+  justify-content: flex-start;
+
+  padding:
+    5px 8px;
+}
+
+
+.df-profile-copy-v2 {
+  flex: 1;
+
+  min-width: 0;
+}
+
+
+.df-profile-copy-v2 small {
+  max-width: 150px;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  color: #8ccfe3;
+}
+
+
+.df-profile-copy-v2 strong {
+  color: #ffffff;
+}
+
+
+.df-profile-copy-v2 > span {
+  color: #7897aa;
+
+  font-size: 8px;
+  font-weight: 600;
+}
+
+
+/* ----------------------------------------------------------
+   Organisation dans le popover
+   ---------------------------------------------------------- */
+
+.df-identity-context {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+
+  margin:
+    10px 0 2px;
+
+  padding: 9px;
+
+  border:
+    1px solid #cffafe;
+
+  border-radius: 9px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #ecfeff,
+      #f8fafc
+    );
+}
+
+
+.df-identity-context span {
+  color: #0891b2;
+
+  font-size: 8px;
+  font-weight: 800;
+
+  letter-spacing: .06em;
+
+  text-transform: uppercase;
+}
+
+
+.df-identity-context strong {
+  color: #164e63;
+
+  font-size: 11px;
+}
+
+
+/* ----------------------------------------------------------
+   Déconnexion
+   ---------------------------------------------------------- */
+
+.df-profile-logout {
+  margin-top: 7px;
+
+  padding-top: 7px;
+
+  border-top:
+    1px solid #f0f2f5;
+}
+
+
+.df-profile-logout button {
+  width: 100%;
+
+  padding:
+    8px 9px;
+
+  border: 0;
+  border-radius: 8px;
+
+  background: transparent;
+
+  color: #b42318;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  text-align: left;
+
+  cursor: pointer;
+}
+
+
+.df-profile-logout button:hover {
+  background: #fef3f2;
+}
+
+
+/* ----------------------------------------------------------
+   Desktop intermédiaire
+   ---------------------------------------------------------- */
+
+@media (max-width: 1450px) {
+
+  .df-topbar {
+    grid-template-columns:
+      minmax(190px, .8fr)
+      minmax(0, 3.2fr);
+  }
+
+  .df-topbar-transverse {
+    gap: 14px;
+  }
+
+  .df-topbar-center {
+    gap: 5px;
+  }
+
+  .df-topbar-profile-v2 {
+    min-width: 175px;
+  }
+
+}
+
+
+/* ----------------------------------------------------------
+   Sous 1240px : réduire les textes transverses
+   ---------------------------------------------------------- */
+
+@media (max-width: 1240px) {
+
+  .df-topbar-center
+    .df-topbar-control
+    > span:nth-child(2) {
+    display: none;
+  }
+
+}
+
+
+/* ----------------------------------------------------------
+   Sous 1020px
+   ---------------------------------------------------------- */
+
+@media (max-width: 1020px) {
+
+  .df-topbar {
+    grid-template-columns:
+      auto
+      1fr;
+  }
+
+  .df-topbar-transverse {
+    grid-template-columns:
+      1fr auto;
+  }
+
+  .df-profile-copy-v2 {
+    display: none;
+  }
+
+  .df-topbar-profile-v2 {
+    min-width: auto;
+  }
+
+}
+
+
+/* ==========================================================
+   TOPBAR 3 ZONES — FINAL READABILITY TUNING
+   ========================================================== */
+
+/*
+ * Sur desktop, conserver les libellés structurants :
+ * Produits / Notifications / Paramètres.
+ */
+
+@media (min-width: 1101px) {
+
+  .df-topbar-center
+    .df-topbar-control
+    > span:nth-child(2) {
+    display: inline;
+  }
+
+}
+
+
+/*
+ * Recherche et Aide restent volontairement compactes.
+ */
+
+@media (min-width: 1101px) {
+
+  .df-topbar-center
+    .df-topbar-future-control
+    > span:nth-child(2) {
+    display: none;
+  }
+
+  .df-topbar-future-control {
+    width: 42px;
+
+    justify-content: center;
+
+    padding: 0;
+  }
+
+}
+
+
+/*
+ * Centre légèrement resserré pour préserver
+ * l'équilibre avec l'identité utilisateur.
+ */
+
+.df-topbar-center {
+  gap: 6px;
+}
+
+
+/* ==========================================================
+   COREFLOW BRANDING — PRODUCT + ORGANIZATION
+   ========================================================== */
+
+.df-topbar-product-logo,
+.df-organization-logo {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  display: block;
+}
+
+.df-topbar-mark {
+  overflow: hidden;
+}
+
+.df-profile-avatar {
+  overflow: hidden;
+}
+
+.df-topbar-brand {
+  --df-brand-primary: #0B1F4D;
+  --df-brand-secondary: #155EEF;
+  --df-brand-accent: #06B6D4;
+}
+
+/* ==========================================================
+   BRANDING — LOGO FIT
+   ========================================================== */
+
+.df-organization-logo {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  border-radius: inherit;
+
+  display: block;
+}
+
+.df-topbar-product-logo {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  display: block;
+}
+
+.df-profile-avatar,
+.df-topbar-mark {
+  overflow: hidden;
+}
+
+
+/* ==========================================================
+   COREFLOW AUTH — USER AVATAR
+   ========================================================== */
+
+.df-user-avatar {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  border-radius: inherit;
+
+  display: block;
+}
+
+
+/* ==========================================================
+   DEVISFLOW AUTH — LOGIN V1
+   ========================================================== */
+
+.df-login-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 32px;
+
+  background:
+    radial-gradient(
+      circle at top,
+      rgba(6, 182, 212, .10),
+      transparent 34%
+    ),
+    #f8fafc;
+}
+
+
+.df-login-card {
+  width: min(100%, 430px);
+  padding: 32px;
+
+  border: 1px solid #dbe7ef;
+  border-radius: 18px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 22px 70px
+    rgba(11, 31, 77, .12);
+}
+
+
+.df-login-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-bottom: 34px;
+}
+
+
+.df-login-mark {
+  width: 52px;
+  height: 52px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid rgba(6, 182, 212, .45);
+  border-radius: 14px;
+
+  background: #0B1F4D;
+
+  color: #ffffff;
+
+  font-size: 18px;
+  font-weight: 800;
+}
+
+
+.df-login-brand > div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+
+.df-login-brand strong {
+  color: #0B1F4D;
+  font-size: 20px;
+}
+
+
+.df-login-brand span {
+  color: #0891b2;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+
+.df-login-heading {
+  margin-bottom: 26px;
+}
+
+
+.df-login-heading > span {
+  color: #0891b2;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+
+.df-login-heading h1 {
+  margin: 8px 0 6px;
+
+  color: #0f172a;
+
+  font-size: 30px;
+}
+
+
+.df-login-heading p {
+  margin: 0;
+
+  color: #64748b;
+
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+
+.df-login-form {
+  display: grid;
+  gap: 18px;
+}
+
+
+.df-login-form label {
+  display: grid;
+  gap: 7px;
+}
+
+
+.df-login-form label > span {
+  color: #475569;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+
+.df-login-form input {
+  width: 100%;
+  min-height: 44px;
+
+  padding: 10px 12px;
+
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+
+  background: #ffffff;
+
+  color: #0f172a;
+
+  font: inherit;
+  outline: none;
+}
+
+
+.df-login-form input:focus {
+  border-color: #06B6D4;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(6, 182, 212, .12);
+}
+
+
+.df-login-error {
+  padding: 10px 12px;
+
+  border: 1px solid #fecaca;
+  border-radius: 9px;
+
+  background: #fef2f2;
+
+  color: #b42318;
+
+  font-size: 12px;
+}
+
+
+.df-login-submit {
+  min-height: 44px;
+
+  border: 0;
+  border-radius: 9px;
+
+  background: #155EEF;
+
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+
+.df-login-submit:hover:not(:disabled) {
+  filter: brightness(1.04);
+}
+
+
+.df-login-submit:disabled {
+  opacity: .65;
+  cursor: wait;
+}
+
+
+.df-auth-loading {
+  min-height: 100vh;
+
+  display: grid;
+  place-items: center;
+
+  background: #f8fafc;
+
+  color: #475569;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+
+/* ---------------------------------------------------------------
+   Progressive billing modal
+   --------------------------------------------------------------- */
+
+.billing-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(15, 23, 42, 0.42);
+}
+
+.billing-modal {
+  width: min(520px, 100%);
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  padding: 24px;
+  border-radius: 16px;
+  background: var(--surface, #ffffff);
+  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.22);
+}
+
+.billing-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.billing-modal-header h2 {
+  margin: 4px 0;
+}
+
+.billing-modal-header p {
+  margin: 0;
+  opacity: 0.65;
+}
+
+.billing-modal-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+
+.billing-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.billing-summary > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  border-radius: 10px;
+}
+
+.billing-summary span {
+  font-size: 0.75rem;
+  opacity: 0.62;
+}
+
+.billing-summary strong {
+  font-size: 0.9rem;
+}
+
+.billing-modal-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 18px;
+}
+
+.billing-modal-field label {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.billing-modal-field select,
+.billing-modal-field input {
+  width: 100%;
+}
+
+.billing-modal-field small {
+  opacity: 0.65;
+}
+
+.billing-percentage-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.billing-percentage-input span {
+  font-weight: 600;
+}
+
+.billing-balance-note {
+  margin-bottom: 18px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: rgba(14, 165, 233, 0.08);
+  font-size: 0.85rem;
+}
+
+.billing-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 4px;
+}
+
+@media (max-width: 640px) {
+  .billing-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .billing-modal {
+    padding: 18px;
+  }
+}
+
+
+/* ============================================================
+   PROFORMAS — LISTE & PILOTAGE
+   ============================================================ */
+
+.proforma-list-card {
+  margin-top: 24px;
+  padding: 24px;
+}
+
+.proforma-list-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 22px;
+}
+
+.proforma-list-header h2 {
+  margin: 0;
+  font-size: 1.35rem;
+}
+
+.proforma-list-header p {
+  margin: 5px 0 0;
+  color: var(--text-muted, #64748b);
+}
+
+.proforma-search {
+  width: min(380px, 100%);
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid #d6dde8;
+  border-radius: 10px;
+  background: #fff;
+  font: inherit;
+}
+
+.proforma-list-controls {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  background: #fbfcfe;
+}
+
+.proforma-period-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.proforma-filter-button {
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1px solid #d4dce8;
+  border-radius: 9px;
+  background: #fff;
+  color: #334155;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.proforma-filter-button:hover {
+  border-color: #94a3b8;
+}
+
+.proforma-filter-button-active {
+  border-color: #2563eb;
+  background: #2563eb;
+  color: #fff;
+}
+
+.proforma-sort-control,
+.proforma-page-size-control {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  white-space: nowrap;
+}
+
+.proforma-sort-control label,
+.proforma-page-size-control label {
+  color: #64748b;
+  font-weight: 600;
+}
+
+.proforma-sort-control select,
+.proforma-page-size-control select {
+  min-height: 40px;
+  padding: 0 34px 0 12px;
+  border: 1px solid #d4dce8;
+  border-radius: 9px;
+  background: #fff;
+  font: inherit;
+}
+
+.proforma-table-wrap {
+  overflow-x: auto;
+}
+
+.proforma-table {
+  width: 100%;
+}
+
+@media (max-width: 1100px) {
+  .proforma-list-controls {
+    flex-wrap: wrap;
+  }
+
+  .proforma-period-controls {
+    flex-basis: 100%;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 720px) {
+  .proforma-list-header {
+    flex-direction: column;
+  }
+
+  .proforma-search {
+    width: 100%;
+  }
+
+  .proforma-sort-control,
+  .proforma-page-size-control {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .proforma-sort-control select,
+  .proforma-page-size-control select {
+    flex: 1;
+  }
+}
+
+/* Espacement filtres Exécution */
+.operational-type-tabs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ============================================================
+   RECURRING INVOICES
+   ============================================================ */
+
+.recurring-list-card {
+  margin-top: 24px;
+  padding: 24px;
+}
+
+.recurring-list-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.recurring-list-header h2 {
+  margin: 0 0 6px;
+}
+
+.recurring-list-header p {
+  margin: 0;
+}
+
+.recurring-search {
+  width: min(360px, 100%);
+  min-height: 42px;
+  padding: 0 14px;
+  border: 1px solid #d9e1ea;
+  border-radius: 10px;
+  background: #fff;
+  font: inherit;
+}
+
+.recurring-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.recurring-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 980px;
+}
+
+.recurring-table th,
+.recurring-table td {
+  padding: 14px 12px;
+  text-align: left;
+  vertical-align: middle;
+  border-bottom: 1px solid #edf1f5;
+}
+
+.recurring-table th {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.recurring-table td {
+  font-size: 0.92rem;
+}
+
+.recurring-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.recurring-due-label {
+  display: block;
+  width: fit-content;
+  margin-top: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #075985;
+}
+
+.recurring-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.recurring-action-button {
+  min-height: 34px;
+  padding: 6px 10px;
+  font-size: 0.8rem;
+}
+
+.recurring-empty {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 42px 20px;
+  text-align: center;
+  color: #64748b;
+}
+
+@media (max-width: 800px) {
+  .recurring-list-header {
+    flex-direction: column;
+  }
+
+  .recurring-search {
+    width: 100%;
+  }
+}
+
+/* ============================================================
+   RECURRING INVOICE CREATION MODAL
+   ============================================================ */
+
+.recurring-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(15, 23, 42, 0.48);
+}
+
+.recurring-modal-card {
+  width: min(620px, 100%);
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  border: 1px solid #dfe7ef;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow:
+    0 24px 70px
+    rgba(15, 23, 42, 0.18);
+}
+
+.recurring-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 24px 26px 18px;
+  border-bottom: 1px solid #edf1f5;
+}
+
+.recurring-modal-header h2 {
+  margin: 4px 0 4px;
+}
+
+.recurring-modal-header p {
+  margin: 0;
+  color: #64748b;
+}
+
+.recurring-modal-close {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 9px;
+  background: #f3f6f9;
+  font-size: 1.45rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.recurring-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 24px 26px;
+}
+
+.recurring-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.recurring-field > span {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #334155;
+}
+
+.recurring-field input,
+.recurring-field select {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 13px;
+  border: 1px solid #d7e0e9;
+  border-radius: 10px;
+  background: #fff;
+  font: inherit;
+}
+
+.recurring-date-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.recurring-modal-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 14px 16px;
+  border-radius: 11px;
+  background: #f5f9fc;
+  color: #475569;
+  font-size: 0.86rem;
+}
+
+.recurring-modal-info strong {
+  color: #0f172a;
+}
+
+.recurring-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 18px 26px 24px;
+  border-top: 1px solid #edf1f5;
+}
+
+@media (max-width: 640px) {
+  .recurring-date-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .recurring-modal-footer {
+    flex-direction: column-reverse;
+  }
+
+  .recurring-modal-footer button {
+    width: 100%;
+  }
+}

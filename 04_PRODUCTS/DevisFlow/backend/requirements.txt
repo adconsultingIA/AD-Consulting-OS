@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+pydantic
+email-validator
+python-dotenv
+requests
+sqlalchemy
+reportlab
+python-multipart
