@@ -12,7 +12,7 @@ from sqlalchemy import (
     Text,
     func,
 )
-
+from datetime import datetime
 from app.core.database import Base
 
 
@@ -1535,4 +1535,428 @@ class PurchaseOrderItemDB(Base):
     total = Column(
         Numeric(12, 2),
         nullable=False,
+    )
+
+
+# ---------------------------------------------------------------------
+# FORECASTING ENGINE
+# ---------------------------------------------------------------------
+
+class ForecastModelChampionDB(Base):
+    __tablename__ = "forecast_model_champions"
+
+    id = Column(
+        String,
+        primary_key=True,
+        index=True,
+    )
+
+    organization_id = Column(
+        String,
+        nullable=False,
+        index=True,
+    )
+
+    indicator = Column(
+        String(100),
+        nullable=False,
+        index=True,
+    )
+
+    model_code = Column(
+        String(100),
+        nullable=False,
+    )
+
+    rmse = Column(
+        Numeric(18, 6),
+        nullable=False,
+    )
+
+    mae = Column(
+        Numeric(18, 6),
+        nullable=False,
+    )
+
+    smape = Column(
+        Numeric(18, 6),
+        nullable=False,
+    )
+
+    folds = Column(
+        Integer,
+        nullable=False,
+        default=0,
+    )
+
+    observations = Column(
+        Integer,
+        nullable=False,
+        default=0,
+    )
+
+    selected_at = Column(
+        DateTime,
+        nullable=False,
+        server_default=func.now(),
+    )
+
+    updated_at = Column(
+        DateTime,
+        nullable=False,
+        server_default=func.now(),
+        onupdate=func.now(),
+    )
+
+
+class ForecastModelEvaluationDB(Base):
+    __tablename__ = "forecast_model_evaluations"
+
+    id = Column(
+        String,
+        primary_key=True,
+        index=True,
+    )
+
+    organization_id = Column(
+        String,
+        nullable=False,
+        index=True,
+    )
+
+    indicator = Column(
+        String(100),
+        nullable=False,
+        index=True,
+    )
+
+    model_code = Column(
+        String(100),
+        nullable=False,
+        index=True,
+    )
+
+    rmse = Column(
+        Numeric(18, 6),
+        nullable=False,
+    )
+
+    mae = Column(
+        Numeric(18, 6),
+        nullable=False,
+    )
+
+    smape = Column(
+        Numeric(18, 6),
+        nullable=False,
+    )
+
+    folds = Column(
+        Integer,
+        nullable=False,
+        default=0,
+    )
+
+    observations = Column(
+        Integer,
+        nullable=False,
+        default=0,
+    )
+
+    challenger_gain_pct = Column(
+        Numeric(10, 4),
+        nullable=True,
+    )
+
+    promoted = Column(
+        Boolean,
+        nullable=False,
+        default=False,
+    )
+
+    evaluation_role = Column(
+        String(50),
+        nullable=False,
+        default="candidate",
+    )
+
+    evaluated_at = Column(
+        DateTime,
+        nullable=False,
+        server_default=func.now(),
+    )
+
+
+class ForecastRunDB(Base):
+    __tablename__ = "forecast_runs"
+
+    id = Column(
+        String,
+        primary_key=True,
+        index=True,
+    )
+
+    organization_id = Column(
+        String,
+        nullable=False,
+        index=True,
+    )
+
+    indicator = Column(
+        String(100),
+        nullable=False,
+        index=True,
+    )
+
+    status = Column(
+        String(50),
+        nullable=False,
+    )
+
+    selected_model = Column(
+        String(100),
+        nullable=True,
+    )
+
+    quality = Column(
+        String(50),
+        nullable=False,
+    )
+
+    horizon = Column(
+        Integer,
+        nullable=False,
+    )
+
+    observations = Column(
+        Integer,
+        nullable=False,
+        default=0,
+    )
+
+    rmse = Column(
+        Numeric(18, 6),
+        nullable=True,
+    )
+
+    mae = Column(
+        Numeric(18, 6),
+        nullable=True,
+    )
+
+    smape = Column(
+        Numeric(18, 6),
+        nullable=True,
+    )
+
+    uncertainty_method = Column(
+        String(100),
+        nullable=True,
+    )
+
+    uncertainty_coverage = Column(
+        Numeric(8, 6),
+        nullable=True,
+    )
+
+    uncertainty_radius = Column(
+        Numeric(18, 6),
+        nullable=True,
+    )
+
+    calibration_points = Column(
+        Integer,
+        nullable=True,
+    )
+
+    calculated_at = Column(
+        DateTime,
+        nullable=False,
+        server_default=func.now(),
+        index=True,
+    )
+
+
+class ForecastPointDB(Base):
+    __tablename__ = "forecast_points"
+
+    id = Column(
+        String,
+        primary_key=True,
+        index=True,
+    )
+
+    forecast_run_id = Column(
+        String,
+        ForeignKey("forecast_runs.id"),
+        nullable=False,
+        index=True,
+    )
+
+    horizon_step = Column(
+        Integer,
+        nullable=False,
+    )
+
+    forecast_date = Column(
+        DateTime,
+        nullable=False,
+    )
+
+    value = Column(
+        Numeric(18, 6),
+        nullable=False,
+    )
+
+    lower_bound = Column(
+        Numeric(18, 6),
+        nullable=True,
+    )
+
+    upper_bound = Column(
+        Numeric(18, 6),
+        nullable=True,
+    )
+
+class AutomationRuleDB(Base):
+    __tablename__ = "automation_rules"
+
+    id = Column(
+        String,
+        primary_key=True,
+    )
+
+    organization_id = Column(
+        String,
+        nullable=False,
+        index=True,
+    )
+
+    automation_type = Column(
+        String(100),
+        nullable=False,
+    )
+
+    name = Column(
+        String(255),
+        nullable=False,
+    )
+
+    enabled = Column(
+        Boolean,
+        nullable=False,
+        default=True,
+    )
+
+    trigger_type = Column(
+        String(100),
+        nullable=False,
+    )
+
+    conditions = Column(
+        JSON,
+        nullable=False,
+        default=dict,
+    )
+
+    action_config = Column(
+        JSON,
+        nullable=False,
+        default=dict,
+    )
+
+    requires_confirmation = Column(
+        Boolean,
+        nullable=False,
+        default=False,
+    )
+
+    last_run_at = Column(
+        DateTime,
+        nullable=True,
+    )
+
+    next_run_at = Column(
+        DateTime,
+        nullable=True,
+    )
+
+    created_at = Column(
+        DateTime,
+        nullable=False,
+        default=datetime.utcnow,
+    )
+
+    updated_at = Column(
+        DateTime,
+        nullable=False,
+        default=datetime.utcnow,
+        onupdate=datetime.utcnow,
+    )
+
+
+class AutomationExecutionDB(Base):
+    __tablename__ = "automation_executions"
+
+    id = Column(
+        String,
+        primary_key=True,
+    )
+
+    automation_rule_id = Column(
+        String,
+        ForeignKey(
+            "automation_rules.id",
+            ondelete="CASCADE",
+        ),
+        nullable=False,
+        index=True,
+    )
+
+    organization_id = Column(
+        String,
+        nullable=False,
+        index=True,
+    )
+
+    entity_type = Column(
+        String(100),
+        nullable=True,
+    )
+
+    entity_id = Column(
+        String,
+        nullable=True,
+    )
+
+    status = Column(
+        String(50),
+        nullable=False,
+    )
+
+    trigger_payload = Column(
+        JSON,
+        nullable=False,
+        default=dict,
+    )
+
+    result_payload = Column(
+        JSON,
+        nullable=True,
+    )
+
+    error_message = Column(
+        Text,
+        nullable=True,
+    )
+
+    started_at = Column(
+        DateTime,
+        nullable=False,
+        default=datetime.utcnow,
+    )
+
+    completed_at = Column(
+        DateTime,
+        nullable=True,
     )

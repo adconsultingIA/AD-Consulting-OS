@@ -16,6 +16,8 @@ from app.api.receipts import router as receipts_router
 from app.api.recurring_invoices import router as recurring_invoices_router
 from app.api.document_emails import router as document_emails_router
 from app.api.history import router as history_router
+from app.api.intelligence import router as intelligence_router
+from app.api.automations import router as automations_router
 
 app = FastAPI(
     title="DevisFlow API",
@@ -53,6 +55,8 @@ app.include_router(receipts_router)
 app.include_router(recurring_invoices_router)
 app.include_router(document_emails_router)
 app.include_router(history_router)
+app.include_router(intelligence_router)
+app.include_router(automations_router)
 
 
 @app.get("/health")

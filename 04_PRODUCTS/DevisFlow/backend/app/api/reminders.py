@@ -1,3 +1,5 @@
+import hmac
+
 from datetime import date, datetime, timedelta
 from decimal import Decimal
 from uuid import UUID, uuid4
@@ -5,6 +7,7 @@ from uuid import UUID, uuid4
 from fastapi import (
     APIRouter,
     Depends,
+    Header,
     HTTPException,
     status,
 )
@@ -14,6 +17,8 @@ from sqlalchemy.orm import Session
 from app.core.database import get_db
 
 from app.models.database_models import (
+    AutomationExecutionDB,
+    AutomationRuleDB,
     ClientDB,
     CreditNoteDB,
     InvoiceDB,
@@ -37,6 +42,10 @@ from app.schemas.reminder import (
     PaymentReminderCockpitItem,
     PaymentReminderCreate,
     PaymentReminderResponse,
+)
+
+from app.services.automation_orchestrator import (
+    get_make_automation_secret,
 )
 
 from app.services.coreflow_client import (
@@ -176,10 +185,40 @@ def get_invoice_commercial_context(
     return commercial_context
 
 
-def schedule_next_payment_reminder(
+def get_effective_reminder_interval_days(
+    *,
+    db: Session,
+    organization_id: str,
     invoice: InvoiceDB,
-    reminder_date,
-) -> None:
+) -> int:
+    rule = (
+        db.query(AutomationRuleDB)
+        .filter(
+            AutomationRuleDB.organization_id
+            == organization_id,
+            AutomationRuleDB.automation_type
+            == "invoice_payment_reminder",
+            AutomationRuleDB.enabled.is_(True),
+        )
+        .order_by(
+            AutomationRuleDB.updated_at.desc()
+        )
+        .first()
+    )
+
+    if rule:
+        action_config = rule.action_config or {}
+
+        try:
+            interval_days = int(
+                action_config.get("interval_days")
+            )
+        except (TypeError, ValueError):
+            interval_days = 0
+
+        if interval_days > 0:
+            return interval_days
+
     interval_days = int(
         invoice.reminder_interval_days
         or 7
@@ -188,42 +227,40 @@ def schedule_next_payment_reminder(
     if interval_days <= 0:
         interval_days = 7
 
+    return interval_days
+
+
+def schedule_next_payment_reminder(
+    *,
+    db: Session,
+    organization_id: str,
+    invoice: InvoiceDB,
+    reminder_date,
+) -> None:
+    interval_days = (
+        get_effective_reminder_interval_days(
+            db=db,
+            organization_id=organization_id,
+            invoice=invoice,
+        )
+    )
+
     invoice.next_reminder_date = (
         reminder_date
         + timedelta(days=interval_days)
     )
 
 
-@router.post(
-    "/invoices/{invoice_id}/reminders",
-    response_model=PaymentReminderResponse,
-    status_code=status.HTTP_201_CREATED,
-)
-def create_payment_reminder(
-    invoice_id: UUID,
-    payload: PaymentReminderCreate,
-    db: Session = Depends(get_db),
-):
-    organization_id = (
-        get_devisflow_organization_id()
-    )
 
-    invoice = (
-        db.query(InvoiceDB)
-        .filter(
-            InvoiceDB.id == str(invoice_id),
-            InvoiceDB.organization_id
-            == organization_id,
-        )
-        .first()
-    )
-
-    if not invoice:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Invoice not found",
-        )
-
+def execute_email_payment_reminder(
+    *,
+    db: Session,
+    organization_id: str,
+    invoice: InvoiceDB,
+    reminder_date: date,
+    subject: str | None = None,
+    message: str | None = None,
+) -> PaymentReminderDB:
     if invoice.status != "overdue":
         raise HTTPException(
             status_code=status.HTTP_409_CONFLICT,
@@ -244,40 +281,13 @@ def create_payment_reminder(
             ),
         )
 
+    if invoice.reminder_paused:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail="Payment reminders are paused",
+        )
+
     reminder_id = str(uuid4())
-
-    # --------------------------------------------------------------
-    # Non-email channels:
-    # business trace only, no SMTP delivery.
-    # --------------------------------------------------------------
-
-    if payload.channel != "email":
-        reminder = PaymentReminderDB(
-            id=reminder_id,
-            invoice_id=invoice.id,
-            reminder_date=payload.reminder_date,
-            channel=payload.channel,
-            subject=payload.subject,
-            message=payload.message,
-        )
-
-        db.add(reminder)
-
-        schedule_next_payment_reminder(
-            invoice,
-            payload.reminder_date,
-        )
-
-        db.commit()
-        db.refresh(reminder)
-
-        return build_reminder_response(
-            reminder
-        )
-
-    # --------------------------------------------------------------
-    # Email reminder
-    # --------------------------------------------------------------
 
     quote, request, client = (
         get_invoice_context(
@@ -375,8 +385,8 @@ def create_payment_reminder(
 
     pdf_bytes = pdf_buffer.getvalue()
 
-    subject = (
-        payload.subject
+    resolved_subject = (
+        subject
         or (
             "Relance – facture "
             f"{invoice.invoice_number}"
@@ -389,10 +399,10 @@ def create_payment_reminder(
         or "Madame, Monsieur"
     )
 
-    if payload.message:
+    if message:
         body = (
             f"Bonjour {contact_name},\n\n"
-            f"{payload.message.strip()}\n\n"
+            f"{message.strip()}\n\n"
             "Vous trouverez à nouveau la facture "
             "concernée en pièce jointe.\n\n"
             "Cordialement"
@@ -416,7 +426,7 @@ def create_payment_reminder(
         document_type="invoice_reminder",
         document_id=reminder_id,
         recipient=client.email,
-        subject=subject,
+        subject=resolved_subject,
         status="pending",
         provider="smtp",
     )
@@ -427,7 +437,7 @@ def create_payment_reminder(
 
     result = send_email(
         recipient=client.email,
-        subject=subject,
+        subject=resolved_subject,
         body=body,
         attachment=EmailAttachment(
             filename=(
@@ -461,17 +471,19 @@ def create_payment_reminder(
     reminder = PaymentReminderDB(
         id=reminder_id,
         invoice_id=invoice.id,
-        reminder_date=payload.reminder_date,
+        reminder_date=reminder_date,
         channel="email",
-        subject=subject,
-        message=payload.message,
+        subject=resolved_subject,
+        message=message,
     )
 
     db.add(reminder)
 
     schedule_next_payment_reminder(
-        invoice,
-        payload.reminder_date,
+        db=db,
+        organization_id=organization_id,
+        invoice=invoice,
+        reminder_date=reminder_date,
     )
 
     email_log.status = "sent"
@@ -483,13 +495,313 @@ def create_payment_reminder(
     email_log.sent_at = now
 
     db.commit()
-
     db.refresh(reminder)
-    db.refresh(email_log)
+
+    return reminder
+
+
+@router.post(
+    "/invoices/{invoice_id}/reminders",
+    response_model=PaymentReminderResponse,
+    status_code=status.HTTP_201_CREATED,
+)
+def create_payment_reminder(
+    invoice_id: UUID,
+    payload: PaymentReminderCreate,
+    db: Session = Depends(get_db),
+):
+    organization_id = (
+        get_devisflow_organization_id()
+    )
+
+    invoice = (
+        db.query(InvoiceDB)
+        .filter(
+            InvoiceDB.id == str(invoice_id),
+            InvoiceDB.organization_id
+            == organization_id,
+        )
+        .first()
+    )
+
+    if not invoice:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Invoice not found",
+        )
+
+    if invoice.status != "overdue":
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail=(
+                "Payment reminders can only be "
+                "created for overdue invoices"
+            ),
+        )
+
+    if Decimal(
+        invoice.amount_due or 0
+    ) <= Decimal("0"):
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail=(
+                "Payment reminder cannot be created "
+                "for an invoice with no amount due"
+            ),
+        )
+
+    reminder_id = str(uuid4())
+
+    # --------------------------------------------------------------
+    # Non-email channels:
+    # business trace only, no SMTP delivery.
+    # --------------------------------------------------------------
+
+    if payload.channel != "email":
+        reminder = PaymentReminderDB(
+            id=reminder_id,
+            invoice_id=invoice.id,
+            reminder_date=payload.reminder_date,
+            channel=payload.channel,
+            subject=payload.subject,
+            message=payload.message,
+        )
+
+        db.add(reminder)
+
+        schedule_next_payment_reminder(
+            db=db,
+            organization_id=organization_id,
+            invoice=invoice,
+            reminder_date=payload.reminder_date,
+        )
+
+        db.commit()
+        db.refresh(reminder)
+
+        return build_reminder_response(
+            reminder
+        )
+
+    # --------------------------------------------------------------
+    # Email reminder
+    # --------------------------------------------------------------
+
+    reminder = execute_email_payment_reminder(
+        db=db,
+        organization_id=organization_id,
+        invoice=invoice,
+        reminder_date=payload.reminder_date,
+        subject=payload.subject,
+        message=payload.message,
+    )
 
     return build_reminder_response(
         reminder
     )
+
+
+
+@router.post(
+    "/intelligence/automations/internal/"
+    "executions/{execution_id}/execute-reminder",
+)
+def execute_automated_invoice_reminder(
+    execution_id: str,
+    x_devisflow_automation_secret: str | None = Header(
+        default=None,
+        alias="X-DevisFlow-Automation-Secret",
+    ),
+    db: Session = Depends(get_db),
+):
+    expected_secret = get_make_automation_secret()
+
+    if (
+        not x_devisflow_automation_secret
+        or not hmac.compare_digest(
+            x_devisflow_automation_secret,
+            expected_secret,
+        )
+    ):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Automation callback not authorized",
+        )
+
+    execution = (
+        db.query(AutomationExecutionDB)
+        .filter(
+            AutomationExecutionDB.id
+            == execution_id
+        )
+        .first()
+    )
+
+    if not execution:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Automation execution not found",
+        )
+
+    rule = (
+        db.query(AutomationRuleDB)
+        .filter(
+            AutomationRuleDB.id
+            == execution.automation_rule_id,
+            AutomationRuleDB.organization_id
+            == execution.organization_id,
+        )
+        .first()
+    )
+
+    if not rule:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Automation rule not found",
+        )
+
+    if (
+        rule.automation_type
+        != "invoice_payment_reminder"
+    ):
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail=(
+                "Automation execution is not an "
+                "invoice payment reminder"
+            ),
+        )
+
+    if execution.entity_type != "invoice":
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail=(
+                "Automation execution entity "
+                "must be an invoice"
+            ),
+        )
+
+    if not execution.entity_id:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail=(
+                "Automation execution has no "
+                "invoice entity_id"
+            ),
+        )
+
+    # ----------------------------------------------------------
+    # Idempotence:
+    # if Make retries the HTTP module after the reminder
+    # has already been sent, do not send a second email.
+    # ----------------------------------------------------------
+
+    existing_result = (
+        execution.result_payload or {}
+    )
+
+    if existing_result.get(
+        "reminder_executed"
+    ):
+        return {
+            "ok": True,
+            "status": execution.status,
+            "idempotent": True,
+            "execution_id": execution.id,
+            "invoice_id": execution.entity_id,
+            "reminder_id": (
+                existing_result.get(
+                    "reminder_id"
+                )
+            ),
+            "next_reminder_date": (
+                existing_result.get(
+                    "next_reminder_date"
+                )
+            ),
+        }
+
+    if execution.status == "completed":
+        return {
+            "ok": True,
+            "status": "completed",
+            "idempotent": True,
+            "execution_id": execution.id,
+            "invoice_id": execution.entity_id,
+        }
+
+    if execution.status == "failed":
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail=(
+                "Failed automation execution "
+                "cannot execute a reminder"
+            ),
+        )
+
+    invoice = (
+        db.query(InvoiceDB)
+        .filter(
+            InvoiceDB.id
+            == execution.entity_id,
+            InvoiceDB.organization_id
+            == execution.organization_id,
+        )
+        .first()
+    )
+
+    if not invoice:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Invoice not found",
+        )
+
+    reminder = execute_email_payment_reminder(
+        db=db,
+        organization_id=execution.organization_id,
+        invoice=invoice,
+        reminder_date=date.today(),
+    )
+
+    # ----------------------------------------------------------
+    # Persist action result while execution remains running.
+    # Make callback remains responsible for completed / failed.
+    # ----------------------------------------------------------
+
+    execution.result_payload = {
+        "reminder_executed": True,
+        "reminder_id": reminder.id,
+        "invoice_id": invoice.id,
+        "channel": reminder.channel,
+        "reminder_date": (
+            reminder.reminder_date.isoformat()
+            if reminder.reminder_date
+            else None
+        ),
+        "next_reminder_date": (
+            invoice.next_reminder_date.isoformat()
+            if invoice.next_reminder_date
+            else None
+        ),
+    }
+
+    db.commit()
+    db.refresh(execution)
+    db.refresh(invoice)
+
+    return {
+        "ok": True,
+        "status": execution.status,
+        "idempotent": False,
+        "execution_id": execution.id,
+        "invoice_id": invoice.id,
+        "reminder_id": reminder.id,
+        "next_reminder_date": (
+            invoice.next_reminder_date.isoformat()
+            if invoice.next_reminder_date
+            else None
+        ),
+    }
 
 
 @router.get(
