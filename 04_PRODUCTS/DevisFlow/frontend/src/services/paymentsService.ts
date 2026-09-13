@@ -1,4 +1,7 @@
 import { API_URL } from "../config/api";
+import {
+  getAuthHeaders,
+} from "./api";
 
 export interface Payment {
   id: string;
@@ -23,7 +26,11 @@ export async function getInvoicePayments(
   invoiceId: string
 ): Promise<Payment[]> {
   const response = await fetch(
-    `${API_URL}/invoices/${invoiceId}/payments`
+    `${API_URL}/invoices/${invoiceId}/payments`,
+    {
+      headers:
+        await getAuthHeaders(),
+    }
   );
 
   if (!response.ok) {
@@ -43,9 +50,8 @@ export async function createPayment(
     `${API_URL}/invoices/${invoiceId}/payments`,
     {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers:
+        await getAuthHeaders(true),
       body: JSON.stringify(data),
     }
   );

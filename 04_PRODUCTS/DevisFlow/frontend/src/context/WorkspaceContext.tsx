@@ -60,6 +60,12 @@ type WorkspaceContextValue = {
   loading: boolean;
   error: string | null;
   refreshWorkspace: () => Promise<void>;
+  getEntitlement: (
+    code: string
+  ) => unknown;
+  hasEntitlement: (
+    code: string
+  ) => boolean;
 };
 
 
@@ -192,12 +198,28 @@ export function WorkspaceProvider({
 
 
   const value = useMemo(
-    () => ({
-      workspace,
-      loading,
-      error,
-      refreshWorkspace,
-    }),
+    () => {
+      const getEntitlement = (
+        code: string
+      ) =>
+        workspace?.access.entitlements[
+          code
+        ];
+
+      const hasEntitlement = (
+        code: string
+      ) =>
+        getEntitlement(code) === true;
+
+      return {
+        workspace,
+        loading,
+        error,
+        refreshWorkspace,
+        getEntitlement,
+        hasEntitlement,
+      };
+    },
     [
       workspace,
       loading,

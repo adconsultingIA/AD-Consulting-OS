@@ -4,7 +4,10 @@ import {
   useState,
 } from "react";
 
-import { useNavigate } from "react-router-dom";
+import {
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 
 import {
   getClients,
@@ -22,6 +25,9 @@ import type {
 
 import StarterDashboardWidgets from "../components/dashboard/StarterDashboardWidgets";
 
+import IntelligenceForecasting from "../components/intelligence/IntelligenceForecasting";
+import IntelligenceAdvancedAutomation from "../components/intelligence/IntelligenceAdvancedAutomation";
+
 import {
   getRecurringInvoices,
   type RecurringInvoice,
@@ -32,6 +38,13 @@ import {
   type PaymentReminderCockpitItem,
 } from "../services/remindersService";
 
+
+import {
+  getInvoicePayments,
+  type Payment,
+} from "../services/paymentsService";
+
+import IntelligenceCopilot from "../components/intelligence/IntelligenceCopilot";
 
 const CURRENCY = "CHF";
 
@@ -47,6 +60,14 @@ function formatCurrency(value: number) {
 
 export default function DashboardPage() {
   const navigate = useNavigate();
+
+  const [searchParams] =
+  useSearchParams();
+
+const requestedIntelligence =
+  searchParams.get(
+    "intelligence"
+  );
 
   const [clients, setClients] =
     useState<Client[]>([]);
@@ -70,6 +91,11 @@ export default function DashboardPage() {
     setReminderCockpit,
   ] = useState<PaymentReminderCockpitItem[]>([]);
 
+  const [
+    payments,
+    setPayments,
+  ] = useState<Payment[]>([]);
+
   const [loading, setLoading] =
     useState(true);
 
@@ -83,32 +109,114 @@ export default function DashboardPage() {
         setLoading(true);
         setError("");
 
+        const results =
+          await Promise.allSettled([
+            getClients(),
+            getRequests(),
+            getQuotes(),
+            getInvoices(),
+            getRecurringInvoices(),
+            getReminderCockpit(),
+          ]);
+
         const [
-          clientsData,
-          requestsData,
-          quotesData,
-          invoicesData,
-          recurringInvoicesData,
-          reminderCockpitData,
-        ] = await Promise.all([
-          getClients(),
-          getRequests(),
-          getQuotes(),
-          getInvoices(),
-          getRecurringInvoices(),
-          getReminderCockpit(),
-        ]);
+          clientsResult,
+          requestsResult,
+          quotesResult,
+          invoicesResult,
+          recurringInvoicesResult,
+          reminderCockpitResult,
+        ] = results;
+
+        const clientsData =
+          clientsResult.status === "fulfilled"
+            ? clientsResult.value
+            : [];
+
+        const requestsData =
+          requestsResult.status === "fulfilled"
+            ? requestsResult.value
+            : [];
+
+        const quotesData =
+          quotesResult.status === "fulfilled"
+            ? quotesResult.value
+            : [];
+
+        const invoicesData =
+          invoicesResult.status === "fulfilled"
+            ? invoicesResult.value
+            : [];
+
+        const recurringInvoicesData =
+          recurringInvoicesResult.status === "fulfilled"
+            ? recurringInvoicesResult.value
+            : [];
+
+        const reminderCockpitData =
+          reminderCockpitResult.status === "fulfilled"
+            ? reminderCockpitResult.value
+            : [];
 
         setClients(clientsData);
         setRequests(requestsData);
         setQuotes(quotesData);
         setInvoices(invoicesData);
+
+        const paymentResults =
+          await Promise.allSettled(
+            invoicesData.map(
+              (invoice) =>
+                getInvoicePayments(
+                  invoice.id
+                )
+            )
+          );
+
+        const paymentGroups =
+          paymentResults
+            .filter(
+              (
+                result
+              ): result is PromiseFulfilledResult<
+                Payment[]
+              > =>
+                result.status
+                === "fulfilled"
+            )
+            .map(
+              (result) =>
+                result.value
+            );
+
+        setPayments(
+          paymentGroups.flat()
+        );
+
         setRecurringInvoices(
           recurringInvoicesData
         );
+
         setReminderCockpit(
           reminderCockpitData
         );
+
+        const failedSources =
+          results.filter(
+            (result) =>
+              result.status === "rejected"
+          );
+
+        if (failedSources.length > 0) {
+          console.warn(
+            "Dashboard partiellement chargé :",
+            failedSources
+          );
+
+          setError(
+            "Certaines données du dashboard sont temporairement indisponibles."
+          );
+        }
       } catch (err) {
         console.error(err);
 
@@ -122,6 +230,37 @@ export default function DashboardPage() {
 
     loadDashboard();
   }, []);
+
+
+  useEffect(() => {
+    if (!requestedIntelligence) {
+      return;
+    }
+
+    const timeout =
+      window.setTimeout(
+        () => {
+          const element =
+            document.getElementById(
+              "dashboard-intelligence"
+            );
+
+          element?.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        },
+        250
+      );
+
+    return () => {
+      window.clearTimeout(
+        timeout
+      );
+    };
+  }, [
+    requestedIntelligence,
+  ]);
 
 
   const metrics = useMemo(() => {
@@ -369,6 +508,7 @@ export default function DashboardPage() {
         requests={requests}
         quotes={quotes}
         invoices={invoices}
+        payments={payments}
         recurringInvoices={
           recurringInvoices
         }
@@ -377,6 +517,12 @@ export default function DashboardPage() {
         }
         loading={loading}
       />
+
+      <div id="dashboard-intelligence">
+        <IntelligenceForecasting />
+        <IntelligenceAdvancedAutomation />
+        <IntelligenceCopilot />
+      </div>
 
     </div>
   );
