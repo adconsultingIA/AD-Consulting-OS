@@ -265,6 +265,32 @@ def get_workspace_context(
     )
 
 
+def get_workspace_entitlement(
+    workspace: CoreWorkspaceContext,
+    code: str,
+    default=None,
+):
+    return (
+        workspace.access.entitlements.get(
+            code,
+            default,
+        )
+    )
+
+
+def has_workspace_entitlement(
+    workspace: CoreWorkspaceContext,
+    code: str,
+) -> bool:
+    return (
+        get_workspace_entitlement(
+            workspace,
+            code,
+        )
+        is True
+    )
+
+
 def get_current_identity(
     access_token: str,
 ) -> dict:

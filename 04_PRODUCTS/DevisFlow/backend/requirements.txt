@@ -7,3 +7,5 @@ requests
 sqlalchemy
 reportlab
 python-multipart
+
+openai

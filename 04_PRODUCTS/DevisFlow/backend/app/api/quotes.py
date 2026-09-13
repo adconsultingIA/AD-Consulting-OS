@@ -66,6 +66,10 @@ from app.services.email_service import (
     send_email,
 )
 
+from app.services.quote_service import (
+    create_quote_for_organization,
+)
+
 router = APIRouter(
     prefix="/api/v1/quotes",
     tags=["quotes"],
@@ -264,181 +268,11 @@ def create_quote(
         devisflow_context["organization_id"]
     )
 
-    request = (
-        db.query(RequestDB)
-        .filter(
-            RequestDB.id
-            == str(payload.request_id),
-            RequestDB.organization_id
-            == organization_id,
-        )
-        .first()
-    )
-
-    if not request:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Request not found",
-        )
-
-    client = (
-        db.query(ClientDB)
-        .filter(
-            ClientDB.id == request.client_id,
-            ClientDB.organization_id
-            == organization_id,
-        )
-        .first()
-    )
-
-    if not client:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Client not found",
-        )
-
-    customer_tax_context = (
-        build_customer_tax_context(client)
-    )
-
-    quote_id = str(uuid4())
-
-    try:
-        commercial_context = (
-            get_commercial_context(
-                organization_id
-            )
-        )
-    except RuntimeError as exc:
-        raise HTTPException(
-            status_code=status.HTTP_502_BAD_GATEWAY,
-            detail=(
-                "CoreFlow est indisponible. "
-                "Impossible de déterminer "
-                "le traitement fiscal."
-            ),
-        ) from exc
-
-    subtotal = Decimal("0")
-    vat_amount = Decimal("0")
-
-    calculated_items = []
-
-    for item in payload.items:
-        tax_decision = resolve_tax(
-            issuer_tax_profile=(
-                commercial_context.tax_profile
-            ),
-            customer=customer_tax_context,
-            service_category=(
-                item.service_category
-            ),
-        )
-
-        if tax_decision.requires_manual_review:
-            raise HTTPException(
-                status_code=status.HTTP_409_CONFLICT,
-                detail=(
-                    "Fiscal review required for "
-                    f"'{item.description}': "
-                    f"{tax_decision.tax_reason}"
-                ),
-            )
-
-        (
-            item_subtotal,
-            item_vat,
-            item_total,
-            item_tax_rate,
-        ) = calculate_item(
-            item,
-            tax_decision,
-        )
-
-        subtotal += item_subtotal
-        vat_amount += item_vat
-
-        calculated_items.append(
-            {
-                "payload": item,
-                "subtotal": item_subtotal,
-                "vat_amount": item_vat,
-                "total": item_total,
-                "vat_rate": item_tax_rate,
-                "tax_decision": tax_decision,
-            }
-        )
-
-    subtotal = money(subtotal)
-    vat_amount = money(vat_amount)
-    total = money(subtotal + vat_amount)
-
-    now = datetime.now(timezone.utc)
-
-    quote = QuoteDB(
-        id=quote_id,
-        request_id=str(payload.request_id),
+    return create_quote_for_organization(
+        db,
         organization_id=organization_id,
-        quote_number=generate_quote_number(db),
-        status=QuoteStatus.DRAFT.value,
-        version=1,
-        valid_until=payload.valid_until,
-        notes=payload.notes,
-        subtotal=subtotal,
-        vat_amount=vat_amount,
-        total=total,
-        created_at=now,
-        updated_at=now,
-    )
-
-    db.add(quote)
-
-    for calculated in calculated_items:
-        item = calculated["payload"]
-
-        quote_item = QuoteItemDB(
-            id=str(uuid4()),
-            quote_id=quote_id,
-            description=item.description,
-            service_category=(
-                item.service_category
-            ),
-            quantity=item.quantity,
-            unit_price=item.unit_price,
-            vat_rate=calculated["vat_rate"],
-            tax_type=(
-                calculated[
-                    "tax_decision"
-                ].tax_type
-            ),
-            tax_treatment=(
-                calculated[
-                    "tax_decision"
-                ].tax_treatment
-            ),
-            tax_reason=(
-                calculated[
-                    "tax_decision"
-                ].tax_reason
-            ),
-            requires_manual_review=(
-                calculated[
-                    "tax_decision"
-                ].requires_manual_review
-            ),
-            subtotal=calculated["subtotal"],
-            vat_amount=calculated["vat_amount"],
-            total=calculated["total"],
+        payload=payload,
         )
-
-        db.add(quote_item)
-
-    request.status = "quoted"
-
-    db.commit()
-    db.refresh(quote)
-
-    return build_quote_response(db, quote)
 
 
 @router.delete(

@@ -14,6 +14,9 @@ from app.schemas.request import (
 from app.core.devisflow_context import (
     get_devisflow_context,
 )
+from app.services.request_service import (
+    create_request_for_organization,
+)
 
 
 router = APIRouter(
@@ -38,51 +41,11 @@ def create_request(
         devisflow_context["organization_id"]
     )
 
-    client = (
-        db.query(ClientDB)
-        .filter(
-            ClientDB.id
-            == str(payload.client_id),
-            ClientDB.organization_id
-            == organization_id,
-        )
-        .first()
-    )
-
-    if not client:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Client not found",
-        )
-
-    request_id = str(uuid4())
-
-    request = RequestDB(
-        id=request_id,
+    return create_request_for_organization(
+        db,
         organization_id=organization_id,
-        client_id=str(payload.client_id),
-        title=payload.title,
-        description=payload.description,
-        budget=payload.budget,
-        deadline=payload.deadline,
-        status="new",
-    )
-
-    db.add(request)
-    db.commit()
-    db.refresh(request)
-
-    return RequestResponse(
-        id=UUID(request.id),
-        client_id=UUID(request.client_id),
-        title=request.title,
-        description=request.description,
-        budget=request.budget,
-        deadline=request.deadline,
-        status=request.status,
-        created_at=request.created_at,
-    )
-
+        payload=payload,
+        )
 
 @router.get(
     "",
