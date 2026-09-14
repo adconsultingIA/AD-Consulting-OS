@@ -14,6 +14,8 @@ from app.core.devisflow_context import (
 )
 
 from app.schemas.copilot import (
+    CopilotExecuteRequest,
+    CopilotExecuteResponse,
     CopilotMessageRequest,
     CopilotMessageResponse,
 )
@@ -22,24 +24,28 @@ from app.services.copilot_service import (
     ask_copilot,
 )
 
+from app.services.copilot_permission_service import (
+    require_copilot_write_permission,
+)
+
+from app.services.copilot_proposal_service import (
+    create_copilot_proposal,
+    execute_copilot_proposal,
+)
+
 from app.services.coreflow_client import (
     get_workspace_context,
     has_workspace_entitlement,
 )
 
-from app.schemas.copilot import (
-    CopilotExecuteRequest,
-    CopilotExecuteResponse,
-)
-
-from app.services.copilot_service import (
-    execute_copilot_action,
-)
-
 
 router = APIRouter(
-    prefix="/api/v1/intelligence/copilot",
-    tags=["Intelligence Copilot"],
+    prefix=(
+        "/api/v1/intelligence/copilot"
+    ),
+    tags=[
+        "Intelligence Copilot"
+    ],
 )
 
 
@@ -47,8 +53,10 @@ def require_ai_copilot(
     organization_id: str,
 ) -> None:
     try:
-        workspace = get_workspace_context(
-            organization_id
+        workspace = (
+            get_workspace_context(
+                organization_id
+            )
         )
 
     except RuntimeError as exc:
@@ -76,7 +84,9 @@ def require_ai_copilot(
 
 @router.post(
     "",
-    response_model=CopilotMessageResponse,
+    response_model=(
+        CopilotMessageResponse
+    ),
 )
 def copilot_message(
     payload: CopilotMessageRequest,
@@ -91,15 +101,45 @@ def copilot_message(
         "organization_id"
     ]
 
+    user_id = str(
+        context["user_id"]
+    )
+
     require_ai_copilot(
         organization_id
     )
 
     try:
-        return ask_copilot(
+        response = ask_copilot(
             db,
-            organization_id=organization_id,
+            organization_id=(
+                organization_id
+            ),
             message=payload.message,
+        )
+
+        proposal = (
+            create_copilot_proposal(
+                db,
+                organization_id=(
+                    organization_id
+                ),
+                user_id=user_id,
+                response=response,
+            )
+        )
+
+        if proposal is None:
+            return response
+
+        return response.model_copy(
+            update={
+                "proposal_id":
+                    proposal.id,
+
+                "proposal_expires_at":
+                    proposal.expires_at,
+            }
         )
 
     except RuntimeError as exc:
@@ -113,13 +153,17 @@ def copilot_message(
 
 @router.post(
     "/execute",
-    response_model=CopilotExecuteResponse,
+    response_model=(
+        CopilotExecuteResponse
+    ),
 )
 def execute_action(
     payload: CopilotExecuteRequest,
+
     context: dict = Depends(
         get_devisflow_context
     ),
+
     db: Session = Depends(
         get_db
     ),
@@ -128,36 +172,44 @@ def execute_action(
         "organization_id"
     ]
 
+    user_id = str(
+        context["user_id"]
+    )
+
+    role = str(
+        context["role"]
+    )
+
     require_ai_copilot(
         organization_id
     )
 
-    result = execute_copilot_action(
+    # -------------------------------------------------
+    # CORE FLOW — SOURCE DE VÉRITÉ DES DROITS MÉTIER
+    # -------------------------------------------------
+
+    require_copilot_write_permission(
+        role=role
+    )
+
+    # -------------------------------------------------
+    # PROPOSITION SERVEUR / ANTI-REJEU / IDEMPOTENCE
+    # -------------------------------------------------
+
+    return execute_copilot_proposal(
         db,
-        organization_id=organization_id,
-        action_code=payload.action_code,
-        confirmed=payload.confirmed,
-        draft=payload.draft,
-        quote_draft=payload.quote_draft,
-    )
 
-    if payload.action_code == "create_request":
-        return CopilotExecuteResponse(
-    ok=True,
-    action_code=payload.action_code,
-    message="Request created successfully",
-    request_id=str(result.id),
-)
+        proposal_id=(
+            payload.proposal_id
+        ),
 
-    if payload.action_code == "create_quote":
-        return CopilotExecuteResponse(
-    ok=True,
-    action_code=payload.action_code,
-    message="Quote created successfully",
-    quote_id=str(result.id),
-    )
+        organization_id=(
+            organization_id
+        ),
 
-    raise HTTPException(
-    status_code=status.HTTP_400_BAD_REQUEST,
-    detail="Unsupported Copilot action",
+        user_id=user_id,
+
+        confirmed=(
+            payload.confirmed
+        ),
     )

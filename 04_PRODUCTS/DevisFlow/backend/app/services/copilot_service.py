@@ -324,6 +324,15 @@ def _build_business_context(
         .all()
     )
 
+    request_count = (
+        db.query(RequestDB)
+        .filter(
+            RequestDB.organization_id
+            == organization_id
+        )
+        .count()
+    )
+
     requests = (
         db.query(RequestDB)
         .filter(
@@ -374,7 +383,7 @@ def _build_business_context(
         "summary": {
             "currency": "CHF",
             "clients": len(clients),
-            "requests": len(requests),
+            "requests": request_count,
             "quotes": len(quotes),
             "invoices": len(invoices),
             "overdue_invoices": len(
